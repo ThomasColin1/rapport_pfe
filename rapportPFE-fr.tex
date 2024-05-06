@@ -208,9 +208,9 @@ Nous allons ici définir quelques termes propres au matériel de production musi
 \subsection{Définition du problème.}
 L'Arturia Software Center (ASC) et le Midi Control Center (MCC) sont deux logiciels vieillissants, qu'Arturia souhaite mettre à jour. Pour faire cela, l'entreprise souhaite mettre à l'épreuve de nouvelles technologies de développement graphique.
 
-En effet, ces logiciels ont été développés respectivement en 2014 pour l'Arturia Software Center, et en 2013 pour le Midi Control Center. A ce moment, l'équipe Compagnon que j'intègre pour ce stage n'existait pas encore, et ces logiciels ont donc étés développés par l'équipe Software, qui se spécialise dans le développement d'instruments virtuels, et qui a donc utilisé les technologies de développement d'instruments virtuels, en particulier le framework C++ JUCE, pour développer ces outils. 
+En effet, ces logiciels ont été développés respectivement en 2014 pour l'Arturia Software Center, et en 2013 pour le Midi Control Center. A ce moment, l'équipe Compagnon que j'intègre pour ce stage n'existait pas encore, et ces logiciels ont donc étés développés par l'équipe Software, qui se spécialise dans le développement d'instruments virtuels. Ils ont opté pour l'utilisation de technologies de développement d'instruments virtuels, notamment le framework C++ JUCE, pour la création de ces outils. Cependant, une mise à jour de l'ASC et du MCC en utilisant des technologies différentes permettrait de se détacher des outils spécifiquement conçus pour les logiciels audio, potentiellement inadaptés à ces applications.
 
-Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire qui rassemblerait l'Arturia Software Center et le Midi Control Center, qui permetterait de lancer des librairies C++ qui elles même implémenteraient des endpoints HTTP, de servir en HTTP des pages Web statiques, et qui afficherait un host permettant de naviguer sur ces pages Web. De cette manière, l'Arturia Software Center et le Midi Control Center sont deux modules de cette application, et ont chacun un back-end sous forme de librairie C++, et un front end sous forme de page web statique, qui communique avec son back-end par requêtes HTTP.\\
+Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire qui rassemblerait l'Arturia Software Center et le Midi Control Center. Cette application serait capable de lancer des librairies C++ en tant que back-end, de servir en HTTP des pages Web statiques en tant que front-end, et d'afficher un host permettant de naviguer sur ces pages Web. De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient = deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
 
 Utiliser des interfaces web pour ces logiciels se révèle ainsi positif sur plusieurs points : 
 \begin{itemize}
@@ -219,7 +219,12 @@ Utiliser des interfaces web pour ces logiciels se révèle ainsi positif sur plu
 	\item Ensuite, cela permet de séparer le front-end du back-end. En effet, avoir une interface HTTP entre un back-end et un front-end permet de bien séparer ces deux parties. Ceci amène de la modularité et de la scalabilité, car chaque partie peut être modifiée sans affecter l'autre. On peut imaginer également une plus grande flexibilité technologique, car l'application Web pourrait être développée dans n'importe quel framework, sans impliquer de changement pour les librairies C++. Enfin, en isolant les accès directs au back-end, on peut ainsi mettre en place de meilleurs mesures de sécurité pour protéger les logiciels et les licences utilisateurs.
 \end{itemize}
 
+L'Arturia Software Center étant l'outil qui permet de gérer l'installation des logiciels, un back-end est forcément nécessaire pour soutenir le front-end. En effet, par design et pour des raisons de sécurités, les technologies Web n'ont pas accès au système de fichiers de l'utilisateur.
 
+En revanche, la question se posera pour le Midi Control Center, dont la principale fonctionnalité est de communiquer par protocole Midi avec le contrôleur. Nous étudierons pendant ce stage la faisabilité d'un Midi Control Center entièrement réalisé en technologies Web.
+
+\subsection{Aperçu des contributions}
+\subsection{Plan du rapport}
 
 
 
