@@ -204,6 +204,9 @@ Nous allons ici définir quelques termes propres au matériel de production musi
 \paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
 :  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou bien d'autres.
 \paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
+\paragraph{Message Sysex}
+\footnote{\url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_sysex_messages_c.html}}
+: Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI.
 
 \subsection{Définition du problème.}
 L'Arturia Software Center (ASC) et le Midi Control Center (MCC) sont deux logiciels vieillissants, qu'Arturia souhaite mettre à jour. Pour faire cela, l'entreprise souhaite mettre à l'épreuve de nouvelles technologies de développement graphique.
@@ -226,6 +229,19 @@ En revanche, la question se posera pour le Midi Control Center, dont la principa
 \subsection{Aperçu des contributions}
 \subsection{Plan du rapport}
 
+
+% TO ORGANIZE
+\section{Web MIDI API}
+L'API Web MIDI
+\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API}}
+fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI, par exemple recevoir des messages de Note On / Note Off, mais aussi envoyer des messages Sysex permettant de modifier les paramètres du périphérique.
+
+Cette API n'est pour l'instant disponible que sur les navigateurs Safari et Chromium. Ceci ne nous posera pas problème, car le fait que nous implémentons nous même le navigateur nous permet de le choisir. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
+
+\section{description gemaps}
+\paragraph{Unified Control Center} : L'Unified Control Center est l'application hôte qui affiche les pages web des modules. Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Chromium sous Windows et Safari sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
+\paragraph{GeMAPS} : Generic Modular Architecture with Pluggable Services (GeMAPS) est l'architecture du programme qui lance les librairies C++ des modules, et distribue leurs pages Web. 
+\paragraph{Module} : Un module est un dossier, composé d'un fichier de configuration décrivant le module, un dossier "lib" où l'on peut trouver les librairies C++ qui seront lancées par Gemaps (.dll dans le cas de Windows, et .dylib sur Mac), et un dossier "web" où l'on peut trouver les pages web statiques qui seront distribuées par Gemaps. Un module peut avoir aucune, une ou plusieurs librairies C++, et elles seront toutes lancées au lancement de Gemaps. Un module peut également avoir aucune une ou plusieurs page Web, dont les URL à servir sont décrites dans le fichier de configuration du module.
 
 
 
