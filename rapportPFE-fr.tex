@@ -15,6 +15,7 @@
 
 \usepackage{listings}
 \usepackage{fancyhdr}
+\usepackage{caption} 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % titres du rapport
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,20 +149,60 @@ Travailler sur un projet aussi innovant à Arturia m'a permis d'expérimenter de
 \section{Introduction.}
 
 \subsection{Mise en contexte.}
+J'ai réalisé mon stage de fin d'études chez Arturia, une société Grenobloise, fabricant d'instruments de musique numériques et électroniques, du 5 février au 26 juillet 2024. C'était l'entreprise que je souhaitais intégrer pour ce stage de fin d'études, non seulement car j'utilise et apprécie les produits et logiciels Arturia, mais aussi car je souhaitais me rapprocher du milieu de ma passion pour la musique. 
+J'ai intégré pendant ce stage l'équipe Compagnon d'Arturia, qui m'a proposé un sujet de prototypage d'interfaces Web pour la nouvelle génération de deux de leurs logiciels, l'Arturia Software Center et le Midi Control Center. J'ai pu ainsi participer à la conception d'un logiciel modulaire rassemblant ces deux applications, développer des interfaces C++ préexistantes en Web, concevoir de nouvelles interfaces et prototyper l'utilisation d'APIs Web novatrices. Ce stage me permet de mettre en oeuvre les compétences de développement Web acquises pendant mon stage précédentj, ainsi que de mettre en pratique les connaissances théoriques que j'ai pu apprendre pendant mes études.
 \subsection{Définition du problème.}
+
+L'Arturia Software Center (ASC) et le Midi Control Center (MCC) sont deux logiciels vieillissants, qu'Arturia souhaite mettre à jour. Pour faire cela, l'entreprise souhaite mettre à l'épreuve de nouvelles technologies de développement graphique.
+
+En effet, ces logiciels ont été développés respectivement en 2014 pour l'Arturia Software Center, et en 2013 pour le Midi Control Center. A ce moment, l'équipe Compagnon que j'intègre pour ce stage n'existait pas encore, et ces logiciels ont étés développés dans des technologies qui ne sont potentiellement pas optimales pour ces programmes.
+
+Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire, nommée GeMAPS, qui rassemblerait l'Arturia Software Center et le Midi Control Center. Ce logiciel distribuerait et présenterait des pages Web pour ses interfaces utilisateur.
+
+Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie, en en séparant le front-end et le back-end, et en réussissant à faire une application suffisemment modulaire pour qu'elle puisse intégrer à l'avenir de nouveaux éléments non encore définis.
+
+
+
+
 \subsection{Aperçu des contributions.}
+% //TODO : mettre à jour
+Lors de ce stage, j'ai pu travailler sur plusieurs éléments : 
+\begin{itemize}
+    \setlength\itemsep{0em}
+    \item Démontrer l'utilisation de multiples Frameworks Web (React, Angular, Vue, Vue Nuxt) dans une application modulaire C++ JUCE.
+    \item Développer toutes les interfaces existantes C++ de l'Arturia Software Center en Vue Nuxt.
+    \item Concevoir et développer les interfaces un Midi Control Center entièrement en Web, qui permet de configurer le clavier maître Arturia MiniLab3.
+    \item Concevoir et développer l'interface du logiciel modulaire accueillant le Midi Control Center et l'Arturia Software Center.
+    \item Prototyper l'implémentation de l'API Web MIDI pour communiquer avec les appareil Arturia en front-end Web uniquement.
+    \item Expérimenter l'utilisation de l'API Web USB pour mettre à jour en Device Firmware Update les appareils Arturia, ainsi que de l'API FileSystem.
+\end{itemize}
+La majeure partie de mon travail était concentrée sur le développement des interfaces Web du Midi Control Center, ainsi que de l'Arturia Software Center, en étroite collaboration avec le membre de l'équipe travaillant sur le back-end. 
+
 \subsection{Problématique et plan.}
 
+La problématique de ce rapport de stage concerne d'une part, l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part, l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
+
+% //TODO : plan
 
 
 \section{Contexte.}
 
 \subsection{Contexte du stage.}
+% //TODO : ?????????? décider que mettre
+\subsubsection{Intégration à l'équipe Compagnon}
+Pour ce stage, j'ai été intégré à l'équipe Compagnon d'Arturia, une sous-équipe de l'équipe Système au sein du département R\&D. Sous la supervision de mon tuteur, Timothée Béhéty, qui dirige cette sous-équipe composée de 4 membres, j'ai collaboré étroitement avec Jean-Yves Tissot. Il est responsable du développement du back-end C++ de l'Arturia Software Center (ASC) et est le développeur du projet GeMAPS. Étant donné que l'équipe Compagnon se concentre exclusivement sur le développement en C++. J'ai sollicité l'expertise de Fabian Boilay, membre de l'équipe du site web d'Arturia, pour les revues de code.
+
+\subsubsection{Méthodologie}
+
+% méthodologie
+% frontend ?
+
+
 \subsection{Arturia.}
 
 Arturia est un fabricant d'instruments de musique numériques et électroniques. La société est basée à Grenoble et développe des reproductions logicielles d'anciens synthétiseurs (analogiques et numériques), des claviers MIDI, des contrôleurs, des synthétiseurs analogiques et des interfaces audio. 
 
-Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999. A sa création, ses deux fondateurs Frédéric Brun (actuel PDG d'Arturia) et Gilles Pommereuil ont commencé par créer des reproductions de synthétiseurs analogiques réputés au format virtuel, en commençant par développer l'Analog V, inspiré par les synthétiseurs Moog et en collaboration avec leur créateur. De nombreuses autres reproductions ont suivi, et sont devenues par la suite la V Collection, qui est la collection d'instruments virtuels d'Arturia, et la FX Collection, qui est son équivalent pour les effets audio.
+Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999. A sa création, ses deux fondateurs Frédéric Brun (actuel CEO d'Arturia) et Gilles Pommereuil ont commencé par créer des reproductions de synthétiseurs analogiques réputés au format virtuel, en commençant par développer l'Analog V, inspiré par les synthétiseurs Moog et en collaboration avec leur créateur. De nombreuses autres reproductions ont suivi, et sont devenues par la suite la V Collection, qui est la collection d'instruments virtuels d'Arturia, et la FX Collection, qui est son équivalent pour les effets audio.
 
 Arturia a depuis élargi son catalogue à des instruments virtuels qui lui sont propres, plusieurs synthétiseurs analogiques renommés, différents contrôleurs MIDI ainsi que des cartes sons. 
 
@@ -206,14 +247,14 @@ Tout d'abord, une partie principale, qui est ce logiciel qui permet de gérer se
 
 Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et vérifie les licences utilisateur à chaque démarrage de produit Arturia, afin d'éviter toute fraude et téléchargement illégal.
 
-\begin{figure}[!t]
+\begin{center}
 	\centering
 	\includegraphics[width=0.6\textwidth]{graphics/asc_existant.png}
 	\begin{tiny}
 	\end{tiny}
-	\caption{Arturia Software Center (ASC) existant}
-	\label{fig:Expe}
-\end{figure}
+	\captionof{figure}{Arturia Software Center (ASC) existant}
+	\label{fig}
+\end{center}
 
 \subsection{Le Midi Control Center existant.}
 
@@ -224,14 +265,14 @@ permet de gérer les configurations et les paramètres des synthétiseurs et con
 
 Il est composé d'une page "Device Settings" permettant de modifier les paramètres généraux du contrôleur actuellement connecté (par exemple, son temps de mise en veille ou ses courbes de vélocité), une page "Controller Map" permettant de modifier les paramètres de chaque contrôle du contrôleur, (par exemple, modifier la note attribuée à une touche en particulier), et une page permettant d'importer ou d'exporter des templates de paramètres. Il est également possible d'effectuer une détection automatique de mises à jour disponibles pour le firmware du contrôleur.
 
-\begin{figure}[!t]
+\begin{center}
 	\centering
 	\includegraphics[width=0.6\textwidth]{graphics/mcc_existant.png}
 	\begin{tiny}
 	\end{tiny}
-	\caption{Midi Control Center (MCC) existant}
-	\label{fig:Expe}
-\end{figure}
+	\captionof{figure}{Midi Control Center (MCC) existant}
+	\label{fig}
+\end{center}
 
 
 \subsection{L'API Web MIDI.}
@@ -240,8 +281,7 @@ L'API Web MIDI
 \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API}}
 fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI, par exemple recevoir des messages de Note On / Note Off, mais aussi envoyer des messages Sysex permettant de modifier les paramètres du périphérique.
 
-Cette API n'est pour l'instant disponible que sur les navigateurs Safari et Chromium. Ceci ne nous posera pas problème, car le fait que nous implémentons nous même le navigateur nous permet de le choisir. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
-
+Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
 
 \subsection{Définitions nécessaires.}
 
