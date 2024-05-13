@@ -299,72 +299,22 @@ Nous allons ici définir quelques termes propres au matériel de production musi
 : Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI.
 
 
+\section{Propositions scientifiques et techniques.}
+\subsection{Méthodologie de travail.}
+\subsubsection{Organisation de l'équipe et réunions.}
+L'équipe Compagnon dans laquelle j'ai travaillé se réunissait pour un stand-up chaque matin, où l'on disait ce qu'on a fait la veille, ce qu'on prevoyait de faire le jour-même. C'était aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
+
+Nous effectuions également une réunion d'architecture du projet GeMAPS tous les vendredi, où l'on concevait ensemble le projet sur lequel moi et Jean-Yves travaillions. 
+
+
+\subsubsection{Git et revues de code.}
+Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets Git, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
 
 \section{description gemaps}
 \paragraph{Unified Control Center} : L'Unified Control Center est l'application hôte qui affiche les pages web des modules. Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
 \paragraph{GeMAPS} : Generic Modular Architecture with Pluggable Services (GeMAPS) est l'architecture du programme qui lance les librairies C++ des modules, et distribue leurs pages Web. 
 \paragraph{Module} : Un module est un dossier, composé d'un fichier de configuration décrivant le module, un dossier "lib" où l'on peut trouver les librairies C++ qui seront lancées par Gemaps (.dll dans le cas de Windows, et .dylib sur Mac), et un dossier "web" où l'on peut trouver les pages web statiques qui seront distribuées par Gemaps. Un module peut avoir aucune, une ou plusieurs librairies C++, et elles seront toutes lancées au lancement de Gemaps. Un module peut également avoir aucune une ou plusieurs page Web, dont les URL à servir sont décrites dans le fichier de configuration du module.
-
-Lorsque l'on veut écrire des équations
-\begin{equation}
-\label{eq:f}
-   f(x) = 0 \iff x = 1
-\end{equation}
-
-Quand on veut référencer l'équation~\ref{eq:f}.
-
-Exemple définition
-\begin{Definition}[Proposition (mathématiques)
-\footnote{\url{https://www.techno-science.net/definition/6406.html}, dernière visite le 31/10/2019.}]
-\label{def:troll}
-Ceci est une définition
-\end{Definition}
-
-Exemple de proposition~:
-\begin{Proposition}[La Terre sphérique des Anciens\footnote{\url{https://planet-terre.ens-lyon.fr/article/histoire-forme-Terre.xml}, dernière visite le 31/10/2019}]
-\label{prop:f}
-La Terre est supposée plate, de la forme d'un disque, entièrement ceinturée par le fleuve Océan et recouverte d'un ciel en coupole hémi-sphérique.
-\end{Proposition}
-
-\begin{Theorem}[Théorème de Pythagore]
-\label{Th:Pythagore}
-On nomme $a$, $b$ et $c$ les longueurs des trois côtés d'un triangle.\\
-Les triangles pour lesquels on a la relation $a^{2}+ b^{2} = c^{2}$ sont tous les triangles rectangles dont l'hypoténuse est le côté de longueur $c$, et seulement eux.
-
-Source : \url{http://mathematiques3.free.fr/2troisieme/problemes/prob014.php}, dernière visite 31/10/2019.
-\end{Theorem}
-
-On peut aussi écrire des corolaires
-\begin{Corollary}[]
-\label{Cor:TriangleImpossible}
-Il n'existe aucun triangle rectangle ayant les longueurs de côté suivantes~: $3$, $2$ et $23$.
-\end{Corollary}
-
-Reste à le prouver.
-\begin{proof}
-Pour prouver ce corollaire, procédons par l'absurde en supposant que le triangle soit rectangle. Il y a alors trois possibilités pour la longueur de l'hypoténuse $c$. 
-\begin{itemize}
-\item $c=3$\\
-or $2^{2}+ 23^{2} \neq 3^{2}$\\
-donc si le triangle est rectagle, sa longueur ne peut être $3$.
-\item $c=2$\\
-or $3^{2}+ 23^{2} \neq 2^{2}$\\
-donc si le triangle est rectagle, sa longueur ne peut être $2$.
-\item $c=23$\\
-or $2^{2}+ 3^{2} \neq 23^{2}$\\
-donc si le triangle est rectagle, sa longueur ne peut être $23$.
-\end{itemize}
-Donc aucun côté ne satisfait la définition d'une hypoténuse. Le triangle ne peut donc pas être un triangle rectangle.
-\end{proof}
-Il est aussi possible d'écrire des lemmes. 
-
-\begin{Lemma}[Lemme d'Euclide\footnote{\url{https://fr.wikipedia.org/wiki/Lemme_d'Euclide}, dernière visite le 30/10/2019}]
-\label{lem:Euclide}
-Si un nombre premier $p$ divise le produit de deux nombres entiers $b$ et $c$, alors $p$ divise $b$ ou $c$.
-\end{Lemma}
-
-
 
 %\lstinputlisting[language=Python]{MonCode.py}
 \begin{lstlisting}[language=Python,caption={Programme inconnu},label=lst:Inconnu]
@@ -399,18 +349,6 @@ def incmatrix(genl1,genl2):
     return M
 \end{lstlisting}
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.6\textwidth]{graphics/DiagrammeThil.jpg}
-\begin{tiny}
-
-Graphique obtenu sur la page\\
-\url{https://www.supagro.fr/ress-pepites/Opale/ECThil/co/1_SiteThil.html}\\
-dernière visite le 31/10/2019.
-\end{tiny}
-\caption{Diagramme ombrothermique de Thil pour la période 2000-2013 (d'après InfloClimat)}
-\label{fig:Expe}
-\end{figure}
 
 
 % Bibliographie
