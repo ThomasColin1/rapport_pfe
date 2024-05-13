@@ -16,6 +16,7 @@
 \usepackage{listings}
 \usepackage{fancyhdr}
 \usepackage{caption} 
+\usepackage{subfig}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % titres du rapport
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -310,44 +311,233 @@ Nous effectuions également une réunion d'architecture du projet GeMAPS tous le
 \subsubsection{Git et revues de code.}
 Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets Git, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
+\subsection{Environnement technique.}
 
-\section{description gemaps}
-\paragraph{Unified Control Center} : L'Unified Control Center est l'application hôte qui affiche les pages web des modules. Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
-\paragraph{GeMAPS} : Generic Modular Architecture with Pluggable Services (GeMAPS) est l'architecture du programme qui lance les librairies C++ des modules, et distribue leurs pages Web. 
-\paragraph{Module} : Un module est un dossier, composé d'un fichier de configuration décrivant le module, un dossier "lib" où l'on peut trouver les librairies C++ qui seront lancées par Gemaps (.dll dans le cas de Windows, et .dylib sur Mac), et un dossier "web" où l'on peut trouver les pages web statiques qui seront distribuées par Gemaps. Un module peut avoir aucune, une ou plusieurs librairies C++, et elles seront toutes lancées au lancement de Gemaps. Un module peut également avoir aucune une ou plusieurs page Web, dont les URL à servir sont décrites dans le fichier de configuration du module.
+\subsubsection{Architecture modulaire.}
+L'architecture modulaire que nous souhaitons développer se nomme GeMAPS, signifiant Generic Modular Architecture (With) Pluggable Services. 
+
+Le choix de l'architecture modulaire se justifie ici sur plusieurs aspects : 
+\begin{itemize}
+    \item Un besoin de simplifier l'expérience utilisateur : en effet, les utilisateurs d'Arturia ont actuellement besoin de multiples logiciels Compagnon pour avoir un environnement Arturia fonctionnel, ce le qui rend donc plus difficile d'accès. L'équipe support a fait remonter de nombreuses plaintes d'utilisateurs ayant des difficultés à utiliser par exemple un clavier maître Arturia, et c'est donc une volonté de l'entreprise de simplifier l'expérience d'accueil utilisateur sur plusieurs projets. Par exemple, pour utiliser et mettre à jour le firmware d'un clavier maître Arturia, un utilisateur doit d'abord télécharger l'Arturia Software Center, s'en servir pour enregistrer le clavier, puis télécharger le Midi Control Center à l'aide de l'ASC, ce qui installe le driver par la même occasion, puis enfin télécharger la mise à jour sur le Midi Control Center.
+    \item Le besoin de se tourner vers une architecture plus facilement évolutive, permettant une intéropérabilité entre les logiciels. En effet, nous pouvons remarquer des besoins communs entre les logiciels Arturia Software Center et Midi Control Center, ainsi que facilement imaginer vouloir réutiliser de nombreuses fonctionnalités pour de futurs modules.
+\end{itemize}
+C'est ainsi une approche qui répond aux besoins utilisateurs, tout en permettant des développements futurs plus efficaces.
+
+\subsubsection{Architecture d'un module}
+
+On pourra charactériser un module par aucune, une ou plusieurs pages Web, ainsi qu'aucune, une ou plusieurs librairies applicatives C++.
+
+Par exemple, le Midi Control Center du Minilab3 est composé d'une seule page Web. Celle-ci se sert de l'API Web MIDI pour communiquer avec le clavier maître. Par le futur, pour permettre la mise à jour Firmware ou la sauvegarde de templates, une librairie C++ sera développée.
+
+D'autre part, l'Arturia Software Center est composé de trois pages Web, que sont les trois onglets de l'Arturia Software Center actuel, ainsi que d'une librairie back-end C++, qui permet de mettre à disposition des end-points pour la connexion utilisateur, la récupération de produits, le téléchargement, et toute la partie en ligne ou applicative de l'ASC.
+
+Cependant, plusieurs modules seront des cas spécifiques dans cette architecture modulaire :
+\paragraph{Page Principale} : la page principale, qui permet de naviguer entre les modules, doit être celle qui est affichée de base, et ne doit pas être servie sur les mêmes endpoints que les autres pages.
+\paragraph{Arturia Software Center} : Ce module a besoin d'une connexion : ainsi, nous n'afficherons qu'une page Web de connexion, au lieu des 3 onglets prévus, tant que l'utilisateur n'est pas connecté à son compte Arturia.
+
+
+
+\subsubsection{Environnement technique de l'application GeMAPS.}
+
+Si l'on retire les modules, l'application GeMAPS fonctionne en plusieurs parties, que l'on peut rassembler en deux groupes : le serveur, et l'hôte.
+
+Le serveur crée une interface HTTP, qui permet de mettre à disposition des end-points pour tous les fichiers Web qu'affichera l'hôte, ainsi que tous les end-points back-end que les interfaces Web requêteront.
+
+L'hôte affiche la page Web principale, et est nommé Unified Control Center (UCC). Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
+
+
+\begin{center}
+	\centering
+	\includegraphics[width=0.5\textwidth]{graphics/gmaps.png}
+	\begin{tiny}
+	\end{tiny}
+	\captionof{figure}{Architecture de l'application GeMAPS}
+	\label{fig}
+\end{center}
+
+\subsubsection{Environnement technique frontend.}
+
+Pour l'environnement technique frontend, j'ai pu prototyper dès le début du stage l'utilisation de différents frameworks Web dans l'application GeMAPS : React, Angular, et Vue.  
+
+Pour développer les prototypes de l'Arturia Software Center et du Midi Control Center, le choix du framework m'a été laissé : je me sentais plus compétant sur Angular TypeScript, car c'était ce que j'avais utilisé durant le stage précédent. Ceci s'est révélé être une erreur, car cela ne correspondait pas à la stack technologique utilisée au sein de l'entreprise, notamment de l'équipe Web qui travaille avec Vue Nuxt. Afin de favoriser la cohérence de l'entreprise, ainsi que pour bénéficier des conseils d'experts dans le framework, il m'a été recommandé de refactoriser les projets en Vue Nuxt. Cette démarche a permis ainsi une meilleur uniformité dans l'entreprise, ainsi qu'une progression plus rapide de mes compétences personnelles. J'ai également adopté les autres charactéristiques d'environnement technique de l'équipe Web, que sont l'utilisation de Tailwind et du PostCSS pour les styles. 
+
+Par ailleurs, j'utilise pour le Midi Control Center l'API Web MIDI, que l'on a pu définir plus tôt. 
+
+\subsubsection{Environnement pour la gestion de projet}
+L'équipe Compagnon utilise Trello pour la gestion de projet. L'équipe s'en sert pour gérer les tickets, distribuer les tâches, visualiser les tâches en attente de chaque projet ainsi que les tâches en cours.
+
+\subsection{Propositions techniques / Implémentations}
+\subsubsection{Prototypage d'utilisation de framework Web}
+Mes premières tâches à Arturia fûrent de démontrer la possibilité d'utiliser différents frameworks Web dans l'application GeMAPS.
+J'ai ainsi pu réaliser, en Vue, React et Angular, la reproduction d'un page de l'Arturia Software Center, ainsi que les afficher dans une page principale basique, permettant de naviguer entre les pages Web distribuées. 
+Les résultats de ce prototypages sont que aucune différence n'est à observer entre ces différents frameworks, une fois l'application Web buildée : le point de différence majeur fut que l'architecture de fichiers buildés n'est pas la même par défault sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
+
+
+
+\begin{figure}%
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=6cm]{graphics/vue_demo.png} }}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=6cm]{graphics/vue_demo2.png} }}%
+    \caption{Page utilisée pour démontrer l'utilisation de différents frameworks dans GeMAPS}%
+    \label{fig:example}%
+\end{figure}
+
+
+\subsubsection{Fonctionnalités clés de l'Arturia Software Center}
+\paragraph{La connexion utilisateur}: La connexion utilisateur comporte ici plusieurs points de complexité. 
+
+En effet, la connexion de l'Arturia Software Center déjà existant inclus la synchronisation, c'est à dire le moment où le backend vérifie que toutes les images et descriptions de produits sont prétéléchargées, récupère les dernières versions de logiciels mis à jour, et récupère les licenses actuellement possédées par l'utilisateur. Tout ceci se produit après que l'utilisateur ai entré un login et un mot de passe correct : on affiche alors une page de synchronization pour le faire attendre. S'est alors posée pour nous la question de l'implémentation dans une architecture où l'on a séparé le back-end et le front-end : comment prévenir le front-end que la synchronization s'est terminée ? Nous avons opté pour l'utilisation de Server-Sent Events (SSE). Ainsi, lorsque l'utilisateur se connecte, sa requête n'est pas répondue avant la fin de la synchronisation, auxquel moment il faudra le rediriger vers ses produits. En revanche, l'avancement de la synchronisation est partagée entre le back-end et le front-end par SSE envoyés par le back-end, prévenant soit du début, soit de la réussite, soit de l'échec de la synchronisation.
+\begin{center}
+    \centering
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=7cm]{graphics/disconnected.png}
+    \captionof{figure}{Page de connexion de l'ASC}%
+    \label{fig:test1}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=7cm]{graphics/sync.png}
+    \captionof{figure}{Page de synchronisation de l'ASC}%
+    \label{fig:test2}
+    \end{minipage}
+    \end{center}
+
+D'un autre côté s'est posée la question de l'auto-login, qui est une fonctionnalité implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, cela pose particulièrement problème, car nous démarrons le back-end et le front-end en même temps, et il faut donc au front-end savoir à quel étape de la connexion le back-end se trouve pour afficher les pages correspondantes. Nous avons décidé d'ajouter un end-point au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà fini.
+
+Enfin, le fait d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés, était illogique d'un point de vue de l'expérience utilisateur : celui-ci voyait 3 fois la même page de connexion. Nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Nous avons décidé de passer par les cookies de navigateur pour partager cette information.
+
+\begin{center}
+    \centering
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=7cm]{graphics/disconnected.png}
+    \label{fig:test1}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=7cm]{graphics/connected.png}
+    \label{fig:test2}
+    \end{minipage}
+    \captionof{figure}{Effet du statut de connexion sur la page principale de GeMAPS}%
+    \end{center}
+
+\paragraph{Installation de produits} ??????????????????????????
+\paragraph{multilinguisme}: Le multilinguisme est une fonctionnalité essentielle pour d'Arturia, et qui est en cours de développement dans plusieurs projets. La facilité de développement multilingue, qu'amène la technologie Web est un autre avantage que montre mon prototype.
+
+Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia, ce qui permet une uniformité et donc une meilleure efficacité lors du traitement des traductions. J'utilise ainsi le package @nuxtjs/i18n, et je crée une série de traductions pour chaque page et chaque composant Web.
+
+Pour passer d'une langue à l'autre, j'ai créé un composant qui permet de choisir entre les langues disponibles.
+
+\begin{center}
+	\centering
+	\includegraphics[width=0.5\textwidth]{graphics/languages.png}
+	\begin{tiny}
+	\end{tiny}
+	\captionof{figure}{Composant de selection de langue}
+	\label{fig}
+\end{center}
+
+\paragraph{Dark Mode}: Pareillement que le multilinguisme, le Dark Mode est une fonctionnalité commune et bien documentée en technologies Web. Pour le développer, j'ai utilisé l'attribut 'dark:' de Tailwind PostCSS pour créer un style sombre pour chaque page et composant WEB, et j'ai créé un composant permettant de sélectionner le mode voulu.
+
+Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia, ce qui permet une uniformité et donc une meilleure efficacité lors du traitement des traductions. J'utilise ainsi le package @nuxtjs/i18n, et je crée une série de traductions pour chaque page et chaque composant Web.
+
+Pour passer d'une langue à l'autre, j'ai créé un composant qui permet de choisir entre les langues disponibles.
+
+\begin{center}
+    \centering
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=7cm]{graphics/daymode.png}
+    \label{fig:test1}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=7cm]{graphics/darkmode.png}
+    \label{fig:test2}
+    \end{minipage}
+    \captionof{figure}{Effet du Dark Mode sur l'ASC}%
+    \end{center}
+
+
+\paragraph{Favoris et Archivés}: Une des fonctionnalités qui m'ont été demandé pendant mon développement, a été de créer des catégories Favoris et Archivés pour les produits : en effet, en possédant de nombreux produits Arturia, la liste peut être longue, et il peut être fastidieux de naviguer longtemps pour chercher un produit qu'on utilise souvent.
+
+J'ai ainsi ajouté une barre de boutons Favoris, Archivés et Tous sur l'Arturia Software Center, afin de pouvoir sélectionner quels produits afficher.
+De même, j'ai ajouté des boutons Favoris et Archivés dans la page détails du produit. 
+J'ai choisi de développer cette fonctionnalité de la manière la plus modulaire possible, afin qu'ajouter une catégorie supplémentaire à 'Favoris' ou 'Archivés' puisse être fait facilement.
+
+\begin{center}
+    \centering
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[height=4cm]{graphics/favorite.png}
+    \label{fig:test1}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[height=5cm]{graphics/favorite_details.png}
+    \label{fig:test2}
+    \end{minipage}
+    \captionof{figure}{Fonctionnalité Favoris et Archivés}%
+    \end{center}
+% Image
+
+\paragraph{Réactivité}: Une autre fonctionnalité très demandée, et facilitée par le Web, a été de faire un affichage dynamique, qui réagit au changement de taille de la fenêtre. En effet, l'Arturia Software Center déjà existant bloque sa taille, et ne peut pas être mis en plein écran.
+
+Pour faire ceci, j'ai créé un affichage sous forme de cartes, afin que lorsque l'on agrandit la fenêtre en largeur, les produits qui deviennent trop larges sous forme de ligne, deviennent une grille de cartes de produits.
+
+\begin{center}
+    \centering
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[height=5cm]{graphics/small.png}
+    \label{fig:test1}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[height=5cm]{graphics/big.png}
+    \label{fig:test2}
+    \end{minipage}
+    \captionof{figure}{Affichage des produits réagissant à la taille de la fenêtre.}%
+    \end{center}
+
+
+
+% Image
 
 %\lstinputlisting[language=Python]{MonCode.py}
-\begin{lstlisting}[language=Python,caption={Programme inconnu},label=lst:Inconnu]
-import numpy as np
+% \begin{lstlisting}[language=Python,caption={Programme inconnu},label=lst:Inconnu]
+% import numpy as np
  
-def incmatrix(genl1,genl2):
-    m = len(genl1)
-    n = len(genl2)
-    M = None #to become the incidence matrix
-    VT = np.zeros((n*m,1), int)  #dummy variable
+% def incmatrix(genl1,genl2):
+%     m = len(genl1)
+%     n = len(genl2)
+%     M = None #to become the incidence matrix
+%     VT = np.zeros((n*m,1), int)  #dummy variable
  
-    #compute the bitwise xor matrix
-    M1 = bitxormatrix(genl1)
-    M2 = np.triu(bitxormatrix(genl2),1) 
+%     #compute the bitwise xor matrix
+%     M1 = bitxormatrix(genl1)
+%     M2 = np.triu(bitxormatrix(genl2),1) 
  
-    for i in range(m-1):
-        for j in range(i+1, m):
-            [r,c] = np.where(M2 == M1[i,j])
-            for k in range(len(r)):
-                VT[(i)*n + r[k]] = 1;
-                VT[(i)*n + c[k]] = 1;
-                VT[(j)*n + r[k]] = 1;
-                VT[(j)*n + c[k]] = 1;
+%     for i in range(m-1):
+%         for j in range(i+1, m):
+%             [r,c] = np.where(M2 == M1[i,j])
+%             for k in range(len(r)):
+%                 VT[(i)*n + r[k]] = 1;
+%                 VT[(i)*n + c[k]] = 1;
+%                 VT[(j)*n + r[k]] = 1;
+%                 VT[(j)*n + c[k]] = 1;
  
-                if M is None:
-                    M = np.copy(VT)
-                else:
-                    M = np.concatenate((M, VT), 1)
+%                 if M is None:
+%                     M = np.copy(VT)
+%                 else:
+%                     M = np.concatenate((M, VT), 1)
  
-                VT = np.zeros((n*m,1), int)
+%                 VT = np.zeros((n*m,1), int)
  
-    return M
-\end{lstlisting}
+%     return M
+% \end{lstlisting}
 
 
 
@@ -359,8 +549,10 @@ testtesttest
 
 
 \appendix
-\section{Données collectées.}
-
+\section{Acronymes.}
+\paragraph{UCC}: Unified Control Center. C'est l'application hôte qui affiche le navigateur.
+\paragraph{ASC}: Arturia Software Center. C'est l'application de gestion de logiciels Arturia.
+\paragraph{MCC}: Midi Control Center. C'est l'application de gestion de controlleurs midi et synthétiseurs Arturia.
 
 \section{Éléments majeurs de la conception.}
 
