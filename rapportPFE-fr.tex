@@ -17,12 +17,12 @@
 \usepackage{fancyhdr}
 \usepackage{caption} 
 \usepackage{subfig}
-\usepackage[skip=10pt plus1pt, indent=40pt]{parskip}
+\usepackage[skip=4pt plus1pt, indent=20pt]{parskip}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % titres du rapport
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Version francaise
-\titre{Développement d’interface graphique technologie web - faisabilité et évaluation}
+\titre{Développement d'interface graphique technologie web - faisabilité et évaluation}
 % version anglaise
 \title{Development of web-based graphical user interface - feasibility and evaluation}
 
@@ -184,6 +184,7 @@ La majeure partie de mon travail était concentrée sur le développement des in
 
 La problématique de ce rapport de stage concerne d'une part, l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part, l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
 
+Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégré, ainsi que mon sujet de stage. Je poursuiverai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités, tout en définissant plusieurs termes liés à la production musicale et nécessaires à la bonne compréhension de ce rapport. 
 % //TODO : plan
 
 
@@ -208,7 +209,7 @@ Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999.
 
 Arturia a depuis élargi son catalogue à des instruments virtuels qui lui sont propres, plusieurs synthétiseurs analogiques renommés, différents contrôleurs MIDI ainsi que des cartes sons. 
 
-L’équipe Compagnon dans laquelle je réalise mon stage s’occupe des logiciels accompagnants les produits Arturia, comme le gestionnaire de licences, le logiciel de configuration de matériel, ou encore des logiciels spécifique à chaque produit, comme par exemple l'application mobile qui accompagne le clavier AstroLab. 
+L'équipe Compagnon dans laquelle je réalise mon stage s'occupe des logiciels accompagnants les produits Arturia, comme le gestionnaire de licences, le logiciel de configuration de matériel, ou encore des logiciels spécifique à chaque produit, comme par exemple l'application mobile qui accompagne le clavier AstroLab. 
 
 \subsection{Présentation du sujet de stage.}
 
@@ -219,7 +220,7 @@ L'Arturia Software Center (ASC) et le Midi Control Center (MCC) sont deux logici
 
 En effet, ces logiciels ont été développés respectivement en 2014 pour l'Arturia Software Center, et en 2013 pour le Midi Control Center. A ce moment, l'équipe Compagnon que j'intègre pour ce stage n'existait pas encore, et ces logiciels ont donc étés développés par l'équipe Software, qui se spécialise dans le développement d'instruments virtuels. Ils ont opté pour l'utilisation de technologies de développement d'instruments virtuels, notamment le framework C++ JUCE, pour la création de ces outils. Cependant, une mise à jour de l'ASC et du MCC en utilisant des technologies différentes permettrait de se détacher des outils spécifiquement conçus pour les logiciels audio, potentiellement inadaptés à ces applications.
 
-Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire qui rassemblerait l'Arturia Software Center et le Midi Control Center. Cette application serait capable de lancer des librairies C++ en tant que back-end, de servir en HTTP des pages Web statiques en tant que front-end, et d'afficher un host permettant de naviguer sur ces pages Web. De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
+Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire fusionnant l'Arturia Software Center et le Midi Control Center. Cette application serait capable de lancer des librairies C++ en tant que back-end, de servir en HTTP des pages Web statiques en tant que front-end, et d'afficher un host permettant de naviguer sur ces pages Web. De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
 
 \subsubsection{Intérêt.}
 
@@ -246,7 +247,7 @@ Nous allons ici définir quelques termes propres au matériel de production musi
 \paragraph{MIDI} \footnote{\url{https://fr.wikipedia.org/wiki/Musical_Instrument_Digital_Interface}} 
 : Le Musical Instrument Digital Interface ou MIDI est un protocole de communication et un format de fichier dédiés à la musique, et utilisés pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine note a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaire sur le paramètre à modifier et la valeur à lui attribuer.
 \paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
-:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou bien d'autres.
+:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou autres.
 \paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
 \paragraph{Message SysEx}
 \footnote{\url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_SysEx_messages_c.html}}
@@ -254,15 +255,15 @@ Nous allons ici définir quelques termes propres au matériel de production musi
 
 \subsection{L'Arturia Software Center existant.}
 
-L’Arturia Software Center
+L'Arturia Software Center
 \footnote{\url{https://www.arturia.com/support/asc-arturiasoftwarecenter}}
  (ASC) est le logiciel de gestion de licences et de
-téléchargement de logiciels d’Arturia : il est nécessaire pour tout utilisateur
+téléchargement de logiciels d'Arturia : il est nécessaire pour tout utilisateur
 souhaitant utiliser un logiciel Arturia. 
 
 L'utilisateur peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.
 
-L’Arturia Software Center est composé de deux parties : 
+L'Arturia Software Center est composé de deux parties : 
 
 Tout d'abord, une partie principale, qui est ce logiciel qui permet de gérer ses licences et ses téléchargements de logiciels Arturia, et fournit une interface graphique.
 
@@ -282,7 +283,7 @@ Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et véri
 Le Midi Control Center
 \footnote{\url{https://support.arturia.com/hc/fr-fr/sections/4405740766098-MIDI-Control-Center}}
  (MCC) est le logiciel de configuration de matériel Arturia : il
-permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers midis physiques d’Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
+permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers midis physiques d'Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
 
 Nous pouvons, sur ce logiciel, sélectionner un appareil Arturia parmis la liste proposée. Ceci affiche les fenêtres de paramètrage disponible pour le controleur sélectionné. Nous allons ici décrire les pages disponibles pour la série des controleurs MIDI de la gamme Lab, car c'est ceux sur lequels je me suis concentré pendant ce stage.
 
@@ -313,13 +314,20 @@ Les paramètres de controleurs MIDI de la gamme Lab sont regroupés en deux cat�
     Il est possible d'importer et d'exporter ces paramètres sur des fichiers locaux sur l'ordinateur. Ceci permet à l'utilisateur de sauvegarder un paramètrage de son clavier, ou encore le partager sur une autre unité. Les paramètres sont sauvegardés sous un format JSON, liant l'ID de chaque paramètre à sa valeur.
 \end{itemize}
 
-\subsection{L'API Web MIDI.}
+\subsection{Les API Web MIDI et Web USB.}
 
 L'API Web MIDI
 \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API}}
-fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI, par exemple recevoir des messages de Note On / Note Off, mais aussi envoyer des messages SysEx permettant de modifier les paramètres du périphérique.
+fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI. Par exemple, dans notre cas préci, nous pouvons recevoir des messages de Note On / Note Off, mais aussi envoyer des messages SysEx permettant de modifier les paramètres du périphérique.
 
-Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
+Cette API existe depuis plus de 10 ans, et est supportée par l'organisme de standardisation W3C. Elle est cependant encore en stade de développement, et bien qu'elle ai été supportée par l'organisme de standardisation W3C, celui-ci ne l'a pas standardisée \footnote{\url{https://air.unimi.it/retrieve/60655569-9189-4ff0-9fa0-5614e342af53/JAES2022.pdf}}. Cela signifie que son soutien par les navigateurs n'est pas obligatoire. Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
+
+Comme l'API Web MIDI, l'API Web USB 
+\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API}}
+est en cours de développement, supportée mais non standardisée par l'organisme W3C. Cette API permet la communication en protocole USB entre une application Web et un périphérique connecté à l'utilisateur.
+Nous pouvons observer sur cette API plusieurs mesures de sécurité
+\footnote{\url{https://wicg.github.io/webusb}}
+ : parmi elle, une impossibilité de se connecter à l'appareil voulu sans action préalable de l'utilisateur (i.e., un click sur bouton).
 
 
 \section{Propositions scientifiques et techniques.}
@@ -434,11 +442,25 @@ Les résultats de ce prototypage ont révélé qu'aucune différence importante 
 
 \subsubsection{Fonctionnement de la page principale}
 
-Au démarrage de l'application, l'application Unified Control Center, qui affiche le navigateur, affiche la page principale de GeMAPS, que l'on va appeler la page UCC.
+L'architecture de la page principale se présente ainsi :
+
+\begin{center}
+    \centering
+    \centering
+    \includegraphics[width=8cm]{graphics/uccnuxt.png}
+    \label{fig:test1}
+    \captionof{figure}{Architecture de la page principale de GeMAPS (UCC)}%
+\end{center}
+
+Ici, le \textit{Module Loader} représente l'élément du back-end de GeMAPS qui met à disposition des endpoints qui permettent de connaître les modules disponibles.
+
+Au démarrage de l'application, l'application Unified Control Center, qui affiche le navigateur, affiche la page principale de GeMAPS, que l'on va appeler la page Unified Control Center (UCC).
 
 Cette page principale comporte un menu de côté dépliable, qui montre la liste des modules qu'on affiche dans l'application. Chaque module est chargé dans une iframe cachée. En cliquant dessus, on rend visible l'iframe concernée, et on affiche ainsi l'interface sélectionnée.
 
 Ce menu de côté est rempli au démarrage de l'application : la page principale requête le serveur pour déterminer quels sont les end-points où une ou plusieurs interfaces sont disponibles. Ensuite, elle requête le fichier de configuration de ces interfaces Web, et y trouve ses pages à afficher, leurs logos, leurs noms et leurs URLs correspondantes. Enfin, elle affiche une carte dans le menu de côté pour chaque interface, pêrmettant ainsi à l'utilisateur de naviguer facilement entre les modules.
+
+
 
 \begin{center}
     \centering
@@ -450,6 +472,29 @@ Ce menu de côté est rempli au démarrage de l'application : la page principale
 Chaque interface décrite dans le fichier de configuration de chaque module est ainsi ouverte dans une iframe à l'intérieur de la page UCC.
 
 Ouvrir les iframes de chaque module à l'avance et cacher sans fermer les iframes non sélectionnées a été une décision prise dans le but de pouvoir charger les pages au préalable afin d'éviter une attente inutile à l'utilisateur à chaque fois qu'il veut changer de module : par exemple, le Midi Control Center chargera les paramètres du clavier branché, et l'Arturia Software Center synchronisera les licences de l'utilisateur.
+
+\subsubsection{Architecture Web de l'Arturia Software Center}
+
+L'architecture des interfaces Web de l'Arturia Software Center est organisée de la manière suivante : 
+
+\begin{center}
+    \centering
+    \includegraphics[width=13cm]{graphics/ascnuxt.png}
+    \label{fig:test1}
+    \captionof{figure}{Architecture de l'interface Web de l'Arturia Software Center}%
+\end{center}
+
+Les pages représentent les pages Web que l'on peut visiter : ici, les pages \textit{licenses}, \textit{products} et \textit{updates} sont les onglets affichés par GeMAPS une fois connecté. Les pages \textit{login} et \textit{offline} sont accessibles si l'utilisateur n'est pas connecté, et la page \textit{intro} s'affiche au moment de la première connexion de l'utilisateur, dans le but de lui présenter l'Arturia Software Center.
+
+Les composants sont des éléments affichés par les pages. Parmis les plus importants, le \textit{productComponent} est l'élément de carte contenant les informations réduites des produits lorsque l'on affiche une liste de produits, et la popup \textit{productPopup} est la popup qui affiche les détails d'un produit lorsqu'on le sélectionne.
+
+Les composables sont des éléments de processing, appelables par les pages, les composants, ou d'autres composables. Ici, \textit{useASC} est le composable principal de communication avec le back-end, tandis que le composable \textit{usePreferences} communique avec le back-end à propos des préférences de l'utilisateur.
+
+Le store \textit{user} contient les informations utilisateur, que sont le nom ou l'e-mail utilisateur, mais également la logique de connexion ou déconnexion et la communication avec le back-end que ceci implique.
+
+Enfin, le middleware \textit{auth} redirige automatiquement tout utilisateur non connecté vers la page de connection.
+
+
 
 \subsubsection{Fonctionnalités clés de l'Arturia Software Center}
 
@@ -470,26 +515,18 @@ En effet, la connexion de l'Arturia Software Center déjà existant inclut la sy
     \captionof{figure}{Page de synchronisation de l'ASC}%
     \label{fig:test2}
     \end{minipage}
-    \end{center}
-
-Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qui est implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, puisque nous démarrons le back-end et le front-end en même temps, il est crusial pour le front-end de savoir à quel étape de la connexion se trouve le back-end pour afficher les pages correspondantes. Pour résoudre ce problème, nous avons décidé d'ajouter un endpoint au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà terminé.
-
-Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par les cookies de navigateur.
-
-\begin{center}
-    \centering
-    \begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[width=7cm]{graphics/disconnected.png}
-    \label{fig:test1}
-    \end{minipage}%
     \begin{minipage}{.5\textwidth}
     \centering
     \includegraphics[width=7cm]{graphics/connected.png}
     \label{fig:test2}
     \end{minipage}
     \captionof{figure}{Effet du statut de connexion sur la page principale de GeMAPS}%
-    \end{center}
+\end{center}
+
+Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qui est implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, puisque nous démarrons le back-end et le front-end en même temps, il est crusial pour le front-end de savoir à quel étape de la connexion se trouve le back-end pour afficher les pages correspondantes. Pour résoudre ce problème, nous avons décidé d'ajouter un endpoint au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà terminé.
+
+Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par les cookies de navigateur.
+
 
 \paragraph{Installation de produits} ??????????????????????????
 \paragraph{Multilinguisme}: Le multilinguisme est une fonctionnalité essentielle pour d'Arturia, et qui est en cours de développement dans plusieurs projets. La facilité de développement multilingue, qu'amène la technologie Web est un autre avantage que montre mon prototype.
@@ -502,7 +539,7 @@ Pour passer d'une langue à l'autre, j'ai créé un composant qui permet de choi
 
 \begin{center}
 	\centering
-	\includegraphics[width=0.5\textwidth]{graphics/languages.png}
+	\includegraphics[width=5cm]{graphics/languages.png}
 	\begin{tiny}
 	\end{tiny}
 	\captionof{figure}{Composant de selection de langue}
@@ -536,20 +573,20 @@ J'ai ainsi ajouté une barre de boutons Favoris, Archivés et Tous sur l'Arturia
 De même, j'ai ajouté des boutons Favoris et Archivés dans la page détails du produit. 
 J'ai choisi de développer cette fonctionnalité de la manière la plus modulaire possible, afin qu'ajouter une catégorie supplémentaire à 'Favoris' ou 'Archivés' puisse être fait facilement.
 
-\begin{center}
-    \centering
-    \begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[height=4cm]{graphics/favorite.png}
-    \label{fig:test1}
-    \end{minipage}%
-    \begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[height=5cm]{graphics/favorite_details.png}
-    \label{fig:test2}
-    \end{minipage}
-    \captionof{figure}{Fonctionnalité Favoris et Archivés}%
-    \end{center}
+% \begin{center}
+%     \centering
+%     \begin{minipage}{.5\textwidth}
+%     \centering
+%     \includegraphics[height=4cm]{graphics/favorite.png}
+%     \label{fig:test1}
+%     \end{minipage}%
+%     \begin{minipage}{.5\textwidth}
+%     \centering
+%     \includegraphics[height=5cm]{graphics/favorite_details.png}
+%     \label{fig:test2}
+%     \end{minipage}
+%     \captionof{figure}{Fonctionnalité Favoris et Archivés}%
+%     \end{center}
 % Image
 
 \paragraph{Réactivité}: Une autre fonctionnalité très demandée, et facilitée par le Web, a été de faire un affichage dynamique, qui réagit au changement de taille de la fenêtre. En effet, l'Arturia Software Center déjà existant bloque sa taille, et ne peut pas être mis en plein écran.
@@ -574,13 +611,34 @@ Pour cette tâche, j'ai mis en place un affichage basé sur des cartes. Ainsi, l
 \end{center}
 
 
+\subsubsection{Architecture Web du Midi Control Center}
+
+L'architecture des interfaces Web du Midi Control Center est organisée de la manière suivante : 
+
+\begin{center}
+    \centering
+    \includegraphics[width=15cm]{graphics/minilab3nuxt.png}
+    \label{fig:test1}
+    \captionof{figure}{Architecture de l'interface Web du Midi Control Center}%
+\end{center}
+
+Cette application Web n'a qu'une seule page.
+
+Les composants \textit{ColorField}, \textit{SliderField} et \textit{NoteField} sont des composants affichant respectivement des champs de sélection de couleur, de valeur sur slider et de note de musique. Il sont utilisés par le plus large \textit{FieldComponent}, lui même affiché dans le composant \textit{DeviceSettings}, affichant les paramètres d'appareil, et \textit{PresetSettings}, affichant les paramètres de préréglage.
+
+Les composables sont utilisés par la page, les composants, les autres composables, et le store. Nous pouvons y retrouver \textit{useJSON}, qui contient des outils de gestion des fichiers de paramètres JSON, comme par exemple la création et le téléchargement d'un objet au format JSON. \textit{useSettings} contient la logique de gestion des settings et de leur envoi et réception au controleur MIDI. \textit{useMidi} contient une logique plus basse, servant de sur-couche à l'API Web MIDI, et \textit{useMidiMessage} contient la logique de traitement et de traduction des messages MIDI, pour déterminer par exemple si c'est un SysEx, quel controle il concerne, ou quel valeur il transporte, mais aussi pour créer un message SysEx à envoyer au contrôleur.
+
+Le store \textit{settingsStore} stocke les paramètres d'appareil et les paramètres de préréglage.
+
+
+
 \subsubsection{Fonctionnalités clés du Midi Control Center}
 
 Nous nous sommes ici limités au Midi Control Center appliqué au controleur MIDI MiniLab 3 d'Arturia.
 
 \paragraph{L'API Web MIDI}:
-J'ai tout d'abord réalisé une preuve de concept de l'utilisation de l'API Web MIDI, dans laquelle je peux récupérer les touches appuyées et les vélocités du MiniLab 3 entièrement en Web. Ensuite, j'ai également exploré l'utilisation des messages SysEx dans cette preuve de concept pour valider leur fonctionnalité en API Web USB.
-En ayant prouvé que ceci fonctionne sans soucis sur le MiniLab 3, je l'ai ensuite implémenté dans un Midi Control Center complet pour le MiniLab 3. 
+J'ai tout d'abord réalisé une preuve de concept de l'utilisation de l'API Web MIDI, où j'ai réussi à récupérer les touches appuyées et les vélocités du MiniLab 3 entièrement en Web. Ensuite, j'ai également exploré l'utilisation des messages SysEx dans cette preuve de concept pour valider leur fonctionnalité en API Web MIDI.
+Après avoir validé leur fonctionnement sur le MiniLab 3, je l'ai ensuite implémenté dans un Midi Control Center complet pour le MiniLab 3. 
 
 Lors de mon utilisation de l'API Web MIDI, j'ai privilégié le développement de composables génériques et réutilisables, afin de permettre une réutilisation facile de mes travaux, ainsi qu'une adaptation rapide pour le Midi Control Center d'autres appareils.
 
@@ -639,7 +697,6 @@ J'en ai donc repris les couleurs et les polices de charactères. Je me suis éga
     \captionof{figure}{\centering MCC retravaillé pour être uniforme avec l'ASC.}
     \label{fig:test1}
 \end{center}
-
 
 \paragraph{Fonctionnalités supplémentaires}:
 Comme mentionné précédemment pour l'Arturia Software Center, j'ai implémenté le multilanguisme ainsi que le mode sombre, de la même manière et avec les mêmes technologies et composants que pour l'Arturia Software Center.
