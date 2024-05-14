@@ -226,7 +226,7 @@ Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire fu
 
 Utiliser des interfaces web pour ces logiciels se révèle ainsi positif sur plusieurs points : 
 \begin{itemize}
-	\item Les technologies web sont plus efficaces pour créer rapidement des interfaces. En effet, les bibliothèques et outils pré-développés et libres d'accès sont nombreux, en constante évolution, et faciles d'utilisation : on peut prendre pour exemple la fonctionnalité multilangue, qui est une fonctionnalité qui prend de l'importance pour Arturia, et qui demande beaucoup de ressources, pour un développement plus facile, classique et très documenté en technologies Web. De même, les framework Web offrent souvent une courbe d'apprentissage plus faible que le C++ ou autre langage qui n'est pas haut-niveau.
+	\item Les technologies web sont plus efficaces pour créer rapidement des interfaces. En effet, les bibliothèques et outils pré-développés et libres d'accès sont nombreux, en constante évolution, et faciles d'utilisation : on peut prendre pour exemple la fonctionnalité multilingue, qui est une fonctionnalité qui prend de l'importance pour Arturia, et qui demande beaucoup de ressources dans les applications C++, pour un développement plus facile, classique et très documenté en technologies Web. De même, les framework Web offrent souvent une courbe d'apprentissage plus faible que le C++ ou autre langage qui n'est pas haut-niveau.
 	\item Ceci permet, pour développer ces interfaces, de pouvoir rechercher des profils de développeurs front-end Web, ce qui est plus facile que de devoir rechercher des développeurs C++, puis de les former sur le framework JUCE, pour ensuite travailler sur des interfaces. En séparant le développement front-end du reste de l'application, ceci permet de rechercher des développeurs spécialisés dans leur domaines, et ainsi une meilleure évolutivité de l'équipe.
 	\item Ensuite, cela permet de séparer le front-end du back-end. En effet, avoir une interface HTTP entre un back-end et un front-end permet de bien séparer ces deux parties. Ceci amène de la modularité et de la scalabilité, car chaque partie peut être modifiée sans affecter l'autre. On peut imaginer également une plus grande flexibilité technologique, car l'application Web pourrait être développée dans n'importe quel framework, sans impliquer de changement pour les librairies C++. Enfin, en isolantf les accès directs au back-end, on peut ainsi mettre en place de meilleurs mesures de sécurité pour protéger les logiciels et les licences utilisateurs.
 \end{itemize}
@@ -241,18 +241,16 @@ En revanche, la question se posera pour le Midi Control Center, dont la principa
 \subsection{Définitions nécessaires.}
 
 Nous allons ici définir quelques termes propres au matériel de production musicale.
-\paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
-:
- Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
-\paragraph{MIDI} \footnote{\url{https://fr.wikipedia.org/wiki/Musical_Instrument_Digital_Interface}} 
-: Le Musical Instrument Digital Interface ou MIDI est un protocole de communication et un format de fichier dédiés à la musique, et utilisés pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine note a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaire sur le paramètre à modifier et la valeur à lui attribuer.
-\paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
-:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou autres.
-\paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
+\paragraph{MIDI} \footnote{\url{https://arxiv.org/pdf/1705.05322}} 
+: Le Musical Instrument Digital Interface ou MIDI est un protocole de communication défini dans les années 1980 dédié à la représentation de l'information musicale, et utilisé pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine note a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaire sur le paramètre à modifier et la valeur à lui attribuer.
 \paragraph{Message SysEx}
 \footnote{\url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_SysEx_messages_c.html}}
 : Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI. 
-
+\paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
+:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou autres.
+\paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
+: Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
+\paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
 \subsection{L'Arturia Software Center existant.}
 
 L'Arturia Software Center
@@ -261,7 +259,7 @@ L'Arturia Software Center
 téléchargement de logiciels d'Arturia : il est nécessaire pour tout utilisateur
 souhaitant utiliser un logiciel Arturia. 
 
-L'utilisateur peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.
+L'utilisateur peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.  Par ailleurs, s'il ne possède pas de connexion internet, il peut procéder à une activation hors-ligne.
 
 L'Arturia Software Center est composé de deux parties : 
 
@@ -340,7 +338,7 @@ Nous effectuions également une réunion d'architecture du projet GeMAPS tous le
 Enfin, une réunion de l'équipe Système était effectuée tous les mois.
 
 
-\subsubsection{Git et revues de code.}
+F\subsubsection{Git et revues de code.}
 Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets sur le GitLab de l'entreprise, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
 \subsection{Environnement technique.}
@@ -414,8 +412,6 @@ J'ai ainsi pu réaliser, en Vue, React et Angular, la reproduction d'un page de 
 
 Les résultats de ce prototypage ont révélé qu'aucune différence importante n'était observable entre ces différents frameworks une fois l'application Web compilée. Le point de différence majeur fut que l'architecture de fichiers compilés n'est pas la même par défault sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
 
-
-
 % \begin{figure}%
 %     \centering
 %     \subfloat[\centering ]{{\includegraphics[width=6cm]{graphics/vue_demo.png} }}%
@@ -438,6 +434,19 @@ Les résultats de ce prototypage ont révélé qu'aucune différence importante 
     \end{minipage}
     \captionof{figure}{Page utilisée pour démontrer l'utilisation de différents frameworks dans GeMAPS}%
     \end{center}
+
+Voici les quelques difficultés rencontrées dans l'utilisation de frameworks Web dans GeMAPS : 
+\begin{itemize}
+    \item Dans le cas d'un serveur Web classique, lorsqu'un navigateur demande une page sans extension, par exemple www.page.com/chemin, le serveur servira automatiquement le fichier www.page.com/chemin/index.html s'il existe. Dans notre cas, nous ne souhaitions pas fonctionner ainsi, car notre serveur sert aussi bien les pages web que les endpoint du back-end, et notre manière pour séparer les endpoint back-end des fichiers web, était l'extension du fichier présente pour ces derniers. 
+    
+    Cependant, le problème se complexifie dans le cas de Vue Nuxt, car Vue Nuxt utilise une sur-couche de navigation, qui ne reconnait que les chemins sans la partie finale /index.html. Le résultat produit était que le serveur refuse de servir une page si elle ne termine pas par /index.html, mais lorsqu'on le rajoute, Vue Nuxt refuse l'accès.
+
+    La solution de contournement que nous avons choisi, est un middleware intégré au code du front-end : à chaque atterrissage sur une nouvelle page terminant par /index.html, le chemin sera changé en retirant ce suffixe.
+
+\end{itemize} 
+
+
+
 
 
 \subsubsection{Fonctionnement de la page principale}
@@ -523,13 +532,13 @@ En effet, la connexion de l'Arturia Software Center déjà existant inclut la sy
     \captionof{figure}{Effet du statut de connexion sur la page principale de GeMAPS}%
 \end{center}
 
-Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qui est implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, puisque nous démarrons le back-end et le front-end en même temps, il est crusial pour le front-end de savoir à quel étape de la connexion se trouve le back-end pour afficher les pages correspondantes. Pour résoudre ce problème, nous avons décidé d'ajouter un endpoint au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà terminé.
+Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qui est implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, puisque nous démarrons le back-end et le front-end en même temps, il est crucial pour le front-end de savoir à quel étape de la connexion se trouve le back-end pour afficher les pages correspondantes. Pour résoudre ce problème, nous avons décidé d'ajouter un endpoint au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà terminé.
 
-Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par les cookies de navigateur.
+Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
 
 
 \paragraph{Installation de produits} ??????????????????????????
-\paragraph{Multilinguisme}: Le multilinguisme est une fonctionnalité essentielle pour d'Arturia, et qui est en cours de développement dans plusieurs projets. La facilité de développement multilingue, qu'amène la technologie Web est un autre avantage que montre mon prototype.
+\paragraph{Fonctionnalité multilingue}: Le multilingue est une fonctionnalité essentielle pour d'Arturia, et est en cours de développement dans plusieurs projets. La facilité de développement multilingue qu'amène la technologie Web est un autre avantage que montre mon prototype.
 
 Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia, ce qui permet une uniformité et donc une meilleure efficacité lors du traitement des traductions. J'utilise ainsi le package @nuxtjs/i18n. 
 
@@ -546,9 +555,9 @@ Pour passer d'une langue à l'autre, j'ai créé un composant qui permet de choi
 	\label{fig}
 \end{center}
 
-\paragraph{Mode sombre}: Pareillement que le multilinguisme, le Mode sombre est une fonctionnalité commune et très documentée en technologies Web. Pour le développer, j'ai utilisé l'attribut de Tailwind PostCSS pour créer un style sombre pour chaque page et composant Web, et j'ai créé un composant permettant de sélectionner le mode voulu, que j'ai ajouté au header. 
+\paragraph{Mode sombre}: Pareillement que le multilingue, le Mode sombre est une fonctionnalité commune et très documentée en technologies Web. Pour le développer, j'ai utilisé l'attribut de Tailwind PostCSS pour créer un style sombre pour chaque page et composant Web, et j'ai créé un composant permettant de sélectionner le mode voulu, que j'ai ajouté au header. 
 
-De même que pour la connexion, cet élément par cookie, afin que toutes les fenêtres de GeMAPS, ainsi que la fenêtre hôte, passent en mode sombre lorsqu'il est déclanché sur un module.
+De même que pour la connexion, je partage cet élément par le stockage local du navigateur, afin que toutes les fenêtres de GeMAPS, ainsi que la fenêtre hôte, passent en mode sombre lorsqu'il est déclenché sur un module.
 
 \begin{center}
     \centering
@@ -669,27 +678,11 @@ Le resultat de tout ça est que certains produits, comme le MiniFreak ou le réc
 \end{center}
 
 
-\paragraph{La gestion des paramètres de l'appareil}:
-
-Tous les paramètres du MiniLab3 sont stockés dans le Store de l'application Web.
-
-Les paramètres du MiniLab 3 sont regroupés en deux catégories :
-\begin{itemize}
-    \item Tout comme le faisait Midi Control Center déjà existant, les paramètres d'appareil sont chargés au branchement du MiniLab 3. De même, à chaque changement de valeur d'un paramètre d'appareil, un message SysEx est envoyé au MiniLab 3 pour opérer ce changement.
-    \item Par rapport aux paramètres de préréglage, nous opérons également en suivant la méthode du Midi Control Center actuel : nous pouvons ainsi importer et exporter tout les paramètres de préréglage de chaque profil sur le controleur. 
-    
-    Cependant, la sauvegarde des paramètres sur l'ordinateur pose problème : elle est impossible en Web car cela poserait des problèmes de sécurité. Ainsi, nous avons conceptualisé, avec l'équipe Compagnon, un module sans interface Web, qui servirait de système de fichiers. Il aurait un end-point pour importer un fichier, et un autre pour exporter. Créer ce module sans interface plutôt qu'intégrer cette fonctionnalité au back-end du MCC MiniLab 3 permettrait de créer un module générique utilisable par tout autre module Web ayant besoin du système de fichiers. En attendant le développement d'un tel service, j'ai réalisé une importation par sélection de fichier, et une exportation en téléchargement dans le dossier par défaut de téléchargement du navigateur.
-\end{itemize}
-
-Lors de l'importation de paramètres, nous envoyons le SysEx demandant ce paramètre en particulier, puis nous attendons la réponse de l'appareil. En cas de non réponse, nous renvoyons le SysEx 2 fois de plus avant de déclarer une erreur.
-
-Cette méthode d'envoi séquentiel de SysEx, en attente de réponses avant d'envoyer les suivants, convient au MiniLab 3 en raison de son nombre limité de paramètres. Pour un appareil avec plus de paramètres, nous pouvons également envisager d'envoyer tous les SysEx à la suite sans attendre les réponses, et de traiter les réponses à leur réception.
-
 \paragraph{La création d'une nouvelle interface}:
+Je me suis ensuite lancé dans la conception d'un Midi Control Center Web appliqué au MiniLab 3.
 Le Midi Control Center possède des interfaces graphiques vieillissantes : contrairement à l'Arturia Software Center, que j'ai recopié comme tel, j'ai cherché à retravailler les interfaces du MCC. Puisque les deux logiciels vont se retrouver dans une seule architecture modulaire, j'ai souhaité uniformiser les visuels entre l'Arturia Software Center et le Midi Control Center.
 
 J'en ai donc repris les couleurs et les polices de charactères. Je me suis également inspiré des cartes avec ombres de l'ASC pour les différents menus du Midi Control Center.
-
 
 \begin{center}
     \centering
@@ -698,8 +691,27 @@ J'en ai donc repris les couleurs et les polices de charactères. Je me suis éga
     \label{fig:test1}
 \end{center}
 
+On peut remarquer ici les boutons bleus alignés sur les controles du MiniLab 3 : ils permettent de sélectionner de quel controle nous souhaitons modifier les paramètres. Dans le Midi Control Center existant, la disposition de ceux-ci se fait sur la base d'un fichier JSON qui précise l'identifiant de chaque controle, son emplacement, sa forme et sa taille. C'est donc sur ce fichier là que je récupère la disposition de tous les contrôles. Cependant, les tailles et emplacements sont renseignés en pixels, ce qui ne convient pas à mon fonctionnement réactif au redimensionnement de la page : je récupère donc la taille en pixels de l'image, et je traduis toutes les tailles et emplacements des contrôles en pourcentages de l'image : de cette manière, l'image du contrôleur et ses contrôles se redimensionnent correctement en fonction de la taille de la fenêtre.
+
+
+
+\paragraph{La gestion des paramètres de l'appareil}:
+
+Tous les paramètres du MiniLab3 sont stockés dans le Store de l'application Web.
+
+\begin{itemize}
+    \item Paramètres d'appareil :  Tout comme le faisait Midi Control Center déjà existant, les paramètres d'appareil sont chargés au branchement du MiniLab 3. De même, à chaque changement de valeur d'un paramètre d'appareil, un message SysEx est envoyé au MiniLab 3 pour opérer ce changement.
+    \item Paramètres de préréglage : Par rapport aux paramètres de préréglage, nous opérons également en suivant la méthode du Midi Control Center actuel : nous pouvons ainsi importer et exporter tout les paramètres de préréglage de chaque profil sur le controleur. 
+    
+    Cependant, la sauvegarde des paramètres sur l'ordinateur pose problème : elle est impossible en Web car cela poserait des problèmes de sécurité. Ainsi, nous avons conceptualisé, avec l'équipe Compagnon, un module sans interface Web, qui servirait de système de fichiers. Il aurait un end-point pour importer un fichier, et un autre pour exporter. Créer ce module sans interface plutôt qu'intégrer cette fonctionnalité au back-end du MCC MiniLab 3 permettrait de créer un module générique utilisable par tout autre module Web ayant besoin du système de fichiers. En attendant le développement d'un tel service, j'ai réalisé une importation par sélection de fichier, et une exportation en téléchargement dans le dossier par défaut de téléchargement du navigateur.
+\end{itemize}
+
+Lors de l'importation de paramètres, nous envoyons le SysEx demandant ce paramètre en particulier, puis nous attendons la réponse de l'appareil. En cas de non réponse, nous renvoyons le SysEx 2 fois de plus avant de déclarer une erreur.
+
+Cette méthode d'envoi séquentiel de SysEx, en attente de réponses avant d'envoyer les suivants, convient au MiniLab 3 en raison de son nombre limité de paramètres. Pour un appareil avec plus de paramètres, nous pouvons également envisager d'envoyer tous les SysEx à la suite sans attendre les réponses, et de traiter les réponses à leur réception.
+
 \paragraph{Fonctionnalités supplémentaires}:
-Comme mentionné précédemment pour l'Arturia Software Center, j'ai implémenté le multilanguisme ainsi que le mode sombre, de la même manière et avec les mêmes technologies et composants que pour l'Arturia Software Center.
+J'ai implémenté dans ce Midi Control Center la fonctionnalité multilingue ainsi que le mode sombre, de la même manière et avec les mêmes technologies et composants que pour l'Arturia Software Center.
 
 
 % Image
@@ -743,7 +755,6 @@ Comme mentionné précédemment pour l'Arturia Software Center, j'ai implément�
 % Annexes éventuelles (en plus des 30 pages demandées)
 \bibliographystyle{unsrt}
 \bibliography{rapportPFE}
-testtesttest
 
 
 \appendix
@@ -752,7 +763,4 @@ testtesttest
 \paragraph{ASC}: Arturia Software Center. C'est l'application de gestion de logiciels Arturia.
 \paragraph{MCC}: Midi Control Center. C'est l'application de gestion de controleurs midi et synthétiseurs Arturia.
 
-\section{Éléments majeurs de la conception.}
-
-\section{Preuves de théorèmes.}
 \end{document}
