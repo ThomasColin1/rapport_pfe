@@ -17,6 +17,7 @@
 \usepackage{fancyhdr}
 \usepackage{caption} 
 \usepackage{subfig}
+\usepackage[skip=10pt plus1pt, indent=40pt]{parskip}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % titres du rapport
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -172,7 +173,7 @@ Lors de ce stage, j'ai pu travailler sur plusieurs éléments :
     \setlength\itemsep{0em}
     \item Démontrer l'utilisation de multiples Frameworks Web (React, Angular, Vue, Vue Nuxt) dans une application modulaire C++ JUCE.
     \item Développer toutes les interfaces existantes C++ de l'Arturia Software Center en Vue Nuxt.
-    \item Concevoir et développer les interfaces un Midi Control Center entièrement en Web, qui permet de configurer le clavier maître Arturia MiniLab3.
+    \item Concevoir et développer les interfaces un Midi Control Center entièrement en Web, qui permet de configurer le clavier maître Arturia MiniLab 3.
     \item Concevoir et développer l'interface du logiciel modulaire accueillant le Midi Control Center et l'Arturia Software Center.
     \item Prototyper l'implémentation de l'API Web MIDI pour communiquer avec les appareil Arturia en front-end Web uniquement.
     \item Expérimenter l'utilisation de l'API Web USB pour mettre à jour en Device Firmware Update les appareils Arturia, ainsi que de l'API FileSystem.
@@ -234,13 +235,32 @@ L'Arturia Software Center étant l'outil qui permet de gérer l'installation des
 En revanche, la question se posera pour le Midi Control Center, dont la principale fonctionnalité est de communiquer par protocole Midi avec le contrôleur. Nous étudierons pendant ce stage la faisabilité d'un Midi Control Center entièrement réalisé en technologies Web.
 
 \section{Etude bibliographique et analyse de l'existant.}
+
+
+\subsection{Définitions nécessaires.}
+
+Nous allons ici définir quelques termes propres au matériel de production musicale.
+\paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
+:
+ Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
+\paragraph{MIDI} \footnote{\url{https://fr.wikipedia.org/wiki/Musical_Instrument_Digital_Interface}} 
+: Le Musical Instrument Digital Interface ou MIDI est un protocole de communication et un format de fichier dédiés à la musique, et utilisés pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine note a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaire sur le paramètre à modifier et la valeur à lui attribuer.
+\paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
+:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou bien d'autres.
+\paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
+\paragraph{Message SysEx}
+\footnote{\url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_SysEx_messages_c.html}}
+: Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI. 
+
 \subsection{L'Arturia Software Center existant.}
 
 L’Arturia Software Center
 \footnote{\url{https://www.arturia.com/support/asc-arturiasoftwarecenter}}
  (ASC) est le logiciel de gestion de licences et de
-téléchargement de software d’Arturia : il est nécessaire pour tout utilisateur
-souhaitant utiliser un logiciel Arturia. L'utilisateur peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour, gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.
+téléchargement de logiciels d’Arturia : il est nécessaire pour tout utilisateur
+souhaitant utiliser un logiciel Arturia. 
+
+L'utilisateur peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.
 
 L’Arturia Software Center est composé de deux parties : 
 
@@ -264,7 +284,13 @@ Le Midi Control Center
  (MCC) est le logiciel de configuration de matériel Arturia : il
 permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers midis physiques d’Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
 
-Il est composé d'une page "Device Settings" permettant de modifier les paramètres généraux du contrôleur actuellement connecté (par exemple, son temps de mise en veille ou ses courbes de vélocité), une page "Controller Map" permettant de modifier les paramètres de chaque contrôle du contrôleur, (par exemple, modifier la note attribuée à une touche en particulier), et une page permettant d'importer ou d'exporter des templates de paramètres. Il est également possible d'effectuer une détection automatique de mises à jour disponibles pour le firmware du contrôleur.
+Nous pouvons, sur ce logiciel, sélectionner un appareil Arturia parmis la liste proposée. Ceci affiche les fenêtres de paramètrage disponible pour le controleur sélectionné. Nous allons ici décrire les pages disponibles pour la série des controleurs MIDI de la gamme Lab, car c'est ceux sur lequels je me suis concentré pendant ce stage.
+
+La page "Device Settings" est présente pour tous les controleurs. ELle permet de modifier les paramètres généraux du contrôleur actuellement connecté (par exemple, son temps de mise en veille ou ses courbes de vélocité).
+
+La page "Controller Map" permet de modifier les paramètres de chaque contrôle du contrôleur, (par exemple, modifier la note attribuée à une touche en particulier).
+
+Nous disposons également d'un menu permettant d'importer ou d'exporter des templates de paramètres. Il est également possible d'effectuer une détection automatique de mises à jour disponibles pour le firmware du contrôleur. 
 
 \begin{center}
 	\centering
@@ -275,41 +301,39 @@ Il est composé d'une page "Device Settings" permettant de modifier les paramèt
 	\label{fig}
 \end{center}
 
+Tous les paramètres des appareils Arturia sont décrit dans des fichiers JSON, avec leur nom, si ils sont généraux ou spécifiques à un controle, ainsi que leur valeur par défaut. 
+
+Les paramètres de controleurs MIDI de la gamme Lab sont regroupés en deux catégories :
+\begin{itemize}
+    \item Les paramètres d'appareils (Device Settings) sont des paramètres généraux, regroupés par catégories, qui comportent par exemple le temps de mise en veille, ou le mode de fonctionnement de la pédale. Ces paramètres sont récupérés au branchement de l'appareil. Ils sont mis à jour à chaque changement : dès que l'utilisateur modifie un paramètre, un message SysEx est envoyé à l'appareil.
+    \item Les paramètres de préréglage (Preset Settings) sont des paramètres assignés à chaque contrôle de l'appareil. Par exemple, cela peut être la note assignée à un pad, ou le minimum et le maximum d'un slider. 
+    
+    Ceux-ci sont assignés à des "profils" : en fonction de l'appareil, certains sont prédéfinis et non modifiables, comme par exemple le profil DAW qui est compatible avec les logiciels de Musique Assistée par Ordinateur, tandis que d'autres sont personnalisables. Ainsi, on importer peut le profil que l'on désire depuis l'appareil, le modifier, puis le réinsérer dans le profil souhaité sur l'appareil. 
+
+    Il est possible d'importer et d'exporter ces paramètres sur des fichiers locaux sur l'ordinateur. Ceci permet à l'utilisateur de sauvegarder un paramètrage de son clavier, ou encore le partager sur une autre unité. Les paramètres sont sauvegardés sous un format JSON, liant l'ID de chaque paramètre à sa valeur.
+\end{itemize}
 
 \subsection{L'API Web MIDI.}
 
 L'API Web MIDI
 \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API}}
-fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI, par exemple recevoir des messages de Note On / Note Off, mais aussi envoyer des messages Sysex permettant de modifier les paramètres du périphérique.
+fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI, par exemple recevoir des messages de Note On / Note Off, mais aussi envoyer des messages SysEx permettant de modifier les paramètres du périphérique.
 
 Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
-
-\subsection{Définitions nécessaires.}
-
-Nous allons ici définir quelques termes propres au matériel de production musicale.
-\paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
-:
- Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
-\paragraph{MIDI} \footnote{\url{https://fr.wikipedia.org/wiki/Musical_Instrument_Digital_Interface}} 
-: Le Musical Instrument Digital Interface ou MIDI est un protocole de communication et un format de fichier dédiés à la musique, et utilisés pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine note a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SYSEX, comportant les informations nécessaire sur le paramètre à modifier et la valeur à lui attribuer.
-\paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
-:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou bien d'autres.
-\paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
-\paragraph{Message Sysex}
-\footnote{\url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_sysex_messages_c.html}}
-: Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI. 
 
 
 \section{Propositions scientifiques et techniques.}
 \subsection{Méthodologie de travail.}
 \subsubsection{Organisation de l'équipe et réunions.}
-L'équipe Compagnon dans laquelle j'ai travaillé se réunissait pour un stand-up chaque matin, où l'on disait ce qu'on a fait la veille, ce qu'on prevoyait de faire le jour-même. C'était aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
+L'équipe Compagnon, sous-équipe de l'équipe Système, se réunissait pour un stand-up chaque matin, où l'on disait ce qu'on a fait la veille ains que ce qu'on prevoyait de faire le jour-même. C'était aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
 
 Nous effectuions également une réunion d'architecture du projet GeMAPS tous les vendredi, où l'on concevait ensemble le projet sur lequel moi et Jean-Yves travaillions. 
 
+Enfin, une réunion de l'équipe Système était effectuée tous les mois.
+
 
 \subsubsection{Git et revues de code.}
-Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets Git, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
+Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets sur le GitLab de l'entreprise, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
 \subsection{Environnement technique.}
 
@@ -320,20 +344,23 @@ Le choix de l'architecture modulaire se justifie ici sur plusieurs aspects :
 \begin{itemize}
     \item Un besoin de simplifier l'expérience utilisateur : en effet, les utilisateurs d'Arturia ont actuellement besoin de multiples logiciels Compagnon pour avoir un environnement Arturia fonctionnel, ce le qui rend donc plus difficile d'accès. L'équipe support a fait remonter des plaintes d'utilisateurs ayant des difficultés à utiliser par exemple un clavier maître Arturia, et c'est donc une volonté de l'entreprise de simplifier l'expérience d'accueil utilisateur sur plusieurs projets. Par exemple, pour utiliser et mettre à jour le firmware d'un clavier maître Arturia, un utilisateur doit d'abord télécharger l'Arturia Software Center, s'en servir pour enregistrer le clavier, puis télécharger le Midi Control Center à l'aide de l'ASC, ce qui installe le pilote par la même occasion, puis enfin télécharger la mise à jour sur le Midi Control Center.
     \item Le besoin de se tourner vers une architecture plus facilement évolutive, permettant une intéropérabilité entre les logiciels. En effet, nous pouvons remarquer des besoins communs entre les logiciels Arturia Software Center et Midi Control Center, ainsi que facilement imaginer vouloir réutiliser de nombreuses fonctionnalités pour de futurs modules.
+    \item De manière plus spécifique au logiciel Midi Control Center, cela permet également de réduire la taille d'installation sur l'ordinateur de l'utilisateur. En effet, dans le MCC actuel, toutes les images et fichiers de paramètres de tous les appareils Arturia sont téléchargés avec le logiciel, et ceci même si l'utilisateur n'en a besoin que pour un controleur. Ceci signifie également qu'à chaque fois qu'une mise à jour de paramètres ou un nouvel appareil Arturia est créé, il existe une nouvelle mise à jour du Midi Control Center. Une architecture modulaire, avec un module de Midi Control Center par appareil, permettrait ainsi de réduire les téléchargements et mises à jours inutiles sur l'ordinateur utilisateur.
 \end{itemize}
 C'est ainsi une approche qui répond aux besoins utilisateurs, tout en permettant des développements futurs plus efficaces.
+
+Cette architecture doit pouvoir charger des modules composés d'une interface et d'un back-end, les afficher dans un hôte.
 
 \subsubsection{Architecture d'un module}
 
 On pourra charactériser un module par aucune, une ou plusieurs pages Web, ainsi qu'aucune, une ou plusieurs librairies applicatives C++.
 
-Par exemple, le Midi Control Center du Minilab3 est composé d'une seule page Web. Celle-ci se sert de l'API Web MIDI pour communiquer avec le clavier maître. Par le futur, pour permettre la mise à jour Firmware ou la sauvegarde de templates, une librairie C++ sera développée.
+Par exemple, le Midi Control Center du MiniLab 3 est composé d'une seule page Web. Celle-ci se sert de l'API Web MIDI pour communiquer avec le clavier maître. A l'avenir, une librairie C++ sera développée pour permettre la mise à jour Firmware ou la sauvegarde de templates.
 
 D'autre part, l'Arturia Software Center est composé de trois pages Web, que sont les trois onglets de l'Arturia Software Center actuel, ainsi que d'une librairie back-end C++, qui permet de mettre à disposition des end-points pour la connexion utilisateur, la récupération de produits, le téléchargement, et toute la partie en ligne ou applicative de l'ASC.
 
 Cependant, plusieurs modules seront des cas spécifiques dans cette architecture modulaire :
 la page principale, qui permet de naviguer entre les modules, doit être celle qui est affichée de base, et ne doit pas être servie sur les mêmes endpoints que les autres pages.
-De même, l'Arturia Software Center a besoin d'une connexion : ainsi, nous n'afficherons qu'une page Web de connexion, au lieu des 3 onglets prévus, tant que l'utilisateur n'est pas connecté à son compte Arturia.
+Par ailleurs, l'Arturia Software Center nécessite une connexion de l'utilisateur : ainsi, nous n'afficherons qu'une page Web de connexion, au lieu des 3 onglets prévus, tant que l'utilisateur n'est pas connecté à son compte Arturia.
 
 
 
@@ -341,9 +368,15 @@ De même, l'Arturia Software Center a besoin d'une connexion : ainsi, nous n'aff
 
 Si l'on retire les modules, l'application GeMAPS fonctionne en plusieurs parties, que l'on peut rassembler en deux groupes : le serveur, et l'hôte.
 
-Le serveur crée une interface HTTP, qui permet de mettre à disposition des end-points pour tous les fichiers Web qu'affichera l'hôte, ainsi que tous les end-points back-end que les interfaces Web requêteront.
+\paragraph{Le serveur} crée une interface HTTP, qui permet de mettre à disposition des endpoints pour tous les fichiers Web qu'affichera l'hôte, ainsi que tous les endpoints back-end que les interfaces Web requêteront.
+\begin{itemize}
+    \item Par exemple, pour la page de connexion de l'Arturia Software Center, le serveur récupère et distribue la page asc/web/login/index.html ainsi que le logo asc/web/assets/logo.png. 
+    \item Le serveur intègre également la librairie asc/lib/asc.dll, ce qui lui permet de mettre à disposition un endpoint POST à /asc/session. Cet endpoint permet au front-end de connecter l'utilisateur.
+\end{itemize}
 
-L'hôte affiche la page Web principale, et est nommé Unified Control Center (UCC). Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
+
+
+\paragraph{L'hôte} affiche la page Web principale, et est nommé Unified Control Center (UCC). Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
 
 
 \begin{center}
@@ -371,7 +404,7 @@ L'équipe Compagnon utilise Trello pour la gestion de projet. L'équipe s'en ser
 Mes premières tâches à Arturia fûrent de démontrer la possibilité d'utiliser différents frameworks Web dans l'application GeMAPS.
 J'ai ainsi pu réaliser, en Vue, React et Angular, la reproduction d'un page de l'Arturia Software Center, ainsi que les afficher dans une page principale basique, permettant de naviguer entre les pages Web distribuées. 
 
-Les résultats de ce prototypages sont que aucune différence n'est à observer entre ces différents frameworks, une fois l'application Web buildée : le point de différence majeur fut que l'architecture de fichiers buildés n'est pas la même par défault sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
+Les résultats de ce prototypage ont révélé qu'aucune différence importante n'était observable entre ces différents frameworks une fois l'application Web compilée. Le point de différence majeur fut que l'architecture de fichiers compilés n'est pas la même par défault sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
 
 
 
@@ -403,9 +436,9 @@ Les résultats de ce prototypages sont que aucune différence n'est à observer 
 
 Au démarrage de l'application, l'application Unified Control Center, qui affiche le navigateur, affiche la page principale de GeMAPS, que l'on va appeler la page UCC.
 
-Cette page principale comporte un menu de côté dépliable, qui montre la liste des modules qu'on afficher dans l'application. En cliquant dessus, on rend visible l'iframe concernée, et on affiche ainsi l'interface sélectionnée.
+Cette page principale comporte un menu de côté dépliable, qui montre la liste des modules qu'on affiche dans l'application. Chaque module est chargé dans une iframe cachée. En cliquant dessus, on rend visible l'iframe concernée, et on affiche ainsi l'interface sélectionnée.
 
-Ce menu de côté est rempli au démarrage de l'application : la page principale requête le serveur par rapport à quels sont les end-points où une ou plusieurs interfaces sont disponibles. Ensuite, elle requête le fichier de configuration de ces interfaces Web, et y trouve ses interfaces, leurs logos, leurs noms et leurs URLs correspondantes. Enfin, elle affiche une carte dans le menu de côté pour chaque interface, pêrmettant ainsi à l'utilisateur de naviguer facilement entre les modules.
+Ce menu de côté est rempli au démarrage de l'application : la page principale requête le serveur pour déterminer quels sont les end-points où une ou plusieurs interfaces sont disponibles. Ensuite, elle requête le fichier de configuration de ces interfaces Web, et y trouve ses pages à afficher, leurs logos, leurs noms et leurs URLs correspondantes. Enfin, elle affiche une carte dans le menu de côté pour chaque interface, pêrmettant ainsi à l'utilisateur de naviguer facilement entre les modules.
 
 \begin{center}
     \centering
@@ -543,9 +576,11 @@ Pour cette tâche, j'ai mis en place un affichage basé sur des cartes. Ainsi, l
 
 \subsubsection{Fonctionnalités clés du Midi Control Center}
 
+Nous nous sommes ici limités au Midi Control Center appliqué au controleur MIDI MiniLab 3 d'Arturia.
+
 \paragraph{L'API Web MIDI}:
-J'ai tout d'abord réalisé une preuve de concept de l'utilisation de l'API Web MIDI, dans laquelle je peux récupérer les touches appuyées et les vélocités du MiniLab3 entièrement en Web. Ensuite, j'ai également exploré l'utilisation des messages Sysex dans cette preuve de concept pour valider leur fonctionnalité en API Web USB.
-En ayant prouvé que ceci fonctionne sans soucis sur le MiniLab3, je l'ai ensuite implémenté dans un Midi Control Center complet pour le MiniLab3. 
+J'ai tout d'abord réalisé une preuve de concept de l'utilisation de l'API Web MIDI, dans laquelle je peux récupérer les touches appuyées et les vélocités du MiniLab 3 entièrement en Web. Ensuite, j'ai également exploré l'utilisation des messages SysEx dans cette preuve de concept pour valider leur fonctionnalité en API Web USB.
+En ayant prouvé que ceci fonctionne sans soucis sur le MiniLab 3, je l'ai ensuite implémenté dans un Midi Control Center complet pour le MiniLab 3. 
 
 Lors de mon utilisation de l'API Web MIDI, j'ai privilégié le développement de composables génériques et réutilisables, afin de permettre une réutilisation facile de mes travaux, ainsi qu'une adaptation rapide pour le Midi Control Center d'autres appareils.
 
@@ -556,7 +591,7 @@ J'ai pu prototyper, pendant mon développement du Midi Control Center, une fonct
 , en m'appuyant sur un projet open-source 
 \footnote{\url{https://github.com/devanlai/webdfu}}
 implémentant une update firmware DFU Web pour les cartes électroniques STM32.
-J'ai d'abord commencé par l'expérimenter sur le Minilab3, qui fait partie des produits qui n'ont qu'une carte à mettre à jour, et est donc plus simple, puis ensuite le MiniFreak, qui possède 6 cartes à mettre à jour les unes après les autres.
+J'ai d'abord commencé par l'expérimenter sur le MiniLab 3, qui fait partie des produits qui n'ont qu'une carte à mettre à jour, et est donc plus simple, puis ensuite le MiniFreak, qui possède 6 cartes à mettre à jour les unes après les autres.
 
 Le majeur problème rencontré fut le pilote Arturia, qui empêche la mise à jour sur Windows en raison de son incompatibilité avec l'API Web USB, conçu pour le pilote générique WinUSB. J'ai pu tout de même réaliser la mise à jour sur Mac ainsi qu'en remplaçant le driver Arturia par WinUSB sur Windows. Ceci pose cependant un frein à la réalisation d'un Midi Control Center entièrement en technologies Web.
 
@@ -578,26 +613,24 @@ Le resultat de tout ça est que certains produits, comme le MiniFreak ou le réc
 
 \paragraph{La gestion des paramètres de l'appareil}:
 
-Tous les paramètres du MiniLab3 sont décrit dans le fichier JSON décrivant l'appareil, avec leur nom, si ce sont des paramètres généraux ou liés à un contrôle en particulier, ainsi que leur valeur par défaut. 
+Tous les paramètres du MiniLab3 sont stockés dans le Store de l'application Web.
 
-Les paramètres du MiniLab3 sont regroupés en deux catégories :
+Les paramètres du MiniLab 3 sont regroupés en deux catégories :
 \begin{itemize}
-    \item Les paramètres d'appareils sont des paramètres généraux, qui comportent par exemple le temps de mise en veille, ou le mode de fonctionnement de la pédale. Ces paramètres sont récupérés au branchement de l'appareil, et sont stockés dans un store. Ils sont mis à jour à chaque changement : dès que l'utilisateur modifie un paramètre, un message SysEx est envoyé à l'appareil. Ils sont regroupés par catégories.
-    \item Les paramètres de préréglage sont des paramètres assignés à chaque contrôle de l'appareil. Par exemple, cela peut être la note assignée à un pad, ou le minimum et le maximum d'un slider. 
+    \item Tout comme le faisait Midi Control Center déjà existant, les paramètres d'appareil sont chargés au branchement du MiniLab 3. De même, à chaque changement de valeur d'un paramètre d'appareil, un message SysEx est envoyé au MiniLab 3 pour opérer ce changement.
+    \item Par rapport aux paramètres de préréglage, nous opérons également en suivant la méthode du Midi Control Center actuel : nous pouvons ainsi importer et exporter tout les paramètres de préréglage de chaque profil sur le controleur. 
     
-    Ceux-ci sont assignés à des "profils" sur le MiniLab3 : il y a plusieurs profils non modifiables, comme par exemple le profil DAW qui est compatible avec les logiciels de Musique Assistée par Ordinateur, mais aussi 6 profils modifiables. Ainsi, on importer peut le profil que l'on désire depuis le MiniLab3, le modifier, puis le renvoyer sur le profil que l'on souhaite sur l'appareil. 
-    
-    On peut également importer et exporter ces paramètres sur des fichiers locaux sur l'ordinateur. Ceci permet à l'utilisateur de sauvegarder un paramètrage de son clavier, ou encore le partager sur une autre unité. La sauvegarde à un endroit spécifique de l'ordinateur est impossible en Web, car elle pose des problèmes de sécurité. Ainsi, nous avons théorisé, avec l'équipe Compagnon, un module sans interface Web, qui servirait de FileSystem. Il aurait un end-point pour importer un fichier, et un autre pour exporter. Créer ce module sans interface plutôt qu'intégrer cette fonctionnalité au back-end du MCC MiniLab3 permettrait de créer un module générique utilisable par tout autre module Web ayant besoin du FileSystem. En attendant le développement d'un tel service, j'ai réalisé une importation par selection de fichier, et une exportation en téléchargement dans le dossier par défaut de téléchargement du navigateur.
+    Cependant, la sauvegarde des paramètres sur l'ordinateur pose problème : elle est impossible en Web car cela poserait des problèmes de sécurité. Ainsi, nous avons conceptualisé, avec l'équipe Compagnon, un module sans interface Web, qui servirait de système de fichiers. Il aurait un end-point pour importer un fichier, et un autre pour exporter. Créer ce module sans interface plutôt qu'intégrer cette fonctionnalité au back-end du MCC MiniLab 3 permettrait de créer un module générique utilisable par tout autre module Web ayant besoin du système de fichiers. En attendant le développement d'un tel service, j'ai réalisé une importation par sélection de fichier, et une exportation en téléchargement dans le dossier par défaut de téléchargement du navigateur.
 \end{itemize}
 
 Lors de l'importation de paramètres, nous envoyons le SysEx demandant ce paramètre en particulier, puis nous attendons la réponse de l'appareil. En cas de non réponse, nous renvoyons le SysEx 2 fois de plus avant de déclarer une erreur.
 
-Cette méthode d'envoi séquentiel de SysEx, en attente de réponses avant d'envoyer les suivants, convient au MiniLab3 en raison de son nombre limité de paramètres. Pour un appareil avec plus de paramètres, nous pouvons également envisager d'envoyer tous les SysEx à la suite sans attendre les réponses, et de traiter les réponses à leur réception.
+Cette méthode d'envoi séquentiel de SysEx, en attente de réponses avant d'envoyer les suivants, convient au MiniLab 3 en raison de son nombre limité de paramètres. Pour un appareil avec plus de paramètres, nous pouvons également envisager d'envoyer tous les SysEx à la suite sans attendre les réponses, et de traiter les réponses à leur réception.
 
 \paragraph{La création d'une nouvelle interface}:
 Le Midi Control Center possède des interfaces graphiques vieillissantes : contrairement à l'Arturia Software Center, que j'ai recopié comme tel, j'ai cherché à retravailler les interfaces du MCC. Puisque les deux logiciels vont se retrouver dans une seule architecture modulaire, j'ai souhaité uniformiser les visuels entre l'Arturia Software Center et le Midi Control Center.
 
-J'en ai repris les couleurs et les polices de charactères. Je me suis également inspiré des cartes avec ombres de l'ASC pour les différents menus du Midi Control Center.
+J'en ai donc repris les couleurs et les polices de charactères. Je me suis également inspiré des cartes avec ombres de l'ASC pour les différents menus du Midi Control Center.
 
 
 \begin{center}
@@ -660,7 +693,7 @@ testtesttest
 \section{Acronymes.}
 \paragraph{UCC}: Unified Control Center. C'est l'application hôte qui affiche le navigateur.
 \paragraph{ASC}: Arturia Software Center. C'est l'application de gestion de logiciels Arturia.
-\paragraph{MCC}: Midi Control Center. C'est l'application de gestion de controlleurs midi et synthétiseurs Arturia.
+\paragraph{MCC}: Midi Control Center. C'est l'application de gestion de controleurs midi et synthétiseurs Arturia.
 
 \section{Éléments majeurs de la conception.}
 
