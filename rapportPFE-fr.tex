@@ -156,7 +156,7 @@ J'ai intégré pendant ce stage l'équipe Compagnon d'Arturia, qui m'a proposé 
 \subsection{Définition du problème.}
 
 Arturia possède une branche de ses logiciels, les logiciels Compagnon, qui accompagnent les produits vendus par Arturia.
-L'Arturia Software Center (ASC) et le Midi Control Center (MCC) en font partie, et sont respectivement le gestionnaire de logiciels et licenses, et le gestionnaire d'appareils physiques d'Arturia.
+L'Arturia Software Center (ASC) et le Midi Control Center (MCC) en font partie, et sont respectivement le gestionnaire de logiciels et licenses, et le logiciel de configuration d'appareils physiques d'Arturia.
 
 Arturia souhaite essayer de nouvelles technologies de développement graphiques, et pour ce faire, a décidé fusionner ces deux logiciels en un seul, doté d'une architecture modulaire et d'interfaces basées sur les technologies Web. 
 
@@ -173,10 +173,10 @@ Lors de ce stage, j'ai pu travailler sur plusieurs éléments :
     \setlength\itemsep{0em}
     \item Démontrer l'utilisation de multiples Frameworks Web (React, Angular, Vue, Vue Nuxt) dans une application modulaire C++ JUCE.
     \item Développer toutes les interfaces existantes C++ de l'Arturia Software Center en Vue Nuxt.
-    \item Concevoir et développer les interfaces un Midi Control Center entièrement en Web, qui permet de configurer le clavier maître Arturia MiniLab 3.
+    \item Concevoir et développer les interfaces d'un Midi Control Center entièrement en Web, qui permet de configurer le clavier maître Arturia MiniLab 3.
     \item Concevoir et développer l'interface du logiciel modulaire accueillant le Midi Control Center et l'Arturia Software Center.
     \item Prototyper l'implémentation de l'API Web MIDI pour communiquer avec les appareil Arturia en front-end Web uniquement.
-    \item Expérimenter l'utilisation de l'API Web USB pour mettre à jour en Device Firmware Update les appareils Arturia, ainsi que de l'API FileSystem.
+    \item Expérimenter l'utilisation de l'API Web USB pour mettre à jour en Device Firmware Update les appareils Arturia.
 \end{itemize}
 La majeure partie de mon travail était concentrée sur le développement des interfaces Web du Midi Control Center, ainsi que de l'Arturia Software Center, en étroite collaboration avec le membre de l'équipe travaillant sur le back-end. 
 
@@ -184,18 +184,18 @@ La majeure partie de mon travail était concentrée sur le développement des in
 
 La problématique de ce rapport de stage concerne d'une part, l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part, l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
 
-Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégré, ainsi que mon sujet de stage. Je poursuiverai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités, tout en définissant plusieurs termes liés à la production musicale et nécessaires à la bonne compréhension de ce rapport. 
+Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégré, ainsi que mon sujet de stage. Je poursuiverai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités. Ensuite, je développerai les propositions techniques et implémentations que j'ai pu réaliser sur l'Arturia Software Center, le Midi Control Center, ainsi que les API Web que j'ai étudiés, en décrivant également la méthodologie de travail et l'environnement technique utilisé, ainsi que les expérimentations et validations réalisées au cours de ce stage.
 % //TODO : plan
 
 
 \section{Contexte.}
 
 \subsection{Contexte du stage.}
-% //TODO : ?????????? décider que mettre
 \subsubsection{Intégration à l'équipe Compagnon}
 Pour ce stage, j'ai été intégré à l'équipe Compagnon d'Arturia, une sous-équipe de l'équipe Système au sein du département R\&D. Sous la supervision de mon tuteur, Timothée Béhéty, qui dirige cette sous-équipe composée de 4 membres, j'ai collaboré étroitement avec Jean-Yves Tissot. Il est responsable du développement du back-end C++ de l'Arturia Software Center (ASC) et est le développeur du projet GeMAPS. Puisque l'équipe Compagnon se concentre exclusivement sur le développement en C++, j'ai sollicité l'expertise de Fabian Boilay, membre de l'équipe du site web d'Arturia, pour les revues de code.
 
 \subsubsection{Méthodologie}
+A COMPLETER
 
 % méthodologie
 % front-end ?
@@ -241,25 +241,23 @@ En revanche, la question se posera pour le Midi Control Center, dont la principa
 \subsection{Définitions nécessaires.}
 
 Nous allons ici définir quelques termes propres au matériel de production musicale.
-\paragraph{MIDI} \footnote{\url{https://arxiv.org/pdf/1705.05322}} 
+\paragraph{MIDI} \cite{midi}
 : Le Musical Instrument Digital Interface ou MIDI est un protocole de communication défini dans les années 1980 dédié à la représentation de l'information musicale, et utilisé pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine note a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaire sur le paramètre à modifier et la valeur à lui attribuer.
-\paragraph{Message SysEx}
-\footnote{\url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_SysEx_messages_c.html}}
+\paragraph{Message SysEx} \cite{sysex}
 : Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI. 
-\paragraph{Contrôleur MIDI} \footnote{\url{https://troidecis.fr/musique/instrument-midi-definition}} 
-:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentionmères, d'encodeurs, ou autres.
-\paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
-: Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
-\paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
+\paragraph{Contrôleur MIDI}  \cite{controller}
+:  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentiomètres, d'encodeurs, ou autres.
+% \paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
+% : Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
+% \paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
 \subsection{L'Arturia Software Center existant.}
 
-L'Arturia Software Center
-\footnote{\url{https://www.arturia.com/support/asc-arturiasoftwarecenter}}
+L'Arturia Software Center \cite{asc}
  (ASC) est le logiciel de gestion de licences et de
 téléchargement de logiciels d'Arturia : il est nécessaire pour tout utilisateur
 souhaitant utiliser un logiciel Arturia. 
 
-L'utilisateur peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.  Par ailleurs, s'il ne possède pas de connexion internet, il peut procéder à une activation hors-ligne.
+L'utilisateur, une fois connecté, peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.  Par ailleurs, s'il ne possède pas de connexion internet, il peut procéder à une activation hors-ligne.
 
 L'Arturia Software Center est composé de deux parties : 
 
@@ -278,8 +276,7 @@ Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et véri
 
 \subsection{Le Midi Control Center existant.}
 
-Le Midi Control Center
-\footnote{\url{https://support.arturia.com/hc/fr-fr/sections/4405740766098-MIDI-Control-Center}}
+Le Midi Control Center \cite{mcc}
  (MCC) est le logiciel de configuration de matériel Arturia : il
 permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers midis physiques d'Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
 
@@ -314,17 +311,14 @@ Les paramètres de controleurs MIDI de la gamme Lab sont regroupés en deux cat�
 
 \subsection{Les API Web MIDI et Web USB.}
 
-L'API Web MIDI
-\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API}}
+L'API Web MIDI \cite{webmidi1}
 fournit une manière pour les applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI. Par exemple, dans notre cas préci, nous pouvons recevoir des messages de Note On / Note Off, mais aussi envoyer des messages SysEx permettant de modifier les paramètres du périphérique.
 
-Cette API existe depuis plus de 10 ans, et est supportée par l'organisme de standardisation W3C. Elle est cependant encore en stade de développement, et bien qu'elle ai été supportée par l'organisme de standardisation W3C, celui-ci ne l'a pas standardisée \footnote{\url{https://air.unimi.it/retrieve/60655569-9189-4ff0-9fa0-5614e342af53/JAES2022.pdf}}. Cela signifie que son soutien par les navigateurs n'est pas obligatoire. Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
+Cette API existe depuis plus de 10 ans, et est supportée par l'organisme de standardisation W3C. Elle est cependant encore en stade de développement, et bien qu'elle ai été supportée par l'organisme de standardisation W3C, celui-ci ne l'a pas standardisée \cite{webmidi2}. Cela signifie que son soutien par les navigateurs n'est pas obligatoire. Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
 
-Comme l'API Web MIDI, l'API Web USB 
-\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API}}
+Comme l'API Web MIDI, l'API Web USB \cite{webusb1}
 est en cours de développement, supportée mais non standardisée par l'organisme W3C. Cette API permet la communication en protocole USB entre une application Web et un périphérique connecté à l'utilisateur.
-Nous pouvons observer sur cette API plusieurs mesures de sécurité
-\footnote{\url{https://wicg.github.io/webusb}}
+Nous pouvons observer sur cette API plusieurs mesures de sécurité \cite{webusb2}
  : parmi elle, une impossibilité de se connecter à l'appareil voulu sans action préalable de l'utilisateur (i.e., un click sur bouton).
 
 
@@ -338,7 +332,7 @@ Nous effectuions également une réunion d'architecture du projet GeMAPS tous le
 Enfin, une réunion de l'équipe Système était effectuée tous les mois.
 
 
-F\subsubsection{Git et revues de code.}
+\subsubsection{Git et revues de code.}
 Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets sur le GitLab de l'entreprise, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
 \subsection{Environnement technique.}
@@ -433,15 +427,12 @@ Les résultats de ce prototypage ont révélé qu'aucune différence importante 
     \captionof{figure}{Page utilisée pour démontrer l'utilisation de différents frameworks dans GeMAPS}%
     \end{center}
 
-Voici les quelques difficultés rencontrées dans l'utilisation de frameworks Web dans GeMAPS : 
-\begin{itemize}
-    \item Dans le cas d'un serveur Web classique, lorsqu'un navigateur demande une page sans extension, par exemple www.page.com/chemin, le serveur servira automatiquement le fichier www.page.com/chemin/index.html s'il existe. Dans notre cas, nous ne souhaitions pas fonctionner ainsi, car notre serveur sert aussi bien les pages web que les endpoint du back-end, et notre manière pour séparer les endpoint back-end des fichiers web, était l'extension du fichier présente pour ces derniers. 
+Dans le cas d'un serveur Web classique, lorsqu'un navigateur demande une page sans extension, par exemple www.page.com/chemin, le serveur servira automatiquement le fichier www.page.com/chemin/index.html s'il existe. Dans notre cas, nous ne souhaitions pas fonctionner ainsi, car notre serveur sert aussi bien les pages web que les endpoint du back-end, et notre manière pour séparer les endpoint back-end des fichiers web, était l'extension du fichier présente pour ces derniers. 
     
     Cependant, le problème se complexifie dans le cas de Vue Nuxt, car Vue Nuxt utilise une sur-couche de navigation, qui ne reconnait que les chemins sans la partie finale /index.html. Le résultat produit était que le serveur refuse de servir une page si elle ne termine pas par /index.html, mais lorsqu'on le rajoute, Vue Nuxt refuse l'accès.
 
     La solution de contournement que nous avons choisi, est un middleware intégré au code du front-end : à chaque atterrissage sur une nouvelle page terminant par /index.html, le chemin sera changé en retirant ce suffixe.
 
-\end{itemize} 
 
 
 
@@ -461,7 +452,7 @@ L'architecture de la page principale se présente ainsi :
 
 Ici, le \textit{Module Loader} représente l'élément du back-end de GeMAPS qui met à disposition des endpoints qui permettent de connaître les modules disponibles.
 
-Au démarrage de l'application, l'application Unified Control Center, qui affiche le navigateur, affiche la page principale de GeMAPS, que l'on va appeler la page Unified Control Center (UCC).
+Au démarrage de l'application, l'application qui affiche le navigateur, affiche la page principale de GeMAPS, que l'on va appeler la page Unified Control Center (UCC).
 
 Cette page principale comporte un menu de côté dépliable, qui montre la liste des modules qu'on affiche dans l'application. Chaque module est chargé dans une iframe cachée. En cliquant dessus, on rend visible l'iframe concernée, et on affiche ainsi l'interface sélectionnée.
 
@@ -535,7 +526,7 @@ Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qu
 Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
 
 
-\paragraph{Installation de produits} ??????????????????????????
+\paragraph{Installation de produits} A COMPLETER
 \paragraph{Fonctionnalité multilingue}: Le multilingue est une fonctionnalité essentielle pour d'Arturia, et est en cours de développement dans plusieurs projets. La facilité de développement multilingue qu'amène la technologie Web est un autre avantage que montre mon prototype.
 
 Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia, ce qui permet une uniformité et donc une meilleure efficacité lors du traitement des traductions. J'utilise ainsi le package @nuxtjs/i18n. 
@@ -709,8 +700,27 @@ Cette méthode d'envoi séquentiel de SysEx, en attente de réponses avant d'env
 \paragraph{Fonctionnalités supplémentaires}:
 J'ai implémenté dans ce Midi Control Center la fonctionnalité multilingue ainsi que le mode sombre, de la même manière et avec les mêmes technologies et composants que pour l'Arturia Software Center.
 
+\subsection{Expérimentations et validations}
 
-% Image
+Les expérimentations et validations ont été une partie importante de mon projet de fin d'études.
+
+Comme mentionné précédemment, j'ai réalisé plusieurs preuves de concept préalables au développement des prototypes d'Arturia Software Center et de Midi Control Center.
+
+Parmi elles, j'ai pu expérimenter l'utilisation de GeMAPS pour distribuer différents frameworks (Vue, React et Angular), et vérifier leur bon fonctionnement. J'ai choisi volontairement, pour réaliser cette expérimentation, une page Web comportant plusieurs éléments clés, comme une pop-up provenants de packages extérieurs, des images ou des éléments scrollables.
+
+J'ai pu également expérimenter l'utilisation des API de Web MIDI et de Web USB.
+Pour le Web MIDI, j'ai réalisé une page Web capable d'afficher les contrôles saisis sur le contrôleur midi, et capable d'envoyer des informations SysEx et de réclamer des valeurs SysEx. J'ai pu ainsi rapidement réaliser qu'aucun obstacle ne se posait à l'utilisation du Web USB dans un Midi Control Center en technologies Web.
+Pour le Web USB, j'ai développé une page capable de mettre à jour les appareils Arturia en DFU. J'ai pu remarquer et comprendre les obstacles à l'utilisation de cette technologie dans le cadre du fonctionnement actuel de la communication USB à Arturia, et ai pu comprendre ses enjeux pour les appareils futur.
+
+Certains outils m'ont été utiles pour la validation du bon fonctionnement de ce que je produisais. Un outil qui m'a souvent permis de valider ce que me renvoyait le back-end, pour vérifier que j'affichais réellement ce qui correspondait, est Postman. J'ai réalisé une collection de requêtes correspondant à toutes les requêtes possibles à faire au back-end, et cela m'a permis souvent de comprendre d'où venait ce qui me posait problème : en remontant à la source de la requête, j'ai pu séparer les instants où mes interfaces Web ne répondaient pas de la bonne façon, des instants où le back-end n'avait pas une réponse correspondant aux besoins du front-end. De plus, Postman m'a permis de tester plus en profondeur le système de connexion et déconnexion : en étant capable d'envoyer un signal de déconnexion à tout moment au back-end, on est ainsi capable de tester plus de cas possibles d'états de connexion.
+
+Par ailleurs, le navigateur intégré du framework C++ JUCE, que nous utilisons pour afficher l'Unified Control Center, est capable d'afficher une console, ainsi que de laisser accès à son stockage local. Ceci m'a permis de modifier le stockage local en cours de fonctionnement de l'application, ainsi que de vérifier certaines valeurs par la console, ce qui a grandement aidé à la robustesse des projets sur lesquels j'ai travaillé.
+
+Enfin, j'ai pu tester et valider de nombreux cas de renvois d'erreurs ou de renvois non conformes d'informations par le back-end, en le simulant à l'aide du répertoire \textit{server} de mes projets Vue Nuxt, qui permet de produire des maquettes d'endpoints qui sont automatiquement mis à disposition lorsque le projet est lancé en mode développement.
+
+\section{Conclusion et perspectives}
+A COMPLETER
+% Image 
 
 %\lstinputlisting[language=Python]{MonCode.py}
 % \begin{lstlisting}[language=Python,caption={Programme inconnu},label=lst:Inconnu]
@@ -750,13 +760,87 @@ J'ai implémenté dans ce Midi Control Center la fonctionnalité multilingue ain
 % Bibliographie
 % Annexes éventuelles (en plus des 30 pages demandées)
 \bibliographystyle{unsrt}
-\bibliography{rapportPFE}
 
+
+\begin{thebibliography}{9}
+
+    \bibitem{midi}
+      H. M. de Oliveira \& R. C. de Oliveira,
+      \textit{Understanding MIDI},
+      In: 2017,
+      URL: \url{https://arxiv.org/pdf/1705.05322},
+      (visited on 10/05/2024)
+
+    \bibitem{sysex}
+        Cubase,
+        \textit{SysEx Messages},
+        In: (),
+        URL: \url{https://steinberg.help/cubase_artist/v10.5/fr/cubase_nuendo/topics/midi_editors/midi_editors_sysex_messages_c.html},
+        (visited on 11/05/2024)
+    
+    \bibitem{controller}
+        Wikipedia,
+        \textit{Audio Control Surface},
+        In: (2018),
+        URL: \url{https://en.wikipedia.org/wiki/Audio_control_surface},
+        (visited on 10/05/2024)
+
+    \bibitem{asc}
+        Arturia,
+        \textit{Arturia Software Center},
+        In: (),
+        URL: \url{https://www.arturia.com/support/asc-arturiasoftwarecenter},
+        (visited on 10/05/2024)
+
+    \bibitem{mcc}
+        Arturia,
+        \textit{Midi Control Center},
+        In: (),
+        URL: \url{https://support.arturia.com/hc/fr-fr/sections/4405740766098-MIDI-Control-Center},
+        (visited on 10/05/2024)
+
+    \bibitem{webmidi1}
+        Mozilla Developper Web Docs,
+        \textit{Web MIDI API},
+        In: (2023),
+        URL: \url{https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API},
+        (visited on 10/05/2024)
+
+    \bibitem{webmidi2}
+    Adriano Baratè AND Luca A. Ludovico,
+        \textit{Web MIDI API: State of the Art and Future
+        Perspectives},
+        In: (2022),
+        URL: \url{https://air.unimi.it/retrieve/60655569-9189-4ff0-9fa0-5614e342af53/JAES2022.pdf}
+
+    
+
+    \bibitem{webusb1}
+        Mozilla Developper Web Docs,
+        \textit{Web USB API},
+        In: (2023),
+        URL: \url{https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API},
+        (visited on 10/05/2024)
+    
+    
+    \bibitem{webusb2}
+        Web Plaform Incubarot Community Group,
+        \textit{Web USB API specification},
+        In: (2023),
+        URL: \url{https://wicg.github.io/webusb},
+        (visited on 10/05/2024)
+
+    
+    
+    
+    \bibitem{webdfu}
+        Devanlai (2020) WebDFU [Source code]. \url{https://github.com/devanlai/webdfu}.
+
+
+    
+\end{thebibliography}
 
 \appendix
-\section{Acronymes.}
-\paragraph{UCC}: Unified Control Center. C'est l'application hôte qui affiche le navigateur.
-\paragraph{ASC}: Arturia Software Center. C'est l'application de gestion de logiciels Arturia.
-\paragraph{MCC}: Midi Control Center. C'est l'application de gestion de controleurs midi et synthétiseurs Arturia.
+\section{.}
 
 \end{document}
