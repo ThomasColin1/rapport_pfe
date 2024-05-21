@@ -152,17 +152,17 @@ Travailler sur un projet aussi innovant à Arturia m'a permis d'expérimenter de
 
 \subsection{Mise en contexte.}
 J'ai réalisé mon stage de fin d'études chez Arturia, une société Grenobloise, fabricant d'instruments de musique numériques et électroniques, du 5 février au 26 juillet 2024. C'était l'entreprise que je souhaitais intégrer pour ce stage de fin d'études, non seulement car j'utilise et apprécie les produits et logiciels Arturia, mais aussi car je souhaitais me rapprocher du milieu de ma passion pour la musique. 
-J'ai intégré pendant ce stage l'équipe Compagnon d'Arturia, qui m'a proposé un sujet de prototypage d'interfaces Web pour la nouvelle génération de deux de leurs logiciels, l'Arturia Software Center et le Midi Control Center. J'ai pu ainsi participer à la conception d'un logiciel modulaire rassemblant ces deux applications, développer des interfaces C++ préexistantes en Web, concevoir de nouvelles interfaces et prototyper l'utilisation d'APIs Web novatrices. Ce stage me permet de mettre en oeuvre les compétences de développement Web acquises pendant mon stage précédent, ainsi que de mettre en pratique les connaissances théoriques que j'ai pu apprendre pendant mes études.
+J'ai intégré pendant ce stage l'équipe logiciel compagnon d'Arturia, qui m'a proposé un sujet de prototypage d'interfaces Web pour la nouvelle génération de deux de leurs logiciels, l'Arturia Software Center et le Midi Control Center. J'ai pu ainsi participer à la conception d'un logiciel modulaire rassemblant ces deux applications, développer des interfaces C++ préexistantes en Web, concevoir de nouvelles interfaces et prototyper l'utilisation d'APIs Web novatrices. Ce stage me permet de mettre en oeuvre les compétences de développement Web acquises pendant mon stage précédent, ainsi que de mettre en pratique les connaissances théoriques que j'ai pu apprendre pendant mes études, telles que la programmation, de technologies Web ou encore le génie logiciel.
 \subsection{Définition du problème.}
 
-Arturia possède une branche de ses logiciels, les logiciels Compagnon, qui accompagnent les produits vendus par Arturia.
-L'Arturia Software Center (ASC) et le Midi Control Center (MCC) en font partie, et sont respectivement le gestionnaire de logiciels et licenses, et le logiciel de configuration d'appareils physiques d'Arturia.
+Les logiciels Arturia sont séparables en deux catégories : les instruments et effets logiciels, qui créent et modifient de l'audio, et les logiciels Compagnon, qui accompagnent les produits vendus par Arturia.
+L'Arturia Software Center (ASC) et le Midi Control Center (MCC) font partie de cette dernière, et sont respectivement le gestionnaire de logiciels et licenses, et le logiciel de configuration d'appareils physiques d'Arturia.
 
-Arturia souhaite essayer de nouvelles technologies de développement graphiques, et pour ce faire, a décidé fusionner ces deux logiciels en un seul, doté d'une architecture modulaire et d'interfaces basées sur les technologies Web. 
+Arturia souhaite mettre à jour un Midi Control Center vieillissant et difficilement maintenable, tout en simplifiant son ecosystème logiciel ainsi qu'en modernisant les architectures techniques au sein de l'entreprise. Pour ce faire, l'entreprise a décidé fusionner ces deux logiciels en un seul, doté d'une architecture modulaire et d'interfaces basées sur les technologies Web. 
 
-Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie, en en séparant le front-end et le back-end, et en réussissant à faire une application suffisemment modulaire pour qu'elle puisse intégrer à l'avenir de nouveaux éléments non encore définis.
+Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie, en séparant le front-end et le back-end qui était alors trop lié dans une architecture totalement C++, et en réussissant à faire une application suffisemment modulaire, maintenable et extensible pour qu'elle puisse intégrer à l'avenir de nouveaux éléments non encore définis.
 
-Ainsi, mon défi personnel est de réussir à produire un prototype initial des interfaces Web pour ces deux logiciels, tout en expérimentant les possibilités d'utilisation du MIDI et de l'USB dans le Web.
+Ainsi, mon défi personnel est de réussir à produire un prototype initial des interfaces Web pour ces deux logiciels, tout en expérimentant les possibilités d'utilisation du MIDI et de l'USB dans des technologies Web.
 
 
 
@@ -171,20 +171,21 @@ Ainsi, mon défi personnel est de réussir à produire un prototype initial des 
 Lors de ce stage, j'ai pu travailler sur plusieurs éléments : 
 \begin{itemize}
     \setlength\itemsep{0em}
-    \item Démontrer l'utilisation de multiples Frameworks Web (React, Angular, Vue, Vue Nuxt) dans une application modulaire C++ JUCE.
+    \item Démontrer l'utilisation de multiples Frameworks Web (React, Angular, Vue, Vue Nuxt) dans une application modulaire C++ Juce, ainsi que dans une application démo de Chromium Embedded Framework.
     \item Développer toutes les interfaces existantes C++ de l'Arturia Software Center en Vue Nuxt.
     \item Concevoir et développer les interfaces d'un Midi Control Center entièrement en Web, qui permet de configurer le clavier maître Arturia MiniLab 3.
     \item Concevoir et développer l'interface du logiciel modulaire accueillant le Midi Control Center et l'Arturia Software Center.
     \item Prototyper l'implémentation de l'API Web MIDI pour communiquer avec les appareil Arturia en front-end Web uniquement.
-    \item Expérimenter l'utilisation de l'API Web USB pour mettre à jour en Device Firmware Update les appareils Arturia.
+    \item Expérimenter l'utilisation de l'API Web USB pour mettre a jour un périphérique Arturia via le protocol standard USB DFU (Device Firmware Update).
+    \item Participer activement à la conception et à l'architecture du projet tout entier, en étant force de proposition ainsi qu'en {{disant qu'est ce qui est possible ou pas}}.
 \end{itemize}
-La majeure partie de mon travail était concentrée sur le développement des interfaces Web du Midi Control Center, ainsi que de l'Arturia Software Center, en étroite collaboration avec le membre de l'équipe travaillant sur le back-end. 
+La majeure partie de mon travail était concentrée sur le développement des interfaces Web du Midi Control Center, ainsi que de l'Arturia Software Center, en étroite collaboration avec Jean-Yves TISSOT, le developpeur C++ chargé de l'implementation du backend. 
 
 \subsection{Problématique et plan.}
 
 La problématique de ce rapport de stage concerne d'une part, l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part, l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
 
-Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégré, ainsi que mon sujet de stage. Je poursuiverai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités. Ensuite, je développerai les propositions techniques et implémentations que j'ai pu réaliser sur l'Arturia Software Center, le Midi Control Center, ainsi que les API Web que j'ai étudiés, en décrivant également la méthodologie de travail et l'environnement technique utilisé, ainsi que les expérimentations et validations réalisées au cours de ce stage.
+Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégré, ainsi que mon sujet de stage. Je poursuivrai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités. Ensuite, je développerai les propositions techniques et implémentations que j'ai pu réaliser sur l'Arturia Software Center, le Midi Control Center, ainsi que les API Web que j'ai étudiés, en décrivant également la méthodologie de travail et l'environnement technique utilisé, ainsi que les expérimentations et validations réalisées au cours de ce stage.
 % //TODO : plan
 
 
@@ -192,9 +193,19 @@ Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant
 
 \subsection{Contexte du stage.}
 \subsubsection{Intégration à l'équipe Compagnon}
-Pour ce stage, j'ai été intégré à l'équipe Compagnon d'Arturia, une sous-équipe de l'équipe Système au sein du département R\&D. Sous la supervision de mon tuteur, Timothée Béhéty, qui dirige cette sous-équipe composée de 4 membres, j'ai collaboré étroitement avec Jean-Yves Tissot. Il est responsable du développement du back-end C++ de l'Arturia Software Center (ASC) et est le développeur du projet GeMAPS. Puisque l'équipe Compagnon se concentre exclusivement sur le développement en C++, j'ai sollicité l'expertise de Fabian Boilay, membre de l'équipe du site web d'Arturia, pour les revues de code.
+Pour ce stage, j'ai été intégré à l'équipe Compagnon d'Arturia, une sous-équipe de l'équipe Système au sein du département R\&D. Sous la supervision de mon tuteur, Timothée Béhéty, qui dirige cette sous-équipe composée de 4 membres, j'ai étroitement collaboré avec Jean-Yves Tissot, responsable du développement du back-end C++ de l'Arturia Software Center (ASC) et est le développeur du projet GeMAPS. Puisque l'équipe Compagnon se concentre exclusivement sur le développement en C++, j'ai sollicité l'expertise de Fabian Boilay, membre de l'équipe de développement du site web d'Arturia, pour les revues de code. 
 
-\subsubsection{Méthodologie}
+
+\begin{center}
+	\centering
+	\includegraphics[width=0.8\textwidth]{graphics/organigramme.png}
+	\begin{tiny}
+	\end{tiny}
+	\captionof{figure}{Organigramme simplifié d'Arturia : emplacement de l'équipe Logiciel Compagnon}
+	\label{fig}
+\end{center}
+
+\subsubsection{Méthodologie.}
 A COMPLETER
 
 % méthodologie
@@ -205,9 +216,9 @@ A COMPLETER
 
 Arturia est un fabricant d'instruments de musique numériques et électroniques. La société est basée à Grenoble et développe des reproductions logicielles d'anciens synthétiseurs (analogiques et numériques), des claviers MIDI, des contrôleurs, des synthétiseurs analogiques et des interfaces audio. 
 
-Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999. A sa création, ses deux fondateurs Frédéric Brun (actuel CEO d'Arturia) et Gilles Pommereuil ont commencé par créer des reproductions de synthétiseurs analogiques réputés au format virtuel, en commençant par développer l'Analog V, inspiré par les synthétiseurs Moog et en collaboration avec leur créateur. De nombreuses autres reproductions ont suivi, et sont devenues par la suite la V Collection, qui est la collection d'instruments virtuels d'Arturia, et la FX Collection, qui est son équivalent pour les effets audio.
+Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999. A sa création, ses deux fondateurs Frédéric Brun (actuel CEO d'Arturia) et Gilles Pommereuil ont commencé par créer des reproductions de synthétiseurs analogiques réputés au format virtuel, en commençant par développer ModularV, inspiré par les synthétiseurs Moog et en collaboration avec leur créateur. De nombreuses autres reproductions ont suivi, et sont devenues par la suite la V Collection, qui est la collection d'instruments virtuels d'Arturia, et la FX Collection, qui est son équivalent pour les effets audio.
 
-Arturia a depuis élargi son catalogue à des instruments virtuels qui lui sont propres, plusieurs synthétiseurs analogiques renommés, différents contrôleurs MIDI ainsi que des cartes sons. 
+Arturia a depuis élargi son catalogue à des instruments virtuels qui lui sont propres, mais c'est également lancé dans la conception de produits matériels, comme plusieurs synthétiseurs analogiques renommés, différents contrôleurs MIDI ainsi que des cartes sons. 
 
 L'équipe Compagnon dans laquelle je réalise mon stage s'occupe des logiciels accompagnants les produits Arturia, comme le gestionnaire de licences, le logiciel de configuration de matériel, ou encore des logiciels spécifique à chaque produit, comme par exemple l'application mobile qui accompagne le clavier AstroLab. 
 
@@ -220,15 +231,28 @@ L'Arturia Software Center (ASC) et le Midi Control Center (MCC) sont deux logici
 
 En effet, ces logiciels ont été développés respectivement en 2014 pour l'Arturia Software Center, et en 2013 pour le Midi Control Center. A ce moment, l'équipe Compagnon que j'intègre pour ce stage n'existait pas encore, et ces logiciels ont donc étés développés par l'équipe Software, qui se spécialise dans le développement d'instruments virtuels. Ils ont opté pour l'utilisation de technologies de développement d'instruments virtuels, notamment le framework C++ JUCE, pour la création de ces outils. Cependant, une mise à jour de l'ASC et du MCC en utilisant des technologies différentes permettrait de se détacher des outils spécifiquement conçus pour les logiciels audio, potentiellement inadaptés à ces applications.
 
-Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire fusionnant l'Arturia Software Center et le Midi Control Center. Cette application serait capable de lancer des librairies C++ en tant que back-end, de servir en HTTP des pages Web statiques en tant que front-end, et d'afficher un host permettant de naviguer sur ces pages Web. De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
+Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire fusionnant l'Arturia Software Center et le Midi Control Center. L'architecture modulaire s'appellerait General Modular Architecture with Pluggable Services (GeMAPS) et son application au Midi Control Center et à l'Arturia Software Center se nommerait Unified Control Center (UCC). Cette application serait capable de lancer des librairies C++ en tant que back-end, de servir en HTTP des pages Web statiques en tant que front-end, et d'afficher un host permettant de naviguer sur ces pages Web. 
 
-\subsubsection{Intérêt.}
+
+\begin{center}
+	\centering
+	\includegraphics[width=0.5\textwidth]{graphics/modulaire.png}
+	\begin{tiny}
+	\end{tiny}
+	\captionof{figure}{Architecture modulaire GeMAPS}
+	\label{fig}
+\end{center}
+
+De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
+
+\subsubsection{Enjeux de ma mission.}
 
 Utiliser des interfaces web pour ces logiciels se révèle ainsi positif sur plusieurs points : 
 \begin{itemize}
 	\item Les technologies web sont plus efficaces pour créer rapidement des interfaces. En effet, les bibliothèques et outils pré-développés et libres d'accès sont nombreux, en constante évolution, et faciles d'utilisation : on peut prendre pour exemple la fonctionnalité multilingue, qui est une fonctionnalité qui prend de l'importance pour Arturia, et qui demande beaucoup de ressources dans les applications C++, pour un développement plus facile, classique et très documenté en technologies Web. De même, les framework Web offrent souvent une courbe d'apprentissage plus faible que le C++ ou autre langage qui n'est pas haut-niveau.
-	\item Ceci permet, pour développer ces interfaces, de pouvoir rechercher des profils de développeurs front-end Web, ce qui est plus facile que de devoir rechercher des développeurs C++, puis de les former sur le framework JUCE, pour ensuite travailler sur des interfaces. En séparant le développement front-end du reste de l'application, ceci permet de rechercher des développeurs spécialisés dans leur domaines, et ainsi une meilleure évolutivité de l'équipe.
-	\item Ensuite, cela permet de séparer le front-end du back-end. En effet, avoir une interface HTTP entre un back-end et un front-end permet de bien séparer ces deux parties. Ceci amène de la modularité et de la scalabilité, car chaque partie peut être modifiée sans affecter l'autre. On peut imaginer également une plus grande flexibilité technologique, car l'application Web pourrait être développée dans n'importe quel framework, sans impliquer de changement pour les librairies C++. Enfin, en isolantf les accès directs au back-end, on peut ainsi mettre en place de meilleurs mesures de sécurité pour protéger les logiciels et les licences utilisateurs.
+	\item La fonctionnalité multilangue, qu'Arturia souhaite importer dans ses logiciels, est d'ores et déjà développée dans l'équipe de développement du site Web : en effet, l'équipe Web d'Arturia a, pendant les deux dernières années, réalisé un processus complexe de traduction de son site Web, avec envoi automatique du texte aux traducteurs, relectures... Utiliser les technologies Web de l'équipe de développement Web d'Arturia permettrait ainsi d'intégrer leur processus de traduction.
+	\item Ceci permet, pour développer ces interfaces, de pouvoir rechercher des profils de développeurs front-end Web, puis de les former sur le framework JUCE, pour ensuite travailler sur des interfaces. En séparant le développement front-end du reste de l'application, ceci permet de rechercher des développeurs spécialisés dans leur domaines, et ainsi une meilleure évolutivité de l'équipe.
+	\item Ensuite, cela permet de séparer le front-end du back-end. En effet, avoir une interface HTTP entre un back-end et un front-end permet de bien séparer ces deux parties. Ceci amène de la modularité et de la scalabilité, car chaque partie peut être modifiée sans affecter l'autre. On peut imaginer également une plus grande flexibilité technologique, car l'application Web pourrait être développée dans n'importe quel framework, sans impliquer de changement pour les librairies C++.
 \end{itemize}
 
 L'Arturia Software Center étant l'outil qui permet de gérer l'installation des logiciels, un back-end est forcément nécessaire pour soutenir le front-end. En effet, par design et pour des raisons de sécurités, les technologies Web n'ont pas accès au système de fichiers de l'utilisateur.
@@ -247,6 +271,8 @@ Nous allons ici définir quelques termes propres au matériel de production musi
 : Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, ce qui n'est pas adapté à la syntaxe normale du protocole MIDI. 
 \paragraph{Contrôleur MIDI}  \cite{controller}
 :  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur où à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentiomètres, d'encodeurs, ou autres.
+\paragraph{GeMAPS} : \textit{General Modular Application with Pluggable Software}. Il s'agit de l'architecture modulaire que l'on conçoit pendant ce stage, et qu'utilise le UCC.
+\paragraph{UCC} : \textit{Unified Control Center}. C'est l'implémentation de GeMAPS pour l'Arturia Software Center.
 % \paragraph{Synthétiseur analogique} \footnote{\url{https://fr.wikipedia.org/wiki/Synthétiseur_analogique}} 
 % : Un synthétiseur analogique est un synthétiseur qui utilise des circuits analogiques et des signaux électriques analogiques pour générer des sons par des techniques électroniques. Contrairement à un synthétiseur numérique, qui stocke et communique l'information en binaire, l'information sonore est transmise dans l'analogique en tant que variation de tension.
 % \paragraph{Synthétiseur virtuel :} Un synthétiseur analogique virtuel est un synthétiseur simulant le son de synthétiseurs analogiques par le biais de processeurs numérique. Il peut être utilisé sous la forme de Stand-Alone, c'est à dire sans logiciel qui l'entoure, en le contrôlant par exemple par un contrôleur MIDI, mais également et plus populairement sous la forme Plug-In, c'est à dire en tant que module à intégrer à un logiciel de Musique Assistée par Ordinateur.
@@ -278,15 +304,15 @@ Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et véri
 
 Le Midi Control Center \cite{mcc}
  (MCC) est le logiciel de configuration de matériel Arturia : il
-permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers midis physiques d'Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
+permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers LMIDI physiques d'Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
 
 Nous pouvons, sur ce logiciel, sélectionner un appareil Arturia parmis la liste proposée. Ceci affiche les fenêtres de paramètrage disponible pour le controleur sélectionné. Nous allons ici décrire les pages disponibles pour la série des controleurs MIDI de la gamme Lab, car c'est ceux sur lequels je me suis concentré pendant ce stage.
 
-La page "Device Settings" est présente pour tous les controleurs. ELle permet de modifier les paramètres généraux du contrôleur actuellement connecté (par exemple, son temps de mise en veille ou ses courbes de vélocité).
+La page "Device Settings" est présente pour tous les controleurs. ELle permet de modifier les paramètres globaux du contrôleur actuellement connecté (par exemple, son temps de mise en veille ou ses courbes de vélocité).
 
 La page "Controller Map" permet de modifier les paramètres de chaque contrôle du contrôleur, (par exemple, modifier la note attribuée à une touche en particulier).
 
-Nous disposons également d'un menu permettant d'importer ou d'exporter des templates de paramètres. Il est également possible d'effectuer une détection automatique de mises à jour disponibles pour le firmware du contrôleur. 
+Nous disposons également d'un menu permettant d'importer ou d'exporter des fichiers contenant les paramètres du contrôleur. Le logiciel effectue également une détection automatique de mises à jour disponibles pour le firmware du contrôleur. 
 
 \begin{center}
 	\centering
@@ -301,10 +327,10 @@ Tous les paramètres des appareils Arturia sont décrit dans des fichiers JSON, 
 
 Les paramètres de controleurs MIDI de la gamme Lab sont regroupés en deux catégories :
 \begin{itemize}
-    \item Les paramètres d'appareils (Device Settings) sont des paramètres généraux, regroupés par catégories, qui comportent par exemple le temps de mise en veille, ou le mode de fonctionnement de la pédale. Ces paramètres sont récupérés au branchement de l'appareil. Ils sont mis à jour à chaque changement : dès que l'utilisateur modifie un paramètre, un message SysEx est envoyé à l'appareil.
+    \item Les paramètres d'appareils (Device Settings) sont des paramètres globaux, regroupés par catégories, qui comportent par exemple le temps de mise en veille, ou le mode de fonctionnement de la pédale. Ces paramètres sont récupérés au branchement de l'appareil. Ils sont mis à jour à chaque changement : dès que l'utilisateur modifie un paramètre, un message SysEx est envoyé à l'appareil.
     \item Les paramètres de préréglage (Preset Settings) sont des paramètres assignés à chaque contrôle de l'appareil. Par exemple, cela peut être la note assignée à un pad, ou le minimum et le maximum d'un slider. 
     
-    Ceux-ci sont assignés à des "profils" : en fonction de l'appareil, certains sont prédéfinis et non modifiables, comme par exemple le profil DAW qui est compatible avec les logiciels de Musique Assistée par Ordinateur, tandis que d'autres sont personnalisables. Ainsi, on importer peut le profil que l'on désire depuis l'appareil, le modifier, puis le réinsérer dans le profil souhaité sur l'appareil. 
+    Ceux-ci sont assignés à des "profils" : en fonction de l'appareil, certains sont prédéfinis et non modifiables, comme par exemple le profil DAW qui est compatible avec les logiciels de Musique Assistée par Ordinateur, tandis que d'autres sont personnalisables. Ainsi, on peut importer le profil que l'on désire depuis l'appareil, le modifier, puis le réinsérer dans le profil souhaité sur l'appareil. 
 
     Il est possible d'importer et d'exporter ces paramètres sur des fichiers locaux sur l'ordinateur. Ceci permet à l'utilisateur de sauvegarder un paramètrage de son clavier, ou encore le partager sur une autre unité. Les paramètres sont sauvegardés sous un format JSON, liant l'ID de chaque paramètre à sa valeur.
 \end{itemize}
@@ -325,15 +351,17 @@ Nous pouvons observer sur cette API plusieurs mesures de sécurité \cite{webusb
 \section{Propositions scientifiques et techniques.}
 \subsection{Méthodologie de travail.}
 \subsubsection{Organisation de l'équipe et réunions.}
-L'équipe Compagnon, sous-équipe de l'équipe Système, se réunissait pour un stand-up chaque matin, où l'on disait ce qu'on a fait la veille ains que ce qu'on prevoyait de faire le jour-même. C'était aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
+L'équipe Compagnon, sous-équipe de l'équipe Système, se réunissait pour un stand-up chaque matin, où l'on dit ce qu'on a fait la veille ains que ce qu'on prévoit de faire le jour-même. C'est aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
 
-Nous effectuions également une réunion d'architecture du projet GeMAPS tous les vendredi, où l'on concevait ensemble le projet sur lequel moi et Jean-Yves travaillions. 
+Nous effectuons également une réunion d'architecture du projet GeMAPS tous les vendredi, où l'on conçoit ensemble le projet sur lequel nous travaillons. 
 
-Enfin, une réunion de l'équipe Système était effectuée tous les mois.
+Une réunion de l'équipe Système était effectuée tous les mois.
+
+Par ailleurs, Arturia réalise un \textit{General Meeting} tous les mois, où tous les membres d'Arturia se réunissent pour une présentation générale de l'avancée des projets de l'entreprise. Etant une spécificité de cette entreprise que l'on trouve rarement dans d'autres structures, j'ai trouvé ces réunions très intéressantes pour moi, pour découvrir des projets concernant des parties de l'entreprise éloignées de la mienne, ainsi que pour m'introduire au fonctionnement d'une entreprise de cette taille.
 
 
 \subsubsection{Git et revues de code.}
-Pour mon projet, j'ai fonctionné avec Git. Travaillant seul, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets sur le GitLab de l'entreprise, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
+Pour mon projet, j'ai fonctionné avec Git. Etant le seul à travailler quotidiennement sur la partie Web de ces applications, j'avais une branche principale, et une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, demander la revue de Fabian Biolay sur mes modification avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets sur le GitLab de l'entreprise, que sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
 \subsection{Environnement technique.}
 
@@ -402,7 +430,7 @@ L'équipe Compagnon utilise Trello pour la gestion de projet. L'équipe s'en ser
 Mes premières tâches à Arturia fûrent de démontrer la possibilité d'utiliser différents frameworks Web dans l'application GeMAPS.
 J'ai ainsi pu réaliser, en Vue, React et Angular, la reproduction d'un page de l'Arturia Software Center, ainsi que les afficher dans une page principale basique, permettant de naviguer entre les pages Web distribuées. 
 
-Les résultats de ce prototypage ont révélé qu'aucune différence importante n'était observable entre ces différents frameworks une fois l'application Web compilée. Le point de différence majeur fut que l'architecture de fichiers compilés n'est pas la même par défault sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
+Les résultats de ce prototypage ont révélé que peu de différences importantes étaient observables entre ces différents frameworks une fois l'application Web compilée. Le point de différence majeur fut que l'architecture de fichiers compilés n'est pas la même par défault sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
 
 % \begin{figure}%
 %     \centering
@@ -429,7 +457,7 @@ Les résultats de ce prototypage ont révélé qu'aucune différence importante 
 
 Dans le cas d'un serveur Web classique, lorsqu'un navigateur demande une page sans extension, par exemple www.page.com/chemin, le serveur servira automatiquement le fichier www.page.com/chemin/index.html s'il existe. Dans notre cas, nous ne souhaitions pas fonctionner ainsi, car notre serveur sert aussi bien les pages web que les endpoint du back-end, et notre manière pour séparer les endpoint back-end des fichiers web, était l'extension du fichier présente pour ces derniers. 
     
-    Cependant, le problème se complexifie dans le cas de Vue Nuxt, car Vue Nuxt utilise une sur-couche de navigation, qui ne reconnait que les chemins sans la partie finale /index.html. Le résultat produit était que le serveur refuse de servir une page si elle ne termine pas par /index.html, mais lorsqu'on le rajoute, Vue Nuxt refuse l'accès.
+    Cependant, le problème se complexifie dans le cas de Vue Nuxt, car celui-ci utilise une sur-couche de navigation, qui ne reconnait que les chemins sans la partie finale /index.html. Le résultat produit était que le serveur refuse de servir une page si elle ne termine pas par /index.html, mais lorsqu'on le rajoute, Vue Nuxt refuse l'accès.
 
     La solution de contournement que nous avons choisi, est un middleware intégré au code du front-end : à chaque atterrissage sur une nouvelle page terminant par /index.html, le chemin sera changé en retirant ce suffixe.
 
@@ -450,9 +478,9 @@ L'architecture de la page principale se présente ainsi :
     \captionof{figure}{Architecture de la page principale de GeMAPS (UCC)}%
 \end{center}
 
-Ici, le \textit{Module Loader} représente l'élément du back-end de GeMAPS qui met à disposition des endpoints qui permettent de connaître les modules disponibles.
+Ici, le \textit{Module Loader} représente l'élément du back-end de GeMAPS qui met à disposition des endpoints permettant de connaître les modules disponibles.
 
-Au démarrage de l'application, l'application qui affiche le navigateur, affiche la page principale de GeMAPS, que l'on va appeler la page Unified Control Center (UCC).
+Au démarrage de l'application, l'application servant de navigateur affiche la page principale du UCC, que l'on va appeler la page Unified Control Center (UCC).
 
 Cette page principale comporte un menu de côté dépliable, qui montre la liste des modules qu'on affiche dans l'application. Chaque module est chargé dans une iframe cachée. En cliquant dessus, on rend visible l'iframe concernée, et on affiche ainsi l'interface sélectionnée.
 
@@ -490,7 +518,7 @@ Les composables sont des éléments de processing, appelables par les pages, les
 
 Le store \textit{user} contient les informations utilisateur, que sont le nom ou l'e-mail utilisateur, mais également la logique de connexion ou déconnexion et la communication avec le back-end que ceci implique.
 
-Enfin, le middleware \textit{auth} redirige automatiquement tout utilisateur non connecté vers la page de connection.
+Enfin, le middleware \textit{auth} sert de composant logiciel intermédiaire entre le navigateur et la page Web. Il redirige automatiquement tout utilisateur non connecté vers la page de connection.
 
 
 
@@ -498,7 +526,7 @@ Enfin, le middleware \textit{auth} redirige automatiquement tout utilisateur non
 
 \paragraph{La connexion utilisateur}: La connexion utilisateur comporte ici plusieurs points de complexité. 
 
-En effet, la connexion de l'Arturia Software Center déjà existant inclut la synchronisation, c'est à dire le moment où le back-end vérifie que toutes les images et descriptions de produits sont prétéléchargées, récupère les dernières versions de logiciels mis à jour, et récupère les licenses actuellement possédées par l'utilisateur. Tout ceci se produit après que l'utilisateur ai entré un identifiant et un mot de passe correct : on affiche alors une page de synchronization pour le faire attendre. S'est alors posée pour nous la question de l'implémentation dans une architecture où l'on a séparé le back-end et le front-end : comment prévenir le front-end que la synchronization s'est terminée ? Nous avons opté pour l'utilisation de Server-Sent Events (SSE). Ainsi, lorsque l'utilisateur se connecte, sa requête n'est pas répondue avant la fin de la synchronisation, auxquel moment il faudra le rediriger vers ses produits. En revanche, l'avancement de la synchronisation est partagée entre le back-end et le front-end par SSE envoyés par le back-end, prévenant soit du début, soit de la réussite, soit de l'échec de la synchronisation.
+En effet, la connexion de l'Arturia Software Center déjà existant inclut la synchronisation, c'est à dire le moment où le back-end vérifie que toutes les images et descriptions de produits sont prétéléchargées, récupère les dernières versions de logiciels mis à jour, et récupère les licenses actuellement possédées par l'utilisateur. Tout ceci se produit après que l'utilisateur ai entré un identifiant et un mot de passe correct : on affiche alors une page de synchronization pour le faire attendre. S'est alors posée pour nous la question de l'implémentation dans une architecture où l'on a séparé le back-end et le front-end : comment prévenir le front-end que la synchronization s'est terminée ? Nous avons opté pour l'utilisation de Server-Sent Events (SSE). Ainsi, lorsque l'utilisateur se connecte, sa requête ne reçoit pas de réponse avant la fin de la synchronisation. En revanche, l'avancement de la synchronisation est partagée entre le back-end et le front-end par SSE (\textit{Server-Sent Events}) envoyés par le back-end, prévenant soit du début, soit de la réussite, soit de l'échec de la synchronisation.
 \begin{center}
     \centering
     \begin{minipage}{.5\textwidth}
@@ -523,15 +551,15 @@ En effet, la connexion de l'Arturia Software Center déjà existant inclut la sy
 
 Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qui est implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, puisque nous démarrons le back-end et le front-end en même temps, il est crucial pour le front-end de savoir à quel étape de la connexion se trouve le back-end pour afficher les pages correspondantes. Pour résoudre ce problème, nous avons décidé d'ajouter un endpoint au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà terminé.
 
-Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de n'afficher qu'une page disponible de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
+Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de ne rendre disponible qu'une page de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
 
 
 \paragraph{Installation de produits} A COMPLETER
-\paragraph{Fonctionnalité multilingue}: Le multilingue est une fonctionnalité essentielle pour d'Arturia, et est en cours de développement dans plusieurs projets. La facilité de développement multilingue qu'amène la technologie Web est un autre avantage que montre mon prototype.
+\paragraph{Fonctionnalité multilingue}: Le multilingue est une fonctionnalité essentielle pour Arturia, et est en cours de développement dans plusieurs projets. La facilité de développement multilingue qu'amène la technologie Web est un autre avantage que montre mon prototype.
 
-Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia, ce qui permet une uniformité et donc une meilleure efficacité lors du traitement des traductions. J'utilise ainsi le package @nuxtjs/i18n. 
+Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia.En effet, comme mentionné précedemment, l'équipe de développement Web d'Arturia a déjà mis en place un système complexe de traitement des traductions, et travailler de manière uniforme avec eux permettra ainsi de s'intégrer à leur processus de traduction. 
 
-En pratique, cela me permet, dans chaque composant ou page Web, de remplacer chaque texte à traduire par un identifiant qui lui est propre. Ensuite, j'écris au format JSON le texte auxquel correspond chaque identifiant, en français et en anglais. 
+J'utilise ainsi le package @nuxtjs/i18n. En pratique, cela me permet, dans chaque composant ou page Web, de remplacer chaque texte à traduire par un identifiant qui lui est propre. Ensuite, j'écris au format JSON le texte auxquel correspond chaque identifiant, en français et en anglais.
 
 Pour passer d'une langue à l'autre, j'ai créé un composant qui permet de choisir entre les langues disponibles.
 
@@ -542,7 +570,9 @@ Pour passer d'une langue à l'autre, j'ai créé un composant qui permet de choi
 	\end{tiny}
 	\captionof{figure}{Composant de selection de langue}
 	\label{fig}
-\end{center}
+\end{center} 
+
+Une fois le projet compilé pour la production, toutes les pages existent en autant d'exemplaire qu'il y a de langues disponibles : ainsi, par exemple, la page \textit{login/index.html} française est disponible à l'adresse \textit{fr/login/index.html}
 
 \paragraph{Mode sombre}: Pareillement que le multilingue, le Mode sombre est une fonctionnalité commune et très documentée en technologies Web. Pour le développer, j'ai utilisé l'attribut de Tailwind PostCSS pour créer un style sombre pour chaque page et composant Web, et j'ai créé un composant permettant de sélectionner le mode voulu, que j'ai ajouté au header. 
 
@@ -569,7 +599,7 @@ Une des fonctionnalités qui m'ont été demandé pendant mon développement, a 
 
 J'ai ainsi ajouté une barre de boutons Favoris, Archivés et Tous sur l'Arturia Software Center, afin de pouvoir sélectionner quels produits afficher.
 De même, j'ai ajouté des boutons Favoris et Archivés dans la page détails du produit. 
-J'ai choisi de développer cette fonctionnalité de la manière la plus modulaire possible, afin qu'ajouter une catégorie supplémentaire à 'Favoris' ou 'Archivés' puisse être fait facilement.
+J'ai choisi de développer cette fonctionnalité de la manière la plus modulaire possible, afin qu'ajouter une catégorie supplémentaire à 'Favoris' ou 'Archivés' puisse être fait facilement. //TODO : développer
 
 % \begin{center}
 %     \centering
@@ -645,11 +675,11 @@ J'ai pu prototyper, pendant mon développement du Midi Control Center, une fonct
 , en m'appuyant sur un projet open-source 
 \footnote{\url{https://github.com/devanlai/webdfu}}
 implémentant une update firmware DFU Web pour les cartes électroniques STM32.
-J'ai d'abord commencé par l'expérimenter sur le MiniLab 3, qui fait partie des produits qui n'ont qu'une carte à mettre à jour, et est donc plus simple, puis ensuite le MiniFreak, qui possède 6 cartes à mettre à jour les unes après les autres.
+J'ai d'abord commencé par l'expérimenter sur le MiniLab 3, qui fait partie des produits qui n'ont qu'un micro-processeur à mettre à jour, et est donc plus simple, puis ensuite le MiniFreak, qui possède 6 micro-processeurs à mettre à jour les uns après les autres.
 
-Le majeur problème rencontré fut le pilote Arturia, qui empêche la mise à jour sur Windows en raison de son incompatibilité avec l'API Web USB, conçu pour le pilote générique WinUSB. J'ai pu tout de même réaliser la mise à jour sur Mac ainsi qu'en remplaçant le driver Arturia par WinUSB sur Windows. Ceci pose cependant un frein à la réalisation d'un Midi Control Center entièrement en technologies Web.
+Sur Windows, Arturia utilise un pilote USB MIDI propriétaire, qui lui permet notamment de mettre à disposition ses interfaces MIDI à plusieurs clients en même temps. Ce pilote fut le problème majeur rencontré, car il empêche la mise à jour sur Windows en raison de son incompatibilité avec l'API Web USB, conçu pour le pilote générique WinUSB. J'ai pu tout de même réaliser la mise à jour sur Mac ainsi qu'en remplaçant le driver Arturia par WinUSB sur Windows. Ceci pose cependant un frein à la réalisation d'un Midi Control Center entièrement en technologies Web, car nous ne pouvons pas pour l'instant nous passer de ce pilote dans tous les produits Arturia, et que nous pouvons uniquement l'utiliser en C++.
 
-Ce prototype reste pertinent, car il permet d'imaginer des possibilités futures sur des produits qui auront un pilote différent.
+Cependant, ce prototype reste pertinent, car il permet d'imaginer des possibilités futures sur des produits qui auront un pilote différent.
 En effet, plusieurs produits Arturia n'utilisent pas le pilote de l'entreprise, qui communique en MIDI, mais plutôt un pilote USB qui possède une description WinUSB. La raison à cela est double : la communication MIDI est lente, et pose donc problème sur des produits avec beaucoup de paramètres comme le PolyBrute, mais surtout, la communication MIDI est ouverte à tous les logiciels. Ceci veut dire qu'un logiciel de Musique Assistée par Ordinateur, comme Ableton, sur lequel on branche un MiniFreak et auxquel on vient ajouter le plug-in MiniFreak V, peut accèder au port MIDI autant que le logiciel MiniFreak V, et donc potentiellement perturber la communication entre le MiniFreak et son plug-in : ce sont des choses qui ont précédemment posé problème sur plusieurs produits qui ont un plug-in associé.
 Le resultat de tout ça est que certains produits, comme le MiniFreak ou le récent AstroLab, n'ont pas de pilote MIDI mais plutôt un pilote USB, et peuvent donc être mis à jour en Web USB même sur Windows.
 
@@ -742,7 +772,7 @@ J'ai de plus eu l'occasion d'appliquer quelques modifications mineures au projet
 \subsection{Difficultés rencontrées}
 Je n'ai à aucun moment été bloqué longtemps par un problème durant ce projet de fin d'études, mais j'ai cependant rencontré quelques difficultés : 
 \begin{itemize}
-    \item Le point majeur d'erreur que j'ai fait dans ce stage a été de commencer mon projet sur un langage que personne ne maîtrise ni n'utilise
+    \item L'erreur principale que j'ai commise durant ce stage a été de débuter mon projet avec un langage que personne ne maîtrisait ni n'utilisait au sein de l'entreprise.
 \end{itemize}
 % API Web USB
 % Installation et Windows et tout
@@ -781,43 +811,7 @@ Je n'ai à aucun moment été bloqué longtemps par un problème durant ce proje
 % occasion de beaucoup apprendre, boite de bonne taille pour ca
 % occasion d'apprendre plein de trucs parce que equipe compagnon = plateforme centrale de plein de trucs
 
-
 % Image 
-
-%\lstinputlisting[language=Python]{MonCode.py}
-% \begin{lstlisting}[language=Python,caption={Programme inconnu},label=lst:Inconnu]
-% import numpy as np
- 
-% def incmatrix(genl1,genl2):
-%     m = len(genl1)
-%     n = len(genl2)
-%     M = None #to become the incidence matrix
-%     VT = np.zeros((n*m,1), int)  #dummy variable
- 
-%     #compute the bitwise xor matrix
-%     M1 = bitxormatrix(genl1)
-%     M2 = np.triu(bitxormatrix(genl2),1) 
- 
-%     for i in range(m-1):
-%         for j in range(i+1, m):
-%             [r,c] = np.where(M2 == M1[i,j])
-%             for k in range(len(r)):
-%                 VT[(i)*n + r[k]] = 1;
-%                 VT[(i)*n + c[k]] = 1;
-%                 VT[(j)*n + r[k]] = 1;
-%                 VT[(j)*n + c[k]] = 1;
- 
-%                 if M is None:
-%                     M = np.copy(VT)
-%                 else:
-%                     M = np.concatenate((M, VT), 1)
- 
-%                 VT = np.zeros((n*m,1), int)
- 
-%     return M
-% \end{lstlisting}
-
-
 
 % Bibliographie
 % Annexes éventuelles (en plus des 30 pages demandées)
