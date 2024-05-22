@@ -160,7 +160,7 @@ L'Arturia Software Center (ASC) et le Midi Control Center (MCC) font partie de c
 
 Arturia souhaite mettre à jour un Midi Control Center vieillissant et difficilement maintenable, tout en simplifiant son ecosystème logiciel ainsi qu'en modernisant les architectures techniques au sein de l'entreprise. Pour ce faire, l'entreprise a décidé fusionner ces deux logiciels en un seul, doté d'une architecture modulaire et d'interfaces basées sur les technologies Web. 
 
-Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie, en séparant le front-end et le back-end qui était alors trop lié dans une architecture totalement C++, et en réussissant à faire une application suffisemment modulaire, maintenable et extensible pour qu'elle puisse intégrer à l'avenir de nouveaux éléments non encore définis.
+Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie, en séparant le front-end et le back-end qui étaient alors trop liés dans une architecture totalement C++, et en réussissant à faire une application suffisemment modulaire, maintenable et extensible pour qu'elle puisse intégrer à l'avenir de nouveaux éléments non encore définis.
 
 Ainsi, mon défi personnel est de réussir à produire un prototype initial des interfaces Web pour ces deux logiciels, tout en expérimentant les possibilités d'utilisation du MIDI et de l'USB dans des technologies Web.
 
@@ -193,7 +193,7 @@ Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant
 
 \subsection{Contexte du stage.}
 \subsubsection{Intégration à l'équipe Compagnon}
-Pour ce stage, j'ai été intégré à l'équipe Compagnon d'Arturia, une sous-équipe de l'équipe Système au sein du département R\&D. Sous la supervision de mon tuteur, Timothée Béhéty, qui dirige cette sous-équipe composée de 4 membres, j'ai étroitement collaboré avec Jean-Yves Tissot, responsable du développement du back-end C++ de l'Arturia Software Center (ASC) et est le développeur du projet GeMAPS. Puisque l'équipe Compagnon se concentre exclusivement sur le développement en C++, j'ai sollicité l'expertise de Fabian Boilay, membre de l'équipe de développement du site web d'Arturia, pour les revues de code. 
+Pour ce stage, j'ai été intégré à l'équipe Compagnon d'Arturia, une sous-équipe de l'équipe Système au sein du département R\&D. Sous la supervision de mon tuteur, Timothée Béhéty, qui dirige cette sous-équipe composée de 4 membres, j'ai étroitement collaboré avec Jean-Yves Tissot, responsable du développement du back-end C++ de l'Arturia Software Center (ASC) et est le développeur du projet GeMAPS et de l'Unified Control Center. Puisque l'équipe Compagnon se concentre exclusivement sur le développement en C++, j'ai sollicité l'expertise de Fabian Boilay, membre de l'équipe de développement du site web d'Arturia, pour les revues de code. 
 
 
 \begin{center}
@@ -236,10 +236,10 @@ Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire fu
 
 \begin{center}
 	\centering
-	\includegraphics[width=0.5\textwidth]{graphics/modulaire.png}
+	\includegraphics[width=0.8\textwidth]{graphics/modulaire.png}
 	\begin{tiny}
 	\end{tiny}
-	\captionof{figure}{Architecture modulaire GeMAPS}
+	\captionof{figure}{Implémentation de l'architecture modulaire GeMAPS dans l'UCC}
 	\label{fig}
 \end{center}
 
@@ -353,7 +353,7 @@ Nous pouvons observer sur cette API plusieurs mesures de sécurité \cite{webusb
 \subsubsection{Organisation de l'équipe et réunions.}
 L'équipe Compagnon, sous-équipe de l'équipe Système, se réunissait pour un stand-up chaque matin, où l'on dit ce qu'on a fait la veille ains que ce qu'on prévoit de faire le jour-même. C'est aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
 
-Nous effectuons également une réunion d'architecture du projet GeMAPS tous les vendredi, où l'on conçoit ensemble le projet sur lequel nous travaillons. 
+Nous effectuons également une réunion d'architecture du projet GeMAPS/UCC tous les vendredi, où l'on conçoit ensemble le projet sur lequel nous travaillons. 
 
 Une réunion de l'équipe Système était effectuée tous les mois.
 
@@ -392,9 +392,9 @@ Par ailleurs, l'Arturia Software Center nécessite une connexion de l'utilisateu
 
 
 
-\subsubsection{Environnement technique de l'application GeMAPS.}
+\subsubsection{Environnement technique de l'application Unified Control Center.}
 
-Si l'on retire les modules, l'application GeMAPS fonctionne en plusieurs parties, que l'on peut rassembler en deux groupes : le serveur, et l'hôte.
+Si l'on retire les modules, l'application Unified Control Center fonctionne en plusieurs parties, que l'on peut rassembler en deux groupes : le serveur, et l'hôte.
 
 \paragraph{Le serveur} crée une interface HTTP, qui permet de mettre à disposition des endpoints pour tous les fichiers Web qu'affichera l'hôte, ainsi que tous les endpoints back-end que les interfaces Web requêteront.
 \begin{itemize}
@@ -404,7 +404,7 @@ Si l'on retire les modules, l'application GeMAPS fonctionne en plusieurs parties
 
 
 
-\paragraph{L'hôte} affiche la page Web principale, et est nommé Unified Control Center (UCC). Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur.
+\paragraph{L'hôte} affiche la page Web principale, et est nommé UCC GUI. Nous utilisons pour l'instant le navigateur intégré au framework C++ Juce, qui intègre Internet Explorer (lui-même basé sur Chromium) sous Windows et WebKit sous Mac. Nous envisageons, pour le futur, d'utiliser Chromium Embedded Software (CEF), afin d'unifier les navigateurs sous tous les systèmes d'exploitation, et également afin d'avoir un contrôle plus grand sur le navigateur. 
 
 
 \begin{center}
