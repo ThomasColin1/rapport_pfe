@@ -167,7 +167,6 @@ Ainsi, mon défi personnel est de réussir à produire un prototype initial des 
 
 
 \subsection{Aperçu des contributions.}
-% //TODO : mettre à jour
 Lors de ce stage, j'ai pu travailler sur plusieurs éléments : 
 \begin{itemize}
     \setlength\itemsep{0em}
@@ -186,7 +185,6 @@ La majeure partie de mon travail était concentrée sur le développement des in
 La problématique de ce rapport de stage concerne d'une part, l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part, l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
 
 Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégré, ainsi que mon sujet de stage. Je poursuivrai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités. Ensuite, je développerai les propositions techniques et implémentations que j'ai pu réaliser sur l'Arturia Software Center, le Midi Control Center, ainsi que les API Web que j'ai étudiés, en décrivant également la méthodologie de travail et l'environnement technique utilisé, ainsi que les expérimentations et validations réalisées au cours de ce stage.
-% //TODO : plan
 
 
 \section{Contexte.}
@@ -283,14 +281,6 @@ L'Arturia Software Center \cite{asc}
 téléchargement de logiciels d'Arturia : il est nécessaire pour tout utilisateur
 souhaitant utiliser un logiciel Arturia. 
 
-L'utilisateur, une fois connecté, peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.  Par ailleurs, s'il ne possède pas de connexion internet, il peut procéder à une activation hors-ligne.
-
-L'Arturia Software Center est composé de deux parties : 
-
-Tout d'abord, une partie principale, qui est ce logiciel qui permet de gérer ses licences et ses téléchargements de logiciels Arturia, et fournit une interface graphique.
-
-Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et vérifie les licences utilisateur à chaque démarrage de produit Arturia, afin d'éviter toute fraude et téléchargement illégal.
-
 \begin{center}
 	\centering
 	\includegraphics[width=0.6\textwidth]{graphics/asc_existant.png}
@@ -299,6 +289,36 @@ Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et véri
 	\captionof{figure}{Arturia Software Center (ASC) existant}
 	\label{fig}
 \end{center}
+
+L'utilisateur, une fois connecté, peut naviguer parmi les logiciels disponibles sur l'Arturia Software Center sur la page "Explore Products", activer la licence du logiciel sur la page "My Products", le télécharger, le mettre à jour sur la page "My Updates", gérer l'emplacement de ses fichiers dans les paramètres, ainsi que de rentrer le code d'un produit Arturia physique afin de bénéficier des logiciels qui l'accompagnent.  Par ailleurs, s'il ne possède pas de connexion internet, il peut procéder à une activation hors-ligne. 
+
+Pour chaque produit, il peut accéder à une fenêtre de détails du produit, sur laquelle il peut être redirigé vers les manuels d'utilisations ou f.a.q., consulter des descriptions précises, ou consulter les notes de mises à jour. 
+
+Les produits se classent en deux catégories : les produits normaux, qui constituent un logiciel à part entière téléchargeables, et les "bundle", qui sont des paquets de logiciels Arturia, qui sont rassemblés car on peut les acheter ensemble. Le bundle possède alors une licence qui lui est propre, et dans ses détails, l'utilisateur peut retrouver l'ensemble des produits qui le constituent. De plus, il a l'option de tous les télécharger en même temps.
+
+
+\begin{center}
+    \centering
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=6cm]{graphics/details.png}
+    \label{fig:test1}
+    \captionof{figure}{Page détails d'un produit}%
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=6cm]{graphics/detailsbundle.png}
+    \label{fig:test2}
+    \captionof{figure}{Liste des produits d'un bundle}%
+    \end{minipage}
+    \end{center}
+
+L'Arturia Software Center est composé de deux parties : 
+
+Tout d'abord, une partie principale, qui est ce logiciel qui permet de gérer ses licences et ses téléchargements de logiciels Arturia, et fournit une interface graphique.
+
+Ensuite, un logiciel nommé ASC Agent, qui fonctionne en arrière plan, et vérifie les licences utilisateur à chaque démarrage de produit Arturia, afin d'éviter toute fraude et téléchargement illégal.
+
 
 \subsection{Le Midi Control Center existant.}
 
@@ -554,7 +574,23 @@ Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qu
 Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de ne rendre disponible qu'une page de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
 
 
-\paragraph{Installation de produits} A COMPLETER
+\paragraph{Installation de produits}: L'installation de produits comporte de nombreux cas dans l'Arturia Software Center existant, qui s'affichent tous sur le bouton d'installation. Pour les reproduire, j'ai décidé de créer un composant \textit{InstallButton}, qui prendrait l'id du product en entrée, ainsi que quelques éléments par rapport à ce qu'il doit afficher ou pas, que l'on décidera en fonction de l'endroit où on l'utilise. 
+
+La complexité de ce composant repose dans plusieurs éléments :
+\begin{itemize}
+    \item Premièrement, il possède de nombreux cas différents. Pour les lister, nous avons le bouton de mise à jour, d'installation, d'installation de produit "bundle", de téléchargement en cours, de téléchargement en pause, d'installation en cours, d'échec de téléchargement, d'échec d'installation, d'activation, d'achat, de mise à jour avec options et de désinstallation avec options.
+    \item Ensuite, son affichage ne dépend pas uniquement de son produit, mais aussi du lieu où on l'utilise : l'activation ou l'achat ne doit s'afficher que dans la page "My Products", et les boutons avec options ne doivent s'afficher que dans les détails du produit. De plus, dans une carte compacte de produit, l'activation prends le dessus sur l'installation, mais dans les détails du produit, les deux boutons d'activation et d'installation s'affichent côte à côte.
+    \item De plus, les boutons de téléchargement en cours et de téléchargement en pause doivent afficher, sur survolage de souris, des options de pause et d'arrêt du téléchargement.
+    \item Enfin et surtout, le bouton doit se mettre à jour s'il est en mode téléchargement ou installation. Ceci pose une complexité supplémentaire, car nous ne souhaitons pas que le bouton se mette à jour s'il ne concerne pas un téléchargement, car cela concernerait donc tous les produits et demanderait beaucoup de puissance. Cela signifie que si on lance un téléchargement dans les détails du produit, il faut que le bouton de la vue compacte commence à se mettre à jour aussi, et demande donc un envoi d'information supplémentaire entre les boutons.
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=1\textwidth]{graphics/boutons.png}
+    \label{fig:test1}
+    \captionof{figure}{Ensemble des boutons d'installation possibles}%
+\end{center}
+
 \paragraph{Fonctionnalité multilingue}: Le multilingue est une fonctionnalité essentielle pour Arturia, et est en cours de développement dans plusieurs projets. La facilité de développement multilingue qu'amène la technologie Web est un autre avantage que montre mon prototype.
 
 Pour développer cette fonctionnalité, j'ai utilisé les mêmes technologies que l'équipe Web d'Arturia. En effet, comme mentionné précedemment, l'équipe de développement Web d'Arturia a déjà mis en place un système complexe de traitement des traductions, et travailler de manière uniforme avec eux permettra ainsi de s'intégrer à leur processus de traduction. 
@@ -599,7 +635,7 @@ Une des fonctionnalités qui m'ont été demandé pendant mon développement, a 
 
 J'ai ainsi ajouté une barre de boutons Favoris, Archivés et Tous sur l'Arturia Software Center, afin de pouvoir sélectionner quels produits afficher.
 De même, j'ai ajouté des boutons Favoris et Archivés dans la page détails du produit. 
-J'ai choisi de développer cette fonctionnalité de la manière la plus modulaire possible, afin qu'ajouter une catégorie supplémentaire à 'Favoris' ou 'Archivés' puisse être fait facilement. //TODO : développer
+J'ai choisi de développer cette fonctionnalité de la manière la plus modulaire possible, afin qu'ajouter une catégorie supplémentaire à 'Favoris' ou 'Archivés' puisse être fait facilement. 
 
 % \begin{center}
 %     \centering
