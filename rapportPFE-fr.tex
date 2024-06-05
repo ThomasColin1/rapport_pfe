@@ -782,7 +782,7 @@ J'ai également expérimenté l'utilisation des API de Web MIDI et de Web USB.
 Pour le Web MIDI, j'ai réalisé une page Web capable d'afficher les contrôles saisis sur le contrôleur midi, et capable d'envoyer des informations SysEx et de réclamer des valeurs SysEx. J'ai pu ainsi rapidement réaliser qu'aucun obstacle ne se posait à l'utilisation du Web USB dans un Midi Control Center en technologies Web.
 Pour le Web USB, j'ai développé une page capable de mettre à jour les appareils Arturia en DFU. J'ai pu indentifier et comprendre les obstacles à l'utilisation de cette technologie dans le cadre du fonctionnement actuel de la communication USB à Arturia, et ai pu prendre la dimension de ses enjeux pour les appareils futurs.
 
-Certains outils m'ont été utiles à valider le fonctionnement de ce que je produisais. Postman m'a souvent permis d'approuver ce que me renvoyait le back-end, pour vérifier que j'affichais réellement ce qui correspondait. J'ai réalisé une collection de requêtes correspondant à toutes les requêtes possibles à faire au back-end, et cela m'a permis souvent de comprendre la provenance des problèmes rencontrés : en remontant à la source de la requête, j'ai pu distinguer les erreurs de mes interfaces Web des réponses incorrectes du back-end //TODO. De plus, Postman m'a permis de tester plus en profondeur le système de connexion et déconnexion: en étant capable d'envoyer un signal de déconnexion à tout moment au back-end, on est ainsi capable de tester le plus d'états de connexion possibles.
+Certains outils m'ont été utiles à valider le fonctionnement de ce que je produisais. Postman m'a souvent permis d'approuver ce que me renvoyait le back-end, pour vérifier que j'affichais réellement ce qui correspondait. J'ai réalisé une collection de requêtes correspondant à toutes les requêtes possibles à faire au back-end, et cela m'a permis souvent de comprendre la provenance des problèmes rencontrés : en remontant à la source de la requête, j'ai pu distinguer les erreurs de mes interfaces Web des réponses incorrectes du back-end//TODO. De plus, Postman m'a permis de tester plus en profondeur le système de connexion et déconnexion: en étant capable d'envoyer un signal de déconnexion à tout moment au back-end, on est ainsi capable de tester le plus d'états de connexion possibles.
 
 Par ailleurs, le navigateur intégré du framework C++ JUCE, que nous utilisons pour afficher l'Unified Control Center, est capable d'afficher une console ainsi que de laisser accès à son stockage local. Ceci m'a permis de modifier le stockage local en cours de fonctionnement de l'application, ainsi que de vérifier certaines valeurs par la console. Ces contrôles m'ont aidé à consolider les projets sur lesquels j'ai travaillé.
 
@@ -864,6 +864,10 @@ J'ai également apprécié d'avoir pu peser sur les décisions prises pendant la
 \section{Conclusion et perspectives}
 \subsection{Conclusion}
 
+% phrase disant que yavait plein de trucs
+% lister les trucs
+% enrichissante et beaucoup plus 
+% allez bisous
 Pour conclure, mon expérience à Arturia fut formatrice et enrichissante.
 
 J'ai pu travailler avec les technologies Angular, Vue Nuxt, TailwindCSS, mais aussi dans un environnement C++. J'ai également pu participer à la conception d'une architecture modulaire, et m'intégrer aux réunions de l'équipe. J'ai aussi développé mes compétences de travail en équipe, avec le développeur travaillant sur la partie C++ du projet.
