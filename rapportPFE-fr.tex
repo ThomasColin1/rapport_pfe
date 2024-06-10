@@ -152,23 +152,23 @@ Travailler sur un projet aussi innovant à Arturia m'a permis d'expérimenter de
 \section{Introduction.}
 
 \subsection{Mise en contexte.}
-Je réalise mon stage de fin d'études chez Arturia, une société Grenobloise, fabricant d'instruments de musique numériques et électroniques, du 5 février au 26 juillet 2024. C'est l'entreprise que je souhaitais intégrer pour ce stage de fin d'études, non seulement car j'utilise et apprécie les produits et logiciels Arturia, mais aussi car je souhaitais me rapprocher du milieu de ma passion pour la musique. 
-Je me suis inséré pendant ce stage dans l'équipe logiciel compagnon d'Arturia, qui m'a proposé un sujet de prototypage d'interfaces Web pour la nouvelle génération de deux de leurs logiciels, l'Arturia Software Center et le Midi Control Center. Je peux ainsi participer à la conception d'un logiciel modulaire rassemblant ces deux applications, développer des interfaces C++ préexistantes en Web, concevoir de nouvelles interfaces et prototyper l'utilisation d'APIs Web novatrices. Ce stage me permet de mettre en œuvre les compétences de développement Web acquises pendant mon stage précédent, ainsi que de mettre en pratique les connaissances théoriques que j'ai appris pendant mes études, telles que la programmation, de technologies Web ou encore le génie logiciel.
+Je réalise mon stage de fin d'études chez Arturia, une société Grenobloise, fabricant d'instruments de musique numériques et électroniques, du 5 février au 26 juillet 2024. C'est l'entreprise que je souhaitais intégrer pour ce stage de fin d'études, non seulement car j'utilise et apprécie les produits et logiciels Arturia, mais aussi car je souhaitais me rapprocher du monde de la musique qui m'a toujours passionné. 
+Je me suis inséré pendant ce stage dans l'équipe logiciel Compagnon d'Arturia, qui m'a proposé un sujet de prototypage d'interfaces Web pour la nouvelle génération de deux de leurs logiciels, l'Arturia Software Center et le Midi Control Center. Je peux ainsi participer à la conception d'un logiciel modulaire rassemblant ces deux applications, développer des interfaces C++ préexistantes en Web, concevoir de nouvelles interfaces et prototyper l'utilisation d'APIs Web novatrices. Ce stage me permet de mettre en œuvre les compétences en développement Web acquises pendant mon stage précédent, ainsi que de mettre en pratique les connaissances théoriques que j'ai acquises pendant mes études, telles que la programmation, les technologies Web ou encore le génie logiciel.
 \subsection{Définition du problème.}
 
 Les logiciels Arturia se divisent en deux catégories : les instruments et effets logiciels, qui créent et modifient de l'audio, et les logiciels Compagnon, qui accompagnent les produits vendus par Arturia.
 L'Arturia Software Center (ASC) et le Midi Control Center (MCC) font partie de cette dernière, et sont respectivement le gestionnaire de logiciels et licences, et le logiciel de configuration d'appareils physiques d'Arturia.
 
-Arturia souhaite mettre à jour un Midi Control Center vieillissant et difficilement maintenable, tout en simplifiant son écosystème logiciel ainsi qu'en modernisant les architectures techniques au sein de l'entreprise. Pour ce faire, l'entreprise a décidé de fusionner ces deux logiciels en un seul, doté d'une architecture modulaire et d'interfaces basées sur les technologies Web. 
+Arturia souhaite mettre à jour un Midi Control Center vieillissant et difficilement maintenable, tout en simplifiant son écosystème logiciel et en modernisant les architectures techniques au sein de l'entreprise. Pour ce faire, l'entreprise a décidé de fusionner ces deux logiciels en un seul, doté d'une architecture modulaire et d'interfaces basées sur les technologies Web. 
 
-Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie, en séparant le front-end et le back-end qui étaient alors trop liés dans une architecture totalement C++, et tout en réussissant à faire une application suffisamment modulaire, maintenable et extensible pour qu'elle puisse intégrer à l'avenir de nouveaux éléments non encore définis.
+Le défi de mon équipe est donc de réussir à adapter un logiciel préexistant dans une nouvelle technologie. Cela devra d'abord passer par la séparation du front-end et du back-end, trop liés jusqu'ici dans une architecture totalement C++. Il s'agira également de créer une application suffisamment modulaire, maintenable et extensible qui pourra à l'avenir intégrer de nouveaux éléments non encore définis.
 
 Ainsi, mon défi personnel est de réussir à produire un prototype initial des interfaces Web pour ces deux logiciels, tout en expérimentant les possibilités d'utilisation du MIDI et de l'USB dans des technologies Web.
 
 
 
 \subsection{Aperçu des contributions.}
-Lors de ce stage, j'ai pu travailler sur plusieurs éléments : 
+Lors de ce stage, je travaille sur plusieurs éléments : 
 \begin{itemize}
     \setlength\itemsep{0em}
     \item Démontrer l'utilisation de multiples Frameworks Web (React, Angular, Vue, Vue Nuxt) dans une application modulaire C++ Juce, ainsi que dans une application démo de Chromium Embedded Framework.
@@ -183,9 +183,9 @@ La majeure partie de mon travail était concentrée sur le développement des in
 
 \subsection{Problématique et plan.}
 
-La problématique de ce rapport de stage concerne d'une part, l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part, l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
+La problématique de ce rapport de stage concerne d'une part l'intégration d'interfaces Web dans un logiciel modulaire, et d'autre part l'objectif de déplacement de l'intelligence logicielle du Midi Control Center dans le Web, impliquant l'expérimentation et la démonstration d'utilisation de l'API de diverses technologies Web novatrices.
 
-Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégrées, ainsi que mon sujet de stage. Je poursuivrai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités. Ensuite, je développerai les propositions techniques et implémentations que j'ai pu réaliser sur l'Arturia Software Center, le Midi Control Center, ainsi que les API Web que j'ai étudiés, en décrivant également la méthodologie de travail et l'environnement technique utilisé, ainsi que les expérimentations et validations réalisées au cours de ce stage.
+Dans ce rapport, je traiterai premièrement du contexte du stage, en présentant l'entreprise et l'équipe que j'ai intégrées, ainsi que le sujet de mon stage. Je poursuivrai par une analyse des deux logiciels sur lesquels j'ai travaillé, leurs fonctionnalités et leurs spécificités. Ensuite, je développerai les propositions techniques et implémentations que j'ai pu réaliser sur l'Arturia Software Center, le Midi Control Center, ainsi que les API Web que j'ai étudiées, en décrivant également la méthodologie de travail et l'environnement technique utilisés, ainsi que les expérimentations et validations réalisées au cours de ce stage.
 
 
 \section{Contexte.}
@@ -208,7 +208,7 @@ Pour ce stage, j'ai été intégré dans l'équipe Compagnon d'Arturia, une sous
 
 Arturia est un fabricant d'instruments de musique numériques et électroniques. La société est basée à Grenoble et développe des reproductions logicielles d'anciens synthétiseurs (analogiques et numériques), des claviers MIDI, des contrôleurs, des synthétiseurs analogiques et des interfaces audios. 
 
-Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999. A sa création, ses deux fondateurs Frédéric Brun (actuel CEO d'Arturia) et Gilles Pommereuil ont créé des reproductions de synthétiseurs analogiques réputés au format virtuel. Ils ont commencé par développer ModularV, inspiré par les synthétiseurs Moog et en collaboration avec leur créateur. De nombreuses autres reproductions ont suivi, et sont devenues par la suite la V Collection, qui est la collection d'instruments virtuels d'Arturia, et la FX Collection, qui est son équivalent pour les effets audio.
+Il s'agit d'une entreprise employant 180 personnes, qui a été fondée en 1999. A sa création, ses deux fondateurs Frédéric Brun (actuel CEO d'Arturia) et Gilles Pommereuil ont créé des reproductions de synthétiseurs analogiques réputés au format virtuel. Ils ont commencé par développer ModularV, inspiré par les synthétiseurs Moog, en collaboration avec leur créateur. De nombreuses autres reproductions ont suivi, et sont devenues par la suite la V Collection, qui est la collection d'instruments virtuels d'Arturia, et la FX Collection, qui est son équivalent pour les effets audio.
 
 Arturia a depuis élargi son catalogue à des instruments virtuels qui lui sont propres, mais s'est également lancée dans la conception de produits matériels, comme plusieurs synthétiseurs analogiques renommés, différents contrôleurs MIDI ainsi que des cartes sons. 
 
@@ -235,19 +235,19 @@ Ainsi, l'équipe Compagnon a décidé de prototyper une application modulaire fu
 	\label{fig}
 \end{center}
 
-De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
+De cette manière, l'Arturia Software Center et le Midi Control Center constitueraient deux modules de cette application, chacun dotés d'un back-end sous forme de librairie C++, et d'un front-end sous forme de page web statique, communiquant avec leur back-end par requêtes HTTP.\\
 
 \subsubsection{Enjeux de ma mission.}
 
 Utiliser des interfaces web pour ces logiciels se révèle ainsi positif sur plusieurs points : 
 \begin{itemize}
 	\item Les technologies web sont plus efficaces pour créer rapidement des interfaces. En effet, les bibliothèques et outils prédéveloppés et libres d'accès sont nombreux, en constante évolution, et faciles d'utilisation. On peut prendre pour exemple la fonctionnalité multilingue, qui est une fonctionnalité qui prend actuellement de l'importance pour Arturia, et qui demande beaucoup de ressources dans les applications C++, pour un développement plus facile, classique et très documenté en technologies Web. De même, les framework Web offrent souvent une courbe d'apprentissage plus faible que le C++ ou tout autre langage qui n'est pas haut-niveau.
-	\item La fonctionnalité multilingue, qu'Arturia souhaite importer dans ses logiciels, est d'ores et déjà développée dans l'équipe de développement du site Web : en effet, l'équipe Web d'Arturia a, pendant les deux dernières années, réalisé un processus complexe de traduction de son site Web, avec envoi automatique du texte aux traducteurs, relectures... Utiliser les technologies Web de l'équipe de développement Web d'Arturia permet ainsi d'intégrer leur processus de traduction.
-	\item Ceci implique, pour développer ces interfaces, de devoir rechercher des profils de développeurs front-end Web, puis de les former sur le framework JUCE, pour ensuite travailler sur des interfaces. Séparer le développement front-end du reste de l'application simplifie la recherche de développeurs spécialisés dans leur domaine, et ainsi une meilleure évolutivité de l'équipe.
+	\item La fonctionnalité multilingue, qu'Arturia souhaite importer dans ses logiciels, est d'ores et déjà développée dans l'équipe de développement du site Web : en effet, l'équipe Web d'Arturia a, pendant les deux dernières années, réalisé un processus complexe de traduction de son site Web, avec envoi automatique du texte aux traducteurs et relectures. Utiliser les technologies Web de l'équipe de développement Web d'Arturia permet ainsi d'intégrer leur processus de traduction.
+	\item Ceci implique, pour développer ces interfaces, de devoir rechercher des profils de développeurs front-end Web, puis de les former sur le framework JUCE, pour ensuite travailler sur des interfaces. Séparer le développement front-end du reste de l'application simplifie la recherche de développeurs spécialisés dans leur domaine, et permet ainsi une meilleure évolutivité de l'équipe.
 	\item Ensuite, cela permet de séparer le front-end du back-end. En effet, avoir une interface HTTP entre un back-end et un front-end favorise la séparation de ces deux parties. Ceci apporte de la modularité et de la scalabilité, car chaque partie peut être modifiée sans affecter l'autre. On peut imaginer également une plus grande flexibilité technologique, car l'application Web pourrait être développée dans n'importe quel framework, sans impliquer de changement pour les librairies C++.
 \end{itemize}
 
-L'Arturia Software Center étant l'outil qui gère l'installation des logiciels, un back-end est forcément nécessaire pour soutenir le front-end. En effet, par design et pour des raisons de sécurités, les technologies Web n'ont pas accès au système de fichiers de l'utilisateur.
+L'Arturia Software Center étant l'outil qui gère l'installation des logiciels, un back-end est forcément nécessaire pour soutenir le front-end. En effet, des raisons de sécurité, les technologies Web n'ont pas accès au système de fichiers de l'utilisateur.
 
 En revanche, la question se pose pour le Midi Control Center, dont la principale fonctionnalité est de communiquer par protocole Midi avec le contrôleur. Nous étudions pendant ce stage la faisabilité d'un Midi Control Center entièrement réalisé en technologies Web.
 
@@ -258,9 +258,9 @@ En revanche, la question se pose pour le Midi Control Center, dont la principale
 
 Nous allons ici définir quelques termes propres au matériel de production musicale.
 \paragraph{MIDI} \cite{midi}
-: Le Musical Instrument Digital Interface ou MIDI est un protocole de communication défini dans les années 1980 dédié à la représentation de l'information musicale, et utilisé pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine touche a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaires sur le paramètre à modifier et la valeur à lui attribuer.
+: Le Musical Instrument Digital Interface ou MIDI est un protocole de communication défini dans les années 1980 dédié à la représentation de l'information musicale, et utilisé pour la communication entre instruments électroniques, contrôleurs, séquenceurs, et logiciels de musique. Il s'agit du protocole standard du matériel électronique de musique. Il permet par exemple à un Contrôleur MIDI d'envoyer le signal qu'une certaine touche de piano a été pressée avec une certaine vélocité, permettant à un logiciel sur ordinateur de produire un son en conséquence. Dans le sens inverse, ce protocole permet à l'utilisateur de paramétrer son contrôleur MIDI en envoyant des signaux SysEx, comportant les informations nécessaires sur le paramètre à modifier et la valeur à lui attribuer.
 \paragraph{Message SysEx} \cite{sysex}
-: Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, opération qui n'est pas adapté à la syntaxe normale du protocole MIDI. 
+: Un message SysEx est un type de message MIDI permettant de régler les paramètres d'un périphérique MIDI, opération qui n'est pas adaptée à la syntaxe normale du protocole MIDI. 
 \paragraph{Contrôleur MIDI}  \cite{controller}
 :  Un contrôleur MIDI est un appareil utilisé pour envoyer des signaux MIDI à l'ordinateur ou à un autre appareil (par exemple, un synthétiseur analogique). Il peut se présenter sous la forme d'un clavier de piano, de faders, de potentiomètres, d'encodeurs, ou autres.
 \paragraph{GeMAPS} : \textit{General Modular Application with Pluggable Software}. Il s'agit de l'architecture modulaire que l'équipe Compagnon conçoit pendant ce stage, et qu'utilise le UCC.
@@ -296,7 +296,7 @@ L'utilisateur, une fois connecté, peut naviguer parmi les logiciels disponibles
 
 Pour chaque produit, il peut accéder à une fenêtre de détails du produit, sur laquelle il peut être redirigé vers les manuels d'utilisations ou f.a.q., consulter des descriptions précises, ou consulter les notes de mises à jour. 
 
-Les produits se classent en deux catégories : les produits normaux, qui constituent un logiciel à part entière téléchargeable, et les "bundle", qui sont des ensembles de logiciels Arturia. Les bundles sont rassemblés car on peut les acheter ensemble. Le bundle possède alors une licence qui lui est propre, et sur sa page "détails", l'utilisateur peut retrouver l'ensemble des produits qui le constituent. De plus, il a l'option de tous les télécharger simultanément.
+Les produits se classent en deux catégories : les produits normaux, qui constituent un logiciel à part entière et téléchargeable, et les "bundle", qui sont des ensembles de logiciels Arturia. Les bundles sont rassemblés car on peut les acheter ensemble. Le bundle possède alors une licence qui lui est propre, et sur sa page "détails", l'utilisateur peut retrouver l'ensemble des produits qui le constituent. De plus, il propose l'option de tous les télécharger simultanément.
 
 
 \begin{center}
@@ -324,7 +324,7 @@ Le Midi Control Center \cite{mcc}
  (MCC) est le logiciel de configuration de matériel Arturia : il
 permet de gérer les configurations et les paramètres des synthétiseurs et contrôleurs MIDI, ainsi que de faire les mises à jour firmware pour les synthétiseurs analogiques, cartes sons et claviers LMIDI physiques d'Arturia. Il communique en norme MIDI avec les produits Arturia pour leur configuration.
 
-Il est possible, sur ce logiciel, sélectionner un appareil Arturia parmi la liste proposée. Ceci affiche les fenêtres de paramétrage disponibles pour le contrôleur sélectionné. Nous allons ici décrire les pages correspondant à pour la série des contrôleurs MIDI de la gamme Lab, car c'est sur ceux-ci que je me suis concentré pendant ce stage.
+Il est possible, sur ce logiciel, sélectionner un appareil Arturia parmi la liste proposée. Cela affiche les fenêtres de paramétrage disponibles pour le contrôleur sélectionné. Nous allons ici décrire les pages correspondant à la série des contrôleurs MIDI de la gamme Lab, car c'est sur ceux-ci que je me suis concentré pendant ce stage.
 
 La page "Device Settings" est présente pour tous les contrôleurs. Elle permet de modifier les paramètres globaux du contrôleur actuellement connecté (par exemple, son temps de mise en veille ou ses courbes de vélocité).
 
@@ -350,13 +350,13 @@ Les paramètres de contrôleurs MIDI de la gamme Lab sont regroupés en deux cat
     
     Ceux-ci sont assignés à des "profils" : en fonction de l'appareil, certains sont prédéfinis et non modifiables, comme par exemple le profil DAW qui est compatible avec les logiciels de Musique Assistée par Ordinateur, tandis que d'autres sont personnalisables. Ainsi, on peut importer le profil que l'on désire depuis l'appareil, le modifier, puis le réinsérer dans le profil souhaité sur l'appareil. 
 
-    Il est possible d'importer et d'exporter ces paramètres sur des fichiers locaux sur l'ordinateur. Ceci permet à l'utilisateur de sauvegarder un paramétrage de son clavier, ou encore le partager sur une autre unité. Les paramètres sont sauvegardés sous un format JSON, liant l'ID de chaque paramètre à sa valeur.
+    Il est possible d'importer et d'exporter ces paramètres sur des fichiers locaux sur l'ordinateur. Cela permet à l'utilisateur de sauvegarder un paramétrage de son clavier, ou encore de le partager sur une autre unité. Les paramètres sont sauvegardés sous un format JSON, liant l'ID de chaque paramètre à sa valeur.
 \end{itemize}
 
 \subsection{Les API Web MIDI et Web USB.}
 
 L'API Web MIDI \cite{webmidi1}
-fournit une manière aux applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI. Par exemple, dans notre cas précis, nous pouvons recevoir des messages de Note On / Note Off, mais aussi envoyer des messages SysEx permettant de modifier les paramètres du périphérique.
+fournit un moyen aux applications web d'interagir avec les périphériques MIDI connectés à l'ordinateur. Elle permet d'envoyer et de recevoir des messages MIDI. Par exemple, dans notre cas précis, nous pouvons recevoir des messages de Note On / Note Off, mais aussi envoyer des messages SysEx permettant de modifier les paramètres du périphérique.
 
 Cette API existe depuis plus de 10 ans, et est supportée par l'organisme de standardisation W3C. Elle est cependant encore en stade de développement, et bien qu'elle ait été supportée par l'organisme de standardisation W3C, celui-ci ne l'a pas standardisée \cite{webmidi2}. Cela signifie que son soutien par les navigateurs n'est pas obligatoire. Actuellement, cette API n'est disponible que sur les navigateurs Safari et Chromium. Cependant, cela ne pose aucun problème pour notre application, car nous avons la liberté de choisir le navigateur. En l'occurrence, celui que nous utilisons est celui de Juce, et il est basé sur Chromium pour Windows, et sur Safari pour Mac.
 
@@ -369,17 +369,17 @@ Nous pouvons observer sur cette API plusieurs mesures de sécurité \cite{webusb
 \section{Propositions scientifiques et techniques.}
 \subsection{Méthodologie de travail.}
 \subsubsection{Organisation de l'équipe et réunions.}
-L'équipe Compagnon, sous-équipe de l'équipe Système, se réunit pour un stand-up chaque matin, où chacun dit ce qu'il a fait la veille ainsi que ce qu'il prévoit de faire le jour-même. C'est aussi l'occasion de partager les problèmes rencontrés et de recueillir les avis de l'équipe.
+L'équipe Compagnon, sous-équipe de l'équipe Système, se réunit pour un stand-up chaque matin, où chacun fait part de ce qu'il a fait la veille ainsi que ce qu'il prévoit de faire le jour-même. C'est aussi l'occasion d'évoquer les problèmes rencontrés et de recueillir les avis de l'équipe.
 
 Nous effectuons également une réunion d'architecture du projet GeMAPS/UCC tous les vendredis. Durant ces réunions, nous concevons ensemble le projet sur lequel nous travaillons. 
 
-Une réunion de l'équipe Système était effectuée tous les mois.
+Une réunion de l'équipe Système est effectuée tous les mois.
 
-Par ailleurs, Arturia réalise un \textit{General Meeting} tous les mois, où tous les membres d'Arturia se réunissent pour une présentation générale de l'avancée des projets de l'entreprise. Ces réunions spécifiques, que l'on trouve rarement dans d'autres structures, m'ont parues très intéressants. Elles m'ont permis de découvrir de projets concernant des secteurs de l'entreprise éloignés du mien, et m'ont fait découvrir le fonctionnement d'une entreprise de cette taille.
+Par ailleurs, Arturia réalise un \textit{General Meeting} tous les mois, où tous les membres d'Arturia se réunissent pour une présentation générale de l'avancée des projets de l'entreprise. Ces réunions spécifiques, que l'on trouve rarement dans d'autres structures, m'ont parues très intéressants. Elles m'ont permis de découvrir des projets concernant des secteurs de l'entreprise éloignés du mien, et m'ont fait découvrir le fonctionnement d'une entreprise de cette taille.
 
 
 \subsubsection{Git et revues de code.}
-Durant mon projet, j'ai fonctionné avec Git. Etant le seul à travailler quotidiennement sur la partie Web de ces applications, le Git était composé d'une branche principale, et d'une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, pour des modifications importantes, les faire approuver par Fabian Biolay pendant des revues de code, avant de les intégrer à ma branche principale. J'ai eu ainsi 3 projets sur le GitLab de l'entreprise, lesquels sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
+Durant mon projet, j'ai fonctionné avec Git. Etant le seul à travailler quotidiennement sur la partie Web de ces applications, le Git était composé d'une branche principale, et d'une branche secondaire sur laquelle je faisais des modifications avant de faire une Merge Request (MR). Ainsi, je pouvais, quand elles étaient importantes, faire approuver les modifications par Fabian Biolay pendant des revues de code, avant de les intégrer à ma branche principale. J'ai travaillé ainsi sur 3 projets sur le GitLab de l'entreprise, lesquels sont la page hôte qui accueille les deux applications, l'Arturia Software Center, et le Midi Control Center.
 
 \subsection{Environnement technique.}
 
@@ -405,7 +405,7 @@ Par exemple, le Midi Control Center du MiniLab 3 est composé d'une seule page W
 D'autre part, l'Arturia Software Center est composé de trois pages Web, que sont les trois onglets de l'Arturia Software Center actuel, ainsi que d'une librairie back-end C++, qui permet de mettre à disposition des endpoints pour la connexion utilisateur, la récupération de produits, le téléchargement, et toute la partie en ligne ou applicative de l'ASC.
 
 Cependant, plusieurs modules seront des cas spécifiques dans cette architecture modulaire :
-la page principale, qui permet de naviguer entre les modules, doit être celle qui est affichée de base, et ne doit pas être servie sur les mêmes endpoints que les autres pages.
+la page principale, qui permet de naviguer entre les modules, doit être celle qui est affichée par défaut, et ne doit pas être servie sur les mêmes endpoints que les autres pages.
 Par ailleurs, l'Arturia Software Center nécessite une connexion de l'utilisateur : ainsi, nous n'afficherons qu'une page Web de connexion, au lieu des 3 onglets prévus, tant que l'utilisateur n'est pas connecté à son compte Arturia.
 
 
@@ -439,14 +439,15 @@ Si l'on retire les modules, l'application Unified Control Center fonctionne en p
 Pour l'environnement technique front-end, j'ai pu prototyper dès le début du stage l'utilisation de différents frameworks Web dans l'application GeMAPS : React, Angular, et Vue.  
 
 Pour développer les prototypes de l'Arturia Software Center et du Midi Control Center, le choix du framework m'a été laissé : je me sentais plus compétent sur Angular TypeScript, car c'était ce que j'avais utilisé durant le stage précédent. Ceci s'est révélé être une erreur, car cela ne correspondait pas à la stack technologique utilisée au sein de l'entreprise, notamment de l'équipe Web qui travaille avec Vue Nuxt. Afin de favoriser la cohérence de l'entreprise, ainsi que pour bénéficier des conseils d'experts dans le framework, il m'a été recommandé de refactoriser les projets en Vue Nuxt. Cette démarche a permis ainsi une meilleure uniformité dans l'entreprise, ainsi qu'une progression plus rapide de mes compétences personnelles. J'ai également adopté les autres caractéristiques d'environnement technique de l'équipe Web, que sont l'utilisation de Tailwind et du PostCSS pour les styles. 
-
+\\
+\\
 \subsubsection{Environnement pour la gestion de projet}
 L'équipe Compagnon utilise Trello pour la gestion de projet. L'équipe s'en sert pour gérer les tickets, distribuer les tâches, visualiser les tâches en attente de chaque projet ainsi que les tâches en cours.
 
 \subsection{Propositions techniques / Implémentations}
 \subsubsection{Prototypage d'utilisation de framework Web}
-Mes premières tâches à Arturia furent de démontrer la possibilité d'utiliser différents frameworks Web dans l'application GeMAPS.
-J'ai ainsi pu réaliser, en Vue, React et Angular, la reproduction d'un page de l'Arturia Software Center, ainsi que les afficher dans une page principale basique, permettant de naviguer entre les pages Web distribuées. 
+Ma première tâche à Arturia furent de démontrer la possibilité d'utiliser différents frameworks Web dans l'application GeMAPS.
+J'ai ainsi pu réaliser, en Vue, React et Angular, la reproduction d'une page de l'Arturia Software Center, ainsi que l'afficher dans une page principale basique permettant de naviguer entre les pages Web distribuées. 
 
 Les résultats de ce prototypage ont révélé que peu de différences importantes étaient observables entre ces différents frameworks une fois l'application Web compilée. Le point de différence majeur fut que l'architecture de fichiers compilés n'est pas la même par défaut sur ces différentes technologies, et nécessite donc de lister les fichiers et répertoires à distribuer pour le serveur de fichiers de GeMAPS.
 
@@ -475,9 +476,9 @@ Les résultats de ce prototypage ont révélé que peu de différences important
 
 Dans le cas d'un serveur Web classique, lorsqu'un navigateur demande une page sans extension, par exemple www.page.com/chemin, le serveur servira automatiquement le fichier www.page.com/chemin/index.html s'il existe. Dans notre cas, nous ne souhaitions pas fonctionner ainsi, car notre serveur sert aussi bien les pages web que les endpoints du back-end. En effet, l'extension présente sur les fichiers Web nous permet de les différencier des endpoints back-end.
     
-    Cependant, le problème se complexifie dans le cas de Vue Nuxt, car celui-ci utilise une surcouche de navigation, qui ne reconnait que les chemins sans la partie finale /index.html. Le résultat produit était que le serveur refuse de servir une page si elle ne termine pas par /index.html, mais lorsqu'on le rajoute, Vue Nuxt refuse l'accès.
+    Cependant, le problème se complexifie dans le cas de Vue Nuxt, car celui-ci utilise une surcouche de navigation qui ne reconnait que les chemins sans la partie finale /index.html. Il en résulte que le serveur refuse de servir une page si elle ne termine pas par /index.html, mais lorsqu'on le rajoute, Vue Nuxt refuse l'accès.
 
-    La solution de contournement que nous avons choisie, est un middleware intégré au code du front-end : à chaque navigation sur une nouvelle page terminant par /index.html, le chemin sera changé en retirant ce suffixe.
+    La solution de contournement que nous avons choisie est un middleware intégré au code du front-end : à chaque navigation sur une nouvelle page terminant par /index.html, le chemin sera changé en retirant ce suffixe.
 
 
 
@@ -569,7 +570,7 @@ En effet, la connexion de l'Arturia Software Center déjà existant inclut la sy
 
 Nous avons rencontré un autre défi avec la fonctionnalité de l'auto-login, qui est implémentée par l'Arturia Software Center existant, et qui permet à l'utilisateur de n'avoir à se connecter qu'une fois sur sa machine. Dans notre cas, puisque nous démarrons le back-end et le front-end en même temps, il est crucial pour le front-end de savoir à quelle étape de la connexion se trouve le back-end pour afficher les pages correspondantes. Pour résoudre ce problème, nous avons décidé d'ajouter un endpoint au back-end, qui permet, en cas d'auto-login, de demander si l'utilisateur est en cours de connexion, de synchronisation, ou si tout est déjà terminé.
 
-Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de ne rendre disponible qu'une page de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Ceci nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
+Enfin, il était illogique d'un point de vue de l'expérience utilisateur d'avoir 3 pages disponibles pour les 3 onglets de l'Arturia Software Center, même si ceux-ci sont déconnectés. L'utilisateur voyait de cette façon 3 fois la même page de connexion. Pour y remédier, nous avons décidé de ne rendre disponible qu'une page de connexion sur la page principale de GeMAPS, tant que l'utilisateur n'est pas connecté. Cela nécessite ainsi de partager le statut de connexion entre la page Web principale, et la page Web de l'Arturia Software Center. Pour ce faire, nous avons décidé de passer par le stockage local de navigateur. 
 
 
 \paragraph{Installation de produits}: Le fonctionnement de l'installation de produits comporte de nombreuses ramifications dans l'Arturia Software Center existant, qui s'affichent toutes sur le bouton d'installation. Pour les reproduire, j'ai décidé de créer un composant \textit{InstallButton} qui prendrait l'id du produit en entrée, ainsi que quelques éléments lui indiquant ce qu'il doit afficher, que l'on décidera en fonction de l'emplacement où il se trouve. 
@@ -579,7 +580,7 @@ La complexité de ce composant se situe dans plusieurs éléments :
     \item Premièrement, il présente de nombreuses possibilités. Pour les lister, nous avons le bouton de mise à jour, d'installation, d'installation de produit "bundle", de téléchargement en cours, de téléchargement en pause, d'installation en cours, d'échec de téléchargement, d'échec d'installation, d'activation, d'achat, de mise à jour avec options et de désinstallation avec options.
     \item Ensuite, son affichage ne dépend pas uniquement du produit auxquel il correspond, mais aussi de l'emplacement où on l'utilise : l'activation ou l'achat ne doit s'afficher que dans la page "My Products", et les boutons avec options ne doivent s'afficher que dans les détails du produit. De plus, dans une carte compacte de produit, l'activation prend le dessus sur l'installation, mais dans les détails du produit, les deux boutons d'activation et d'installation s'affichent côte à côte.
     \item De plus, les boutons de téléchargement en cours et de téléchargement en pause doivent afficher, sur survol de souris, des options de pause et d'arrêt du téléchargement.
-    \item Enfin et surtout, le bouton doit se mettre à jour s'il est en mode téléchargement ou installation. Ceci pose une complexité supplémentaire, car nous ne souhaitons pas que le bouton se mette à jour s'il ne concerne pas un téléchargement, car cela concernerait donc tous les produits et demanderait beaucoup de puissance. Cela signifie que si on lance un téléchargement dans les détails du produit, il faut que le bouton de la vue compacte commence à se mettre à jour aussi, et demande donc un envoi d'information supplémentaire entre les boutons.
+    \item Enfin et surtout, le bouton doit se mettre à jour s'il est en mode téléchargement ou installation. Ceci induit une complexité supplémentaire, car nous ne souhaitons pas que le bouton se mette à jour s'il ne concerne pas un téléchargement. En effet, cela concernerait donc tous les produits et demanderait beaucoup de puissance. Cela signifie que si on lance un téléchargement dans les détails du produit, il faut que le bouton de la vue compacte commence à se mettre à jour aussi, et demande donc un envoi d'information supplémentaire entre les boutons.
 \end{itemize}
 
 \begin{center}
@@ -686,7 +687,7 @@ Cette application Web n'a qu'une seule page.
 
 Les composants \textit{ColorField}, \textit{SliderField} et \textit{NoteField} sont des composants affichant respectivement des champs de sélection de couleur, de valeur sur slider et de note de musique. Il sont utilisés par le plus large \textit{FieldComponent}, lui-même affiché dans le composant \textit{DeviceSettings}, affichant les paramètres d'appareil, et \textit{PresetSettings}, affichant les paramètres de préréglage.
 
-Les composables sont utilisés par la page, les composants, les autres composables, et le store. Nous pouvons y retrouver \textit{useJSON}, qui contient des outils de gestion des fichiers de paramètres JSON, comme par exemple la création et le téléchargement d'un objet au format JSON. \textit{useSettings} contient la logique de gestion des settings ainsi que de de leur envoi et réception au contrôleur MIDI. \textit{useMidi} utilise une logique plus basse, servant de surcouche à l'API Web MIDI, et \textit{useMidiMessage} contient la logique de traitement et de traduction des messages MIDI. Ceci lui permet de déterminer par exemple si c'est un SysEx, quel est le contrôle concerné, ou quelle valeur il transporte. Il peut également créer un message SysEx à envoyer au contrôleur.
+Les composables sont utilisés par la page, les composants, les autres composables, et le store. Nous pouvons y retrouver \textit{useJSON}, qui contient des outils de gestion des fichiers de paramètres JSON, comme par exemple la création et le téléchargement d'un objet au format JSON. \textit{useSettings} contient la logique de gestion des settings ainsi que de de leur envoi et réception au contrôleur MIDI. \textit{useMidi} utilise une logique plus basse, servant de surcouche à l'API Web MIDI, et \textit{useMidiMessage} contient la logique de traitement et de traduction des messages MIDI. Cela lui permet de déterminer par exemple si c'est un SysEx, quel est le contrôle concerné, ou quelle valeur il transporte. Il peut également créer un message SysEx à envoyer au contrôleur.
 
 Le store \textit{settingsStore} stocke les paramètres d'appareil et les paramètres de préréglage.
 
@@ -709,12 +710,12 @@ J'ai pu prototyper, pendant mon développement du Midi Control Center, une fonct
 , en m'appuyant sur un projet open-source 
 \footnote{\url{https://github.com/devanlai/webdfu}}
 implémentant une update firmware DFU Web pour les cartes électroniques STM32.
-J'ai d'abord commencé par l'expérimenter sur le MiniLab 3, qui fait partie des produits qui n'ont qu'un micro-processeur à mettre à jour, et est donc plus simple, puis ensuite le MiniFreak, qui possède 6 micro-processeurs à mettre à jour les uns après les autres.
+J'ai d'abord commencé par l'expérimenter sur le MiniLab 3, qui fait partie des produits qui n'ont qu'un micro-processeur à mettre à jour, et est donc plus simple. Puis je suis passé au MiniFreak, qui possède 6 micro-processeurs à mettre à jour les uns après les autres.
 
 Sur Windows, Arturia utilise un pilote USB MIDI propriétaire, qui lui permet notamment de mettre à disposition ses interfaces MIDI à plusieurs clients en même temps. Ce pilote fut le problème majeur que j'ai rencontré, car il empêche la mise à jour sur Windows en raison de son incompatibilité avec l'API Web USB, conçu pour le pilote générique WinUSB. J'ai pu tout de même réaliser la mise à jour sur Mac ainsi qu'en remplaçant le driver Arturia par WinUSB sur Windows. Ceci pose cependant un frein à la réalisation d'un Midi Control Center entièrement en technologies Web. En effet, nous ne pouvons pas pour l'instant nous passer de ce pilote dans tous les produits Arturia, et nous ne pouvons l'utiliser qu'en C++.
 
 Cependant, ce prototype reste pertinent, car il permet d'imaginer des possibilités futures sur des produits qui auront un pilote différent.
-En effet, plusieurs produits Arturia n'utilisent pas le pilote de l'entreprise, qui communique en MIDI, mais bien WinUSB, grâce à un descripteur USB Microsoft OS 2.0. La raison à cela est double : la communication MIDI est lente, et pose donc problème sur des produits avec beaucoup de paramètres comme le PolyBrute, mais surtout, la communication MIDI est ouverte à tous les logiciels. Ceci veut dire qu'un logiciel de Musique Assistée par Ordinateur, comme Ableton, sur lequel on branche un MiniFreak et auquel on vient ajouter le plug-in MiniFreak V, peut accéder au port MIDI autant que le logiciel MiniFreak V. Cela peut donc potentiellement perturber la communication entre le MiniFreak et son plug-in. Ce problème a déjà été identifié sur plusieurs produits qui ont un plug-in associé.
+En effet, plusieurs produits Arturia n'utilisent pas le pilote de l'entreprise, qui communique en MIDI, mais bien WinUSB, grâce à un descripteur USB Microsoft OS 2.0. La raison à cela est double : la communication MIDI est lente, et pose donc problème sur des produits avec beaucoup de paramètres comme le PolyBrute, mais surtout, la communication MIDI est ouverte à tous les logiciels. Cela signifie qu'un logiciel de Musique Assistée par Ordinateur, comme Ableton, sur lequel on branche un MiniFreak et auquel on vient ajouter le plug-in MiniFreak V, peut accéder au port MIDI autant que le logiciel MiniFreak V. Cela peut donc potentiellement perturber la communication entre le MiniFreak et son plug-in. Ce problème a déjà été identifié sur plusieurs produits qui ont un plug-in associé.
 Il en résulte que certains produits, comme le MiniFreak ou le récent AstroLab, n'ont pas de pilote MIDI mais plutôt un pilote USB, et peuvent donc être mis à jour en Web USB même sur Windows.
 
 
@@ -742,7 +743,7 @@ J'en ai donc repris les couleurs et les polices de caractères. Je me suis égal
     \label{fig:test1}
 \end{center}
 
-On peut remarquer ici les boutons bleus alignés sur les contrôles du MiniLab 3 : ils permettent de sélectionner le contrôle dont nous souhaitons modifier les paramètres. Dans le Midi Control Center existant, la disposition de ceux-ci se fait sur la base d'un fichier JSON qui précise l'identifiant de chaque contrôle, son emplacement, sa forme et sa taille. C'est donc sur ce fichier-là que je récupère la disposition de tous les contrôles. Cependant, les tailles et emplacements sont renseignés en pixels, ce qui ne convient pas à mon fonctionnement réactif au redimensionnement de la page : je récupère donc la taille en pixels de l'image, et je traduis toutes les tailles et emplacements des contrôles en pourcentages de l'image : de cette manière, l'image du contrôleur et ses contrôles se redimensionnent correctement en fonction de la taille de la fenêtre.
+On peut remarquer ici les boutons bleus alignés sur les contrôles du MiniLab 3 : ils permettent de sélectionner le contrôle dont nous souhaitons modifier les paramètres. Dans le Midi Control Center existant, leur disposition s'organise sur la base d'un fichier JSON qui précise l'identifiant de chaque contrôle, son emplacement, sa forme et sa taille. C'est donc sur ce fichier-là que je récupère la disposition de tous les contrôles. Cependant, les tailles et emplacements sont renseignés en pixels, ce qui ne convient pas à mon fonctionnement réactif au redimensionnement de la page : je récupère donc la taille en pixels de l'image, et je traduis toutes les tailles et emplacements des contrôles en pourcentages de l'image : de cette manière, l'image du contrôleur et ses contrôles se redimensionnent correctement en fonction de la taille de la fenêtre.
 
 
 
@@ -752,12 +753,12 @@ Tous les paramètres du MiniLab3 sont stockés dans le Store de l'application We
 
 \begin{itemize}
     \item Paramètres d'appareil :  Tout comme le faisait Midi Control Center déjà existant, les paramètres d'appareil sont chargés au branchement du MiniLab 3. De même, à chaque changement de valeur d'un paramètre d'appareil, un message SysEx est envoyé au MiniLab 3 pour opérer ce changement.
-    \item Paramètres de préréglage : Par rapport aux paramètres de préréglage, nous opérons également en suivant la méthode du Midi Control Center actuel : nous pouvons ainsi importer et exporter tous les paramètres de préréglage de chaque profil sur le contrôleur. 
+    \item Paramètres de préréglage : Concernat les paramètres de préréglage, nous opérons également en suivant la méthode du Midi Control Center actuel : nous pouvons ainsi importer et exporter tous les paramètres de préréglage de chaque profil sur le contrôleur. 
     
     Cependant, la sauvegarde des paramètres sur l'ordinateur pose problème : elle est impossible en Web car cela poserait des problèmes de sécurité. Ainsi, nous avons conceptualisé, avec l'équipe Compagnon, un module sans interface graphique, qui servirait de système de fichiers. Il aurait un endpoint pour importer un fichier, et un autre pour exporter. Créer ce module sans interface plutôt qu'intégrer cette fonctionnalité au back-end du MCC MiniLab 3 permettrait de créer un module générique utilisable par tout autre module Web ayant besoin du système de fichiers. En attendant le développement d'un tel service, j'ai réalisé un import par sélection de fichier, et un export en téléchargement dans le dossier par défaut de téléchargement du navigateur.
 \end{itemize}
 
-Lors de l'import de paramètres, nous envoyons le SysEx demandant ce paramètre en particulier, puis nous attendons la réponse de l'appareil. En cas de non-réponse, nous renvoyons le SysEx 2 fois de plus avant de déclarer une erreur.
+Lors de l'import de paramètres, nous envoyons le SysEx demandant ce paramètre en particulier, puis nous attendons la réponse de l'appareil. En cas de non-réponse, nous renvoyons le SysEx deux fois de plus avant de déclarer une erreur.
 
 Cette méthode d'envoi séquentiel de SysEx, en attente de réponses avant d'envoyer les suivants, convient au MiniLab 3 en raison de son nombre limité de paramètres. Pour un appareil avec plus de paramètres, nous pouvons également envisager d'envoyer tous les SysEx à la suite sans attendre les réponses, et de traiter les réponses à leur réception. Cette méthode sera cependant à appliquer avec attention, car les microprocesseurs des appareils ne peuvent pas suivre la vitesse de l'ordinateur pour la récupération des SysEx : il faudra, si nous n'attendons plus la réponse SysEx de l'appareil avant d'envoyer le prochain message, sélectionner une temporisation qui permettra à l'appareil de traiter ce qu'il reçoit au fur et à mesure.
 
@@ -778,7 +779,7 @@ Pour le Web USB, j'ai développé une page capable de mettre à jour les apparei
 
 Certains outils m'ont été utiles à valider le fonctionnement de ce que je produisais. Postman m'a souvent permis d'approuver ce que me renvoyait le back-end, pour vérifier que j'affichais réellement ce qui correspondait. J'ai réalisé une collection de requêtes correspondant à toutes les requêtes possibles à faire au back-end, et cela m'a permis souvent de comprendre la provenance des problèmes rencontrés : en remontant à la source de la requête, j'ai pu distinguer les erreurs de mes interfaces Web des incompréhensions de ma part sur les réponses du back-end. De plus, Postman m'a permis de tester plus en profondeur le système de connexion et déconnexion: en étant capable d'envoyer un signal de déconnexion à tout moment au back-end, on est ainsi capable de tester le plus d'états de connexion possibles.
 
-Par ailleurs, le navigateur intégré du framework C++ JUCE, que nous utilisons pour afficher l'Unified Control Center, est capable d'afficher une console ainsi que de laisser accès à son stockage local. Ceci m'a permis de modifier le stockage local en cours de fonctionnement de l'application, ainsi que de vérifier certaines valeurs par la console. Ces contrôles m'ont aidé à consolider les projets sur lesquels j'ai travaillé.
+Par ailleurs, le navigateur intégré du framework C++ JUCE, que nous utilisons pour afficher l'Unified Control Center, est capable d'afficher une console ainsi que de permettre accès à son stockage local. Cela m'a permis de modifier le stockage local en cours de fonctionnement de l'application, ainsi que de vérifier certaines valeurs par la console. Ces contrôles m'ont aidé à consolider les projets sur lesquels j'ai travaillé.
 
 Enfin, j'ai pu tester et valider de nombreux cas de renvois d'erreurs ou de renvois non conformes d'informations par le back-end, en le simulant à l'aide du répertoire \textit{server} de mes projets Vue Nuxt. En effet, ce framework permet de produire des maquettes d'endpoints qui sont automatiquement mis à disposition lorsque le projet est lancé en mode développement.
 
@@ -786,17 +787,17 @@ Enfin, j'ai pu tester et valider de nombreux cas de renvois d'erreurs ou de renv
 \subsection{Acquis}
 \subsubsection{Acquis techniques}
 
-Mon projet de fin d'études à Arturia n'est pas terminé, mais s'est avérée une expérience très formatrice. 
+Mon projet de fin d'études à Arturia n'est pas terminé, mais s'est avéré une expérience très formatrice. 
 
-Tout d'abord, j'ai eu l'occasion d'approfondir les compétences de développement Web que j'avais acquises lors de mon stage précédent. J'ai découvert Vue Nuxt, TailwindCSS, et j'ai profité des revues de code que j'ai faites avec l'équipe Web d'Arturia pour adopter de bonnes pratiques de développement. Ceci fut le coeur de mon stage, mais j'ai pu également monter en compétence sur d'autres domaines très variés. 
+Tout d'abord, j'ai eu l'occasion d'approfondir les compétences de développement Web que j'avais acquises lors de mon stage précédent. J'ai découvert Vue Nuxt, TailwindCSS, et j'ai profité des revues de code que j'ai faites avec l'équipe Web d'Arturia pour adopter de bonnes pratiques de développement. Ceci fut le coeur de mon stage, mais j'ai pu également enrichier mes compétence dans d'autres domaines très variés. 
 
-Notamment en assistant et en participant aux réunions d'architecture, j'ai pu réfléchir avec l'équipe Compagnon au fonctionnement d'une architecture d'application modulaire novatrice et originale, en me montrant force de proposition et en apportant à cette équipe de développement C++ mes connaissances Web. 
+En assistant et en participant aux réunions d'architecture, j'ai pu réfléchir avec l'équipe Compagnon au fonctionnement d'une architecture d'application modulaire novatrice et originale, en me montrant force de proposition et en apportant à cette équipe de développement C++ mes connaissances Web. 
 
 J'ai également enrichi mes connaissances sur la communication MIDI et USB, lors du développement des preuves de concept d'utilisation des API Web MIDI et Web USB, ainsi que plus généralement pendant le développement du Midi Control Center. Cette partie de mon stage a nécessité des recherches sur ces protocoles, ainsi que des explications sur leur utilisation et leurs modifications à Arturia. 
 
-De plus, j'ai approfondi mes compétences de créativité et de recherche lors de l'étude de ces API Web qui sont encore en développement, ainsi que lors des essais que j'ai fait dans le cadre des interfaces Web de GeMAPS. Alors que mes stages antérieurs étaient axés principalement sur la production, cette expérience m'a permis de me plonger davantage dans le domaine de la recherche et développement.
+De plus, j'ai approfondi mes compétences en créativité et en recherche lors de l'étude de ces API Web qui sont encore en développement, ainsi que lors des essais que j'ai effectués dans le cadre des interfaces Web de GeMAPS. Alors que mes stages antérieurs étaient axés principalement sur la production, cette expérience m'a permis de me plonger davantage dans le domaine de la recherche et développement.
 
-J'ai de plus eu l'occasion d'appliquer quelques modifications mineures au projet GeMAPS et au back-end de l'Arturia Software Center, en C++. En effet, le développeur de ces projets travaille sur Mac, et j'ai eu donc quelques modifications à faire pour pouvoir lancer les projets sur Windows. Il m'a donc fait plusieurs retours de Merge Requests qui m'ont permis d'apprendre et d'améliorer le format de mon code.
+J'ai de plus eu l'occasion de mettre en place quelques modifications mineures au projet GeMAPS et au back-end de l'Arturia Software Center, en C++. En effet, le développeur de ces projets travaille sur Mac, et j'ai eu donc quelques modifications à faire pour pouvoir lancer les projets sur Windows. Il m'a donc fait plusieurs retours de Merge Requests qui m'ont permis d'apprendre de mes erreurs et d'améliorer le format de mon code.
 
 
 
@@ -816,16 +817,16 @@ En effet, travailler sur un front-end pendant que quelqu'un d'autre travaille su
 
 De plus, j'ai pu développer mes capacités d'argumentation et de présentation pendant les réunions d'architecture du projet Unified Control Center. 
 
-Enfin, le statut de mon projet m'a poussé à développer des capacités de présentation et d'explicitation. En effet, le projet d'Unified Control Center est pour l'instant un projet technique qui n'a pas encore été validé pour être continué en tant que projet complet d'Arturia. Ainsi, j'ai du présenter le travail que j'ai pu réaliser avec le développeur C++ Jean-Yves. Je devrai par ailleurs réaliser d'autres présentations du projet avant la fin de mon stage. L'exercice d'exposer rapidement ce projet, son fonctionnement, tous ses avantages, tout ce qu'on a pu réaliser, en un temps court à des personnes extérieures me permet d'apprendre à résumer à l'essentiel, ainsi qu'à prendre du recul sur mon travail.
+Enfin, le statut de mon projet m'a poussé à développer des capacités de présentation et d'explicitation. En effet, le projet d'Unified Control Center est pour l'instant un projet technique qui n'a pas encore été validé pour être continué en tant que projet complet d'Arturia. Ainsi, j'ai dû présenter le travail que j'ai pu réaliser avec le développeur C++ Jean-Yves. Je devrai par ailleurs réaliser d'autres présentations du projet avant la fin de mon stage. L'exercice d'exposer rapidement ce projet, son fonctionnement, tous ses avantages, tout ce que l'on a pu réaliser, en un temps limité à des personnes extérieures me permet d'apprendre à synthétiser mon propos, ainsi qu'à prendre du recul sur mon travail.
 
 \subsection{Difficultés rencontrées}
-Je n'ai à aucun moment été bloqué longtemps par un problème durant ce projet de fin d'études, grâce entre autres à la réactivité de mon tuteur, ainsi que Jean-Yves Tissot et Fabian Biolay, qui ont pu beaucoup m'aider quand je me retrouvais face à des difficultés ou des questionnements. 
+Je n'ai à aucun moment été bloqué longtemps par un problème durant ce projet de fin d'études, grâce entre autres à la réactivité de mon tuteur, ainsi que Jean-Yves Tissot et Fabian Biolay, qui m'ont étés d'une grande aide quand je me retrouvais face à des difficultés ou des questionnements. 
 
 Voici quelques difficultés que j'ai rencontrées : 
 \begin{itemize}
     \item L'erreur principale que j'ai commise durant ce stage a été de débuter mon projet avec Angular, un framework que personne n'utilisait au sein de l'entreprise. Développer cette application en un langage inutilisé dans l'entreprise entraîne des problèmes de manque de conseils et de corrections, mais aussi des problèmes de conformité dans l'entreprise. Ceci induit une maintenabilité plus compliquée, ainsi qu'une impossibilité à faire travailler quelqu'un de l'entreprise sur ce projet. J'ai ainsi refactorisé pendant une semaine mon projet en Vue Nuxt. Ce travail, avec l'aide du développeur Web Fabian Biolay, a été très formateur.
     \item Pendant mes protypages, j'ai découvert que quelques fonctionnalités ne sont pas réalisables en technologies Web. Nous avons ainsi découvert qu'il était impossible de faire la mise à jour en Web des appareils Arturia avec un driver Windows, mais aussi que l'on allait devoir utiliser un back-end C++ pour pouvoir manipuler des fichiers utilisateurs. Étudier ces technologies et essayer d'en comprendre les limites m'a permis de développer mes compétences de recherches et ma compréhension des technologies Web en général.
-    \item L'installation du projet sur mon ordinateur Windows a posé quelques problèmes, liés au développement de l'infrastructure qui a été réalisée sur Mac. J'ai pu rechercher les erreurs causées par des chemins différents, ou encore des permissivités différentes entre Mac et Windows. Ceci m'a permis de comprendre le back-end de l'application plus en profondeur que si j'avais uniquement à l'utiliser, et m'a permis ainsi d'étudier le code C++ de cette architecture modulaire.
+    \item L'installation du projet sur mon ordinateur Windows a posé quelques problèmes, liés au développement de l'infrastructure qui a été réalisée sur Mac. J'ai pu rechercher les erreurs causées par des chemins différents, ou encore des permissivités différentes entre Mac et Windows. Cela m'a permis de comprendre le back-end de l'application plus en profondeur que si j'avais uniquement eu à l'utiliser, et m'a permis ainsi d'étudier le code C++ de cette architecture modulaire.
     \item Enfin, la dernière difficulté rencontrée fut la communication inter-modules Web. Ces modules sont affichés dans des iframes, et nous avions besoin de les faire communiquer pour plusieurs raisons. Celles-ci peuvent aller de la synchronisation de la connexion entre les différentes fenêtres de l'Arturia Software Center, à la communication du mode sombre lorsqu'il est sélectionné par l'utilisateur. Nous avions tout d'abord conceptualisé un module back-end qui serait requêtable par toutes les interfaces Web de modules, qui contiendrait l'état de mode sombre, les informations de connexion communes, et autres éléments à partager. J'ai finalement utilisé une solution plus simple et plus facilement maintenable qu'un module commun à tous les modules : je communique les informations par le stockage local du navigateur. En effet, Vue Use implémente un état dynamique du stockage local, qui permet simplement aux différents modules de modifier une variable et de suivre ses changements dynamiquement.
 \end{itemize}
 % API Web USB
@@ -839,8 +840,8 @@ Voici quelques difficultés que j'ai rencontrées :
 % 
 
 \subsection{Retour sur mes attentes.}
-Je suis très satisfait de mon stage chez Arturia. Il a été très formateur, et m'a permis monter en compétence sur de multiples sujets techniques liés au Web, aux technologies musicales, ainsi que sur toutes les technologies de l'entreprise Arturia.
-Par ailleurs, le domaine et l'environnement de travail de l'entreprise m'a beaucoup plu, en particulier grâce à ma passion pour la musique.
+Je suis très satisfait de mon stage chez Arturia. Il a été très formateur, et m'a permis de monter en compétence sur de multiples sujets techniques liés au Web, aux technologies musicales, ainsi que sur toutes les technologies de l'entreprise Arturia.
+Par ailleurs, le domaine et l'environnement de travail de l'entreprise m'ont beaucoup plu, en particulier du fait de ma passion pour la musique.
 J'ai également apprécié d'avoir pu peser sur les décisions prises pendant la mise à jour de ce projet : j'ai eu, dans ce stage, un impact sur ce logiciel et j'ai été force de proposition et de décision dans l'équipe. 
 
 
@@ -866,19 +867,19 @@ Lors de ce projet de fin d'études, j'ai évalué en profondeur la faisabilité 
 
 Par ailleurs, j'ai montré que certaines fonctionnalités sont plus difficilement réalisables en technologies Web. J'ai réalisé que l'API WebUSB est pour l'instant incompatible avec le driver Arturia se trouvant sur la plupart des périphériques vendus par l'entreprise. J'en ai également compris la raison et les enjeux. J'ai pu également mettre en évidence que les technologies Web sont intrinsèquement incompatibles avec la gestion des fichiers locaux.
 
-En conclusion, grâce à ce projet de fin d'études, j'ai pu monter en compétence sur des domaines très variés et m'initier au monde de l'entreprise. Cette expérience fut enrichissante et très formatrice pour moi.
+En conclusion, grâce à ce projet de fin d'études, j'ai pu gagner en expertise sur des domaines très variés et m'initier au monde de l'entreprise. Pour toutes ces raisons, cette expérience fut enrichissante et très formatrice pour moi.
 
 \subsection{Perspectives}
 
 Ce stage n'étant pas encore terminé, il reste encore plusieurs points que je voudrais développer pour compléter mon prototype.
 \begin{itemize}
     \item Tout d'abord, je souhaite approfondir mes recherches concernant l'accessibilité de mes interfaces Web. J'ai pu, en visitant les sites du gouvernement traitant de la norme RGAA4, découvrir plusieurs règles et problématiques que je ne connaissais pas. Les normes d'accessibilités sont très documentées et supportées dans les technologies Web. Réussir à respecter au maximum cette norme dans les prototypes permettrait de montrer un intérêt supplémentaire à l'utilisation d'interfaces Web dans le Unified Control Center.
-    \item L'utilisation de liens extérieurs redirigeant sur l'application à un page choisie est une fonctionnalité qui m'a été conseillée par mon tuteur, car elle est peut être très intéressante pour l'écosystème Arturia. En effet, nous pouvons imaginer un lien sur la page d'un produit sur le site Web d'Arturia, redirigeant vers ce produit sur l'Arturia Software Center, pour le télécharger. Ceci simplifierait encore l'expérience utilisateur, ce qui est un des points clés du développement du Unified Control Center.
-    \item Jean-Yves et moi n'avons pas fini d'intégrer toutes les fonctionnalités de l'Arturia Software Center original. Entre autres, il nous manque la désinstallation de produits, et la récupération et modification de préférences utilisateur. Dès que Jean-Yves aura pu mettre à disposition des endpoints correspondant, je pourrai les intégrer aux interfaces Web, et ainsi proposer une expérience complète de l'Arturia Software Center au sein du UCC.
-    \item Comme nous avons pu le citer, il reste à réaliser un module permettant de gérer les fichiers locaux pour réaliser un Midi Control Center complet, ainsi qu'un module permettant de mettre à jour les périphériques Arturia.
+    \item L'utilisation de liens extérieurs redirigeant sur l'application à un page choisie est une fonctionnalité qui m'a été conseillée par mon tuteur, car elle est peut être très intéressante pour l'écosystème Arturia. En effet, nous pouvons imaginer un lien sur la page d'un produit sur le site Web d'Arturia redirigeant vers ce produit sur l'Arturia Software Center pour le télécharger. Ceci simplifierait encore l'expérience utilisateur, ce qui est un des points clés du développement du Unified Control Center.
+    \item Jean-Yves et moi n'avons pas fini d'intégrer toutes les fonctionnalités de l'Arturia Software Center original. Entre autres, il nous manque la désinstallation de produits et la récupération et modification de préférences utilisateur. Dès que Jean-Yves aura pu mettre à disposition des endpoints correspondant, je pourrai les intégrer aux interfaces Web et ainsi proposer une expérience complète de l'Arturia Software Center au sein du UCC.
+    \item Comme nous avons pu le voir, il reste à réaliser un module permettant de gérer les fichiers locaux pour réaliser un Midi Control Center complet, ainsi qu'un module permettant de mettre à jour les périphériques Arturia.
     \item Nous n'avons pas encore eu l'occasion de réaliser un prototype de l'utilisation de Chromium Embedded Framework en le personnalisant. Utiliser CEF pour le navigateur Web nous apporterait une uniformité entre Windows et Mac que le framework C++ Juce ne nous permet pas.\\
 
-Pour conclure, je souhaite débuter ma carrière chez Arturia. Tout d'abord, cet environnement de travail me permet de lier ma passion pour la musique à mes compétences en informatique. Par ailleurs mon expérience dans cette entreprise m'a permis de réaliser que cet environnement est propice à la montée en compétence et à mon épanouissement dans le monde du travail, grâce à la multiplicité de métiers que l'on peut y trouver et au dynamisme de l'équipe.
+Pour conclure, je souhaite débuter ma carrière chez Arturia. Tout d'abord, cet environnement de travail me permet de lier ma passion pour la musique à mes compétences en informatique. Par ailleurs mon expérience dans cette entreprise m'a permis de réaliser que cet environnement est propice au développement de mes compétences et à mon épanouissement dans le monde du travail grâce à la multiplicité de métiers que l'on peut y trouver et au dynamisme de l'équipe.
 \end{itemize}
 
 % Je souhaite rester oui
