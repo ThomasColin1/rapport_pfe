@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="BWIcD3Xi2dSUgdzjhlaD" name="Page-1">
-        <mxGraphModel dx="1904" dy="1558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="368" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="100" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;entryX=0;entryY=0.609;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="99" edge="1" target="5">
+                <mxCell id="100" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;entryX=0;entryY=0.609;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="99" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="800" y="270" as="targetPoint"/>
                     </mxGeometry>
@@ -33,7 +33,7 @@
                         <mxPoint x="1080" y="530" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="118" value="Event Bus" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="56">
+                <mxCell id="118" value="Event Bus" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="56" vertex="1" connectable="0">
                     <mxGeometry x="0.4049" y="2" relative="1" as="geometry">
                         <mxPoint x="21" y="-1" as="offset"/>
                     </mxGeometry>
@@ -187,6 +187,9 @@
                 </mxCell>
                 <mxCell id="114" value="&amp;nbsp; ColorMode&lt;br&gt;&amp;nbsp; LanguageComponent" style="whiteSpace=wrap;html=1;strokeWidth=1;fontSize=12;align=left;" parent="1" vertex="1">
                     <mxGeometry x="930" y="380" width="135" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/png,iVBORw0KGgoAAAANSUhEUgAAAzEAAAEeCAMAAACNLWt4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURezs7AAAALVstmgAAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAXEQAAFxEByibzPwAAAPlJREFUeF7twQENAAAAwqD3T20PBwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF2qSCQAB4MzbwwAAAABJRU5ErkJggg==;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="10" width="817" height="286" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
